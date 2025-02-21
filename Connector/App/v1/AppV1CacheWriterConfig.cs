@@ -1,5 +1,5 @@
-namespace Connector.User.v1;
-using Connector.User.v1.Employees;
+namespace Connector.App.v1;
+using Connector.App.v1.Employees;
 using ESR.Hosting.CacheWriter;
 using Json.Schema.Generation;
 
@@ -9,9 +9,9 @@ using Json.Schema.Generation;
 /// The schema will be used for validation at runtime to make sure the configurations are properly formed. 
 /// The schema also helps provide integrators more information for what the values are intended to be.
 /// </summary>
-[Title("User V1 Cache Writer Configuration")]
+[Title("App V1 Cache Writer Configuration")]
 [Description("Configuration of the data object caches for the module.")]
-public class UserV1CacheWriterConfig
+public class AppV1CacheWriterConfig
 {
     // Data Reader configuration
     public CacheWriterObjectConfig EmployeesConfig { get; set; } = new();

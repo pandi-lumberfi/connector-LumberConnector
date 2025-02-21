@@ -2,7 +2,7 @@
   "name": "LumberConnector",
   "urlPart": "lumber-bdf65",
   "key": "lumber-bdf65",
-  "description": "Lumber",
+  "description": "Lumber Time Tracking, HR and Payroll",
   "connectionDefinitions": [
     {
       "key": "customAuth",
@@ -73,14 +73,14 @@
   },
   "modules": [
     {
-      "name": "User",
-      "urlPart": "user",
-      "key": "user",
-      "description": "User Info",
+      "name": "App",
+      "urlPart": "app",
+      "key": "app",
+      "description": "Lumber Time tracking, HR and payroll",
       "version": 1,
       "services": [
         {
-          "name": "lumber-connector/user/1 Action Processor",
+          "name": "lumber-connector/app/1 Action Processor",
           "type": "ActionProcessor",
           "configSchema": {
             "type": "object",
@@ -108,12 +108,12 @@
                 }
               }
             },
-            "title": "User V1 Action Processor Configuration",
+            "title": "App V1 Action Processor Configuration",
             "description": "Configuration of the data object actions for the module."
           }
         },
         {
-          "name": "lumber-connector/user/1 Cache Writer",
+          "name": "lumber-connector/app/1 Cache Writer",
           "type": "CacheWriter",
           "configSchema": {
             "type": "object",
@@ -144,114 +144,12 @@
                 }
               }
             },
-            "title": "User V1 Cache Writer Configuration",
+            "title": "App V1 Cache Writer Configuration",
             "description": "Configuration of the data object caches for the module."
           }
         }
       ],
       "dataObjects": [
-        {
-          "name": "Health Check",
-          "urlPart": "health-check",
-          "key": "health-check",
-          "description": "Represents a health check for an object.",
-          "createEndpoint": true,
-          "schema": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string",
-                "format": "uuid",
-                "description": "An id for the object."
-              },
-              "timestamp": {
-                "type": "string",
-                "format": "date-time",
-                "description": "The last time the heartbeat was updated."
-              }
-            },
-            "description": "Represents a health check for an object."
-          },
-          "keys": [
-            {
-              "urlPart": "id",
-              "propertyNames": [
-                "id"
-              ],
-              "isPrimary": true
-            }
-          ],
-          "actions": [
-            {
-              "name": "Add Health Check",
-              "urlPart": "add",
-              "key": "add",
-              "description": "",
-              "createRtap": true,
-              "inputSchema": {
-                "type": "object",
-                "properties": {
-                  "Timestamp": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "The timestamp of the health check."
-                  }
-                }
-              },
-              "outputSchema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "The ID of the created health check."
-                  },
-                  "Success": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "failureSchema": {
-                "type": "object",
-                "properties": {
-                  "code": {
-                    "type": "string"
-                  },
-                  "user_defined_code": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "errors": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "text": {
-                          "type": "string"
-                        },
-                        "source": {
-                          "type": [
-                            "array",
-                            "null"
-                          ],
-                          "items": {
-                            "type": [
-                              "string",
-                              "null"
-                            ]
-                          }
-                        },
-                        "details": true
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
         {
           "name": "Employees",
           "urlPart": "employees",
@@ -461,6 +359,10 @@
               "active": {
                 "type": "boolean",
                 "description": "Is the employee active?"
+              },
+              "payroll_enabled": {
+                "type": "boolean",
+                "description": "Is the employee payroll enable?"
               }
             },
             "required": [
@@ -628,6 +530,10 @@
                   "active": {
                     "type": "boolean",
                     "description": "Is the employee active?"
+                  },
+                  "payroll_enabled": {
+                    "type": "boolean",
+                    "description": "Is the employee payroll enable?"
                   }
                 }
               },

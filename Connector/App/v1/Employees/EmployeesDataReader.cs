@@ -8,9 +8,8 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using Xchange.Connector.SDK.CacheWriter;
 using System.Net.Http;
-using System.Text.Json;
 
-namespace Connector.User.v1.Employees;
+namespace Connector.App.v1.Employees;
 
 public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
 {

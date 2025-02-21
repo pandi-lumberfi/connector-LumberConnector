@@ -1,4 +1,4 @@
-namespace Connector.User.v1.Employees.Create;
+namespace Connector.App.v1.Employees.Create;
 
 using Json.Schema.Generation;
 using System;
@@ -32,10 +32,12 @@ public class CreateEmployeesActionInput
 
     [JsonPropertyName("source_system")]
     [Description("Source system of the employee data")]
+    [Nullable(true)]
     public string? SourceSystem { get; init; }
 
     [JsonPropertyName("source_system_id")]
     [Description("Identifier from the source system")]
+    [Nullable(true)]
     public string? SourceSystemId { get; init; }
 
     [JsonPropertyName("company_id")]
@@ -48,6 +50,7 @@ public class CreateEmployeesActionInput
 
     [JsonPropertyName("employee_id")]
     [Description("Employee ID")]
+    [Nullable(true)]
     public string? EmployeeId { get; init; }
 
     [JsonPropertyName("company_user_type")]
@@ -60,10 +63,12 @@ public class CreateEmployeesActionInput
 
     [JsonPropertyName("contract_employee_type")]
     [Description("Contract Employee Type")]
+    [Nullable(true)]
     public string? ContractEmployeeType { get; init; }
 
     [JsonPropertyName("contract_employee_business_name")]
     [Description("Business name of the contract employee")]
+    [Nullable(true)]
     public string? ContractEmployeeBusinessName { get; init; }
 
     [JsonPropertyName("user_status")]
@@ -76,14 +81,19 @@ public class CreateEmployeesActionInput
 
     [JsonPropertyName("end_date")]
     [Description("End date of employment")]
+    [Nullable(true)]
     public string? EndDate { get; init; }
 
     [JsonPropertyName("active")]
     [Description("Is the employee active?")]
     public bool Active { get; init; }
+
+    [JsonPropertyName("payroll_enabled")]
+    [Description("Is the employee payroll enable?")]
+    public bool PayrollEnabled { get; init; }
 }
 
-public class CreateEmployeesActionOutput
+public class CreateEmployeesActionOutput : CreateEmployeesActionInput
 {
     
 }

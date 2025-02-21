@@ -1,4 +1,4 @@
-namespace Connector.User.v1.Employees;
+namespace Connector.App.v1.Employees;
 
 using Json.Schema.Generation;
 using System;
@@ -39,6 +39,7 @@ public class EmployeesDataObject
 
     [JsonPropertyName("user")]
     [Description("User details")]
+    [Required]
     public required UserData User { get; init; }
 
     [JsonPropertyName("employee_id")]
@@ -85,6 +86,11 @@ public class EmployeesDataObject
     [Description("Is the employee active?")]
     [Required]
     public required bool Active { get; init; }
+    
+    [JsonPropertyName("payroll_enabled")]
+    [Description("Is the employee payroll enable?")]
+    [Required]
+    public required bool PayrollEnabled { get; init; }
 }
 
 public class UserData
@@ -116,7 +122,8 @@ public class UserData
 
     [JsonPropertyName("phone")]
     [Description("Phone number of the Employee")]
-    public string? Phone { get; init; }
+    [Required]
+    public required string? Phone { get; init; }
 
     [JsonPropertyName("email")]
     [Description("Email address of the Employee")]

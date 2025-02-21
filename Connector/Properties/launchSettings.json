@@ -5,7 +5,7 @@
     },
     "Action Processor Local Development": {
       "commandName": "Project",
-      "commandLineArgs": "--isLocal true --moduleId user-1 --serviceType ActionProcessor --dataObjectUrl employees --actionUrl create",
+      "commandLineArgs": "--isLocal true --moduleId app-1 --serviceType ActionProcessor --dataObjectUrl employees --actionUrl create",
       "environmentVariables": {
         "DIFFYCACHE_DBLOCATION": "./databases",
         "ESR__QueueName": "localrun"
@@ -13,7 +13,7 @@
     },
     "Cache Writer Local Development": {
       "commandName": "Project",
-      "commandLineArgs": "--isLocal true --moduleId user-1 --serviceType CacheWriter",
+      "commandLineArgs": "--isLocal true --moduleId app-1 --serviceType CacheWriter",
       "environmentVariables": {
         "DIFFYCACHE_DBLOCATION": "./databases",
         "ESR__QueueName": "localrun"

@@ -1,5 +1,5 @@
-namespace Connector.User.v1;
-using Connector.User.v1.Employees;
+namespace Connector.App.v1;
+using Connector.App.v1.Employees;
 using ESR.Hosting.CacheWriter;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -9,17 +9,17 @@ using Xchange.Connector.SDK.Abstraction.Hosting;
 using Xchange.Connector.SDK.CacheWriter;
 using Xchange.Connector.SDK.Hosting.Configuration;
 
-public class UserV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinition<UserV1CacheWriterConfig>
+public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinition<AppV1CacheWriterConfig>
 {
-    public override string ModuleId => "user-1";
-    public override Type ServiceType => typeof(GenericCacheWriterService<UserV1CacheWriterConfig>);
+    public override string ModuleId => "app-1";
+    public override Type ServiceType => typeof(GenericCacheWriterService<AppV1CacheWriterConfig>);
 
     public override void ConfigureServiceDependencies(IServiceCollection serviceCollection, string serviceConfigJson)
     {
-        var serviceConfig = JsonSerializer.Deserialize<UserV1CacheWriterConfig>(serviceConfigJson);
-        serviceCollection.AddSingleton<UserV1CacheWriterConfig>(serviceConfig!);
-        serviceCollection.AddSingleton<GenericCacheWriterService<UserV1CacheWriterConfig>>();
-        serviceCollection.AddSingleton<ICacheWriterServiceDefinition<UserV1CacheWriterConfig>>(this);
+        var serviceConfig = JsonSerializer.Deserialize<AppV1CacheWriterConfig>(serviceConfigJson);
+        serviceCollection.AddSingleton<AppV1CacheWriterConfig>(serviceConfig!);
+        serviceCollection.AddSingleton<GenericCacheWriterService<AppV1CacheWriterConfig>>();
+        serviceCollection.AddSingleton<ICacheWriterServiceDefinition<AppV1CacheWriterConfig>>(this);
         // Register Data Readers as Singletons
         serviceCollection.AddSingleton<EmployeesDataReader>();
     }
@@ -32,7 +32,7 @@ public class UserV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefiniti
         return factory.CreateProvider(options);
     }
 
-    public override void ConfigureService(ICacheWriterService service, UserV1CacheWriterConfig config)
+    public override void ConfigureService(ICacheWriterService service, AppV1CacheWriterConfig config)
     {
         var dataReaderSettings = new DataReaderSettings
         {

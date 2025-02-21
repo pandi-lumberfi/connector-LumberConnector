@@ -1,7 +1,7 @@
 namespace Connector;
 using Connector.Client;
 using Connector.Connections;
-using Connector.User.v1;
+using Connector.App.v1;
 using ESR.Hosting;
 using ESR.Hosting.Client;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,8 +35,8 @@ public class ConnectorRegistration : IConnectorRegistration<ConnectorRegistratio
     /// <param name = "serviceCollection"></param>
     public void RegisterServiceDefinitions(IServiceCollection serviceCollection)
     {
-        serviceCollection.AddSingleton<IConnectorServiceDefinition, UserV1ActionProcessorServiceDefinition>();
-        serviceCollection.AddSingleton<IConnectorServiceDefinition, UserV1CacheWriterServiceDefinition>();
+        serviceCollection.AddSingleton<IConnectorServiceDefinition, AppV1ActionProcessorServiceDefinition>();
+        serviceCollection.AddSingleton<IConnectorServiceDefinition, AppV1CacheWriterServiceDefinition>();
     }
 
     public void ConfigureConnectorApiClient(IServiceCollection serviceCollection, IHostConnectionContext hostConnectionContext)

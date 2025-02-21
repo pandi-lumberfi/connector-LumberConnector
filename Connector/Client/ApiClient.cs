@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using Connector.User.v1.Employees.Create;
+using Connector.App.v1.Employees.Create;
 
 namespace Connector.Client;
 
@@ -27,22 +27,6 @@ public class ApiClient
     public async Task<ApiResponse<PaginatedResponse<EmployeesDataObject>>> GetRecords<EmployeesDataObject>(string relativeUrl, int page, CancellationToken cancellationToken = default)
     {
         var response = await _httpClient.GetAsync($"{relativeUrl}?page={page}", cancellationToken: cancellationToken).ConfigureAwait(false);
-        Console.WriteLine("response api", response);
-        string json = JsonSerializer.Serialize(response);
-        Console.WriteLine(json);
-
-
-        // Log the raw response status
-        Console.WriteLine("Response Status: " + response.StatusCode);
-
-        // Read response body as a string
-        string jsons = await response.Content.ReadAsStringAsync(cancellationToken);
-
-        // Log the actual response content
-        Console.WriteLine("Response Body:");
-        Console.WriteLine(jsons);
-
-
         return new ApiResponse<PaginatedResponse<EmployeesDataObject>>
         {
             IsSuccessful = response.IsSuccessStatusCode,
@@ -81,16 +65,7 @@ public class ApiClient
 
     internal async Task<ApiResponse<CreateEmployeesActionOutput>> PostEmployeesDataObject(string relativeUrl, CreateEmployeesActionInput? input, CancellationToken cancellationToken)
     {
-        // var response = await _httpClient.PostAsync(
-        //     "api/v1/companies/caaf4f88-4735-39d0-948f-7eb367c0c3fd/users",
-        //     input, cancellationToken
-        // );
         var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);    
-
-        Console.WriteLine("response api", response);
-        string json = JsonSerializer.Serialize(response);
-        Console.WriteLine(json);
-
         if (!response.IsSuccessStatusCode)
         {
             throw new HttpRequestException($"Failed to post employee data. Status Code: {response.StatusCode}");

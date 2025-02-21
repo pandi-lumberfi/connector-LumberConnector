@@ -2,14 +2,14 @@
   "name": "LumberConnector",
   "urlPart": "lumber-bdf65",
   "key": "lumber-bdf65",
-  "description": "Lumber",
+  "description": "Lumber Time Tracking, HR and Payroll",
   "modules": [
     {
-      "id": "user-1",
-      "name": "User",
-      "urlPart": "user",
-      "key": "user",
-      "description": "User Info",
+      "id": "app-1",
+      "name": "App",
+      "urlPart": "app",
+      "key": "app",
+      "description": "Lumber Time Tracking, HR and Payroll",
       "version": 1
     }
   ]

@@ -1,5 +1,5 @@
-namespace Connector.User.v1;
-using Connector.User.v1.Employees.Create;
+namespace Connector.App.v1;
+using Connector.App.v1.Employees.Create;
 using Json.Schema.Generation;
 using Xchange.Connector.SDK.Action;
 
@@ -9,9 +9,9 @@ using Xchange.Connector.SDK.Action;
 /// The schema will be used for validation at runtime to make sure the configurations are properly formed. 
 /// The schema also helps provide integrators more information for what the values are intended to be.
 /// </summary>
-[Title("User V1 Action Processor Configuration")]
+[Title("App V1 Action Processor Configuration")]
 [Description("Configuration of the data object actions for the module.")]
-public class UserV1ActionProcessorConfig
+public class AppV1ActionProcessorConfig
 {
     // Action Handler configuration
     public DefaultActionHandlerConfig CreateEmployeesConfig { get; set; } = new();
