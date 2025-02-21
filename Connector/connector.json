@@ -1,0 +1,681 @@
+{
+  "name": "LumberConnector",
+  "urlPart": "lumber-bdf65",
+  "key": "lumber-bdf65",
+  "description": "Lumber",
+  "connectionDefinitions": [
+    {
+      "key": "customAuth",
+      "name": "CustomAuth",
+      "description": "CustomAuth Connection",
+      "attributes": [
+        {
+          "title": "Api Key",
+          "key": "apiKey",
+          "isSensitive": false,
+          "isRequired": true,
+          "description": "A unique key used to authenticate and authorize API requests"
+        },
+        {
+          "title": "Api Secret Key",
+          "key": "apiSecretKey",
+          "isSensitive": false,
+          "isRequired": true,
+          "description": "A unique secret key used for authenticating API request"
+        },
+        {
+          "title": "User Id",
+          "key": "userId",
+          "isSensitive": false,
+          "isRequired": true,
+          "description": "Admin User ID for establishing the connection"
+        },
+        {
+          "title": "Connection Environment",
+          "key": "connectionEnvironment",
+          "isSensitive": false,
+          "isRequired": true,
+          "description": "Connection Environment",
+          "options": [
+            {
+              "label": "Production",
+              "value": 1
+            },
+            {
+              "label": "Stage",
+              "value": 2
+            },
+            {
+              "label": "QA",
+              "value": 3
+            },
+            {
+              "label": "Develop",
+              "value": 4
+            },
+            {
+              "label": "Local",
+              "value": 5
+            }
+          ]
+        }
+      ],
+      "type": "Standard"
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "CompanyId": {
+        "type": "string"
+      }
+    }
+  },
+  "modules": [
+    {
+      "name": "User",
+      "urlPart": "user",
+      "key": "user",
+      "description": "User Info",
+      "version": 1,
+      "services": [
+        {
+          "name": "lumber-connector/user/1 Action Processor",
+          "type": "ActionProcessor",
+          "configSchema": {
+            "type": "object",
+            "properties": {
+              "AddHealthCheckConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  },
+                  "TestAPIFailure": {
+                    "type": "boolean"
+                  },
+                  "TestCacheSyncFailure": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CreateEmployeesConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "title": "User V1 Action Processor Configuration",
+            "description": "Configuration of the data object actions for the module."
+          }
+        },
+        {
+          "name": "lumber-connector/user/1 Cache Writer",
+          "type": "CacheWriter",
+          "configSchema": {
+            "type": "object",
+            "properties": {
+              "HealthCheckConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  },
+                  "ValidateCacheInsert": {
+                    "type": "boolean"
+                  },
+                  "ValidateCacheUpdate": {
+                    "type": "boolean"
+                  },
+                  "ValidateCacheDelete": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "EmployeesConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "title": "User V1 Cache Writer Configuration",
+            "description": "Configuration of the data object caches for the module."
+          }
+        }
+      ],
+      "dataObjects": [
+        {
+          "name": "Health Check",
+          "urlPart": "health-check",
+          "key": "health-check",
+          "description": "Represents a health check for an object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "An id for the object."
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The last time the heartbeat was updated."
+              }
+            },
+            "description": "Represents a health check for an object."
+          },
+          "keys": [
+            {
+              "urlPart": "id",
+              "propertyNames": [
+                "id"
+              ],
+              "isPrimary": true
+            }
+          ],
+          "actions": [
+            {
+              "name": "Add Health Check",
+              "urlPart": "add",
+              "key": "add",
+              "description": "",
+              "createRtap": true,
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "Timestamp": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The timestamp of the health check."
+                  }
+                }
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "The ID of the created health check."
+                  },
+                  "Success": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Employees",
+          "urlPart": "employees",
+          "key": "employees",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "source_system": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Source system of the employee data"
+              },
+              "source_system_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier from the source system"
+              },
+              "company_id": {
+                "type": "string",
+                "description": "Company ID"
+              },
+              "user": {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": "First name of the Employee"
+                  },
+                  "middle_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Middle name of the Employee"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": "Last name of the Employee"
+                  },
+                  "gender": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Gender of the Employee"
+                  },
+                  "date_of_birth": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "Date of Birth of the Employee"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Phone number of the Employee"
+                  },
+                  "email": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Email address of the Employee"
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1"
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2"
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name"
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region"
+                      },
+                      "country": {
+                        "type": "string",
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": "string",
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Address details of the Employee"
+                  },
+                  "user_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "User type"
+                  },
+                  "short_ssn": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Short SSN"
+                  },
+                  "job_title": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job title"
+                  }
+                },
+                "required": [
+                  "first_name",
+                  "last_name"
+                ],
+                "description": "User details"
+              },
+              "employee_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Employee ID"
+              },
+              "company_user_type": {
+                "type": "string",
+                "description": "Company user type"
+              },
+              "employment_type": {
+                "type": "string",
+                "description": "Employment type"
+              },
+              "contract_employee_type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Contract Employee Type"
+              },
+              "contract_employee_business_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Business name of the contract employee"
+              },
+              "user_status": {
+                "type": "string",
+                "description": "Current status of the user"
+              },
+              "start_date": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Start date of employment"
+              },
+              "end_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "description": "End date of employment"
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Is the employee active?"
+              }
+            },
+            "required": [
+              "id",
+              "company_id",
+              "company_user_type",
+              "employment_type",
+              "user_status",
+              "start_date",
+              "active"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "urlPart": "id",
+              "propertyNames": [
+                "id"
+              ],
+              "isPrimary": true
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateEmployeesAction Action description goes here",
+              "createRtap": true,
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Example primary key of the object"
+                  },
+                  "source_system": {
+                    "type": "string",
+                    "description": "Source system of the employee data"
+                  },
+                  "source_system_id": {
+                    "type": "string",
+                    "description": "Identifier from the source system"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Company ID"
+                  },
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "first_name": {
+                        "type": "string",
+                        "description": "First name of the Employee"
+                      },
+                      "middle_name": {
+                        "type": "string",
+                        "description": "Middle name of the Employee"
+                      },
+                      "last_name": {
+                        "type": "string",
+                        "description": "Last name of the Employee"
+                      },
+                      "gender": {
+                        "type": "string",
+                        "description": "Gender of the Employee"
+                      },
+                      "date_of_birth": {
+                        "type": "string",
+                        "description": "Date of Birth of the Employee"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "Phone number of the Employee"
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "Email address of the Employee"
+                      },
+                      "address": {
+                        "type": "object",
+                        "properties": {
+                          "street_line1": {
+                            "type": "string",
+                            "description": "Street address line 1"
+                          },
+                          "street_line2": {
+                            "type": "string",
+                            "description": "Street address line 2"
+                          },
+                          "city": {
+                            "type": "string",
+                            "description": "City name"
+                          },
+                          "state": {
+                            "type": "string",
+                            "description": "State or region"
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Country code"
+                          },
+                          "postal_code": {
+                            "type": "string",
+                            "description": "Postal code"
+                          },
+                          "latitude": {
+                            "type": "number",
+                            "description": "Latitude coordinate"
+                          },
+                          "longitude": {
+                            "type": "number",
+                            "description": "Longitude coordinate"
+                          }
+                        },
+                        "description": "Address details of the Employee"
+                      },
+                      "user_type": {
+                        "type": "string",
+                        "description": "User type"
+                      },
+                      "short_ssn": {
+                        "type": "string",
+                        "description": "Short SSN"
+                      },
+                      "job_title": {
+                        "type": "string",
+                        "description": "Job title"
+                      }
+                    },
+                    "description": "User details"
+                  },
+                  "employee_id": {
+                    "type": "string",
+                    "description": "Employee ID"
+                  },
+                  "company_user_type": {
+                    "type": "string",
+                    "description": "Company user type"
+                  },
+                  "employment_type": {
+                    "type": "string",
+                    "description": "Employment type"
+                  },
+                  "contract_employee_type": {
+                    "type": "string",
+                    "description": "Contract Employee Type"
+                  },
+                  "contract_employee_business_name": {
+                    "type": "string",
+                    "description": "Business name of the contract employee"
+                  },
+                  "user_status": {
+                    "type": "string",
+                    "description": "Current status of the user"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "Start date of employment"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "description": "End date of employment"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the employee active?"
+                  }
+                }
+              },
+              "outputSchema": {
+                "type": "object"
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

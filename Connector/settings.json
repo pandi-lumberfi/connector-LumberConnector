@@ -1,0 +1,16 @@
+{
+  "name": "LumberConnector",
+  "urlPart": "lumber-bdf65",
+  "key": "lumber-bdf65",
+  "description": "Lumber",
+  "modules": [
+    {
+      "id": "user-1",
+      "name": "User",
+      "urlPart": "user",
+      "key": "user",
+      "description": "User Info",
+      "version": 1
+    }
+  ]
+}
