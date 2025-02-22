@@ -52,10 +52,6 @@
             {
               "label": "Develop",
               "value": 4
-            },
-            {
-              "label": "Local",
-              "value": 5
             }
           ]
         }
@@ -76,29 +72,15 @@
       "name": "App",
       "urlPart": "app",
       "key": "app",
-      "description": "Lumber Time tracking, HR and payroll",
+      "description": "Lumber Time Tracking, HR and Payroll",
       "version": 1,
       "services": [
         {
-          "name": "lumber-connector/app/1 Action Processor",
+          "name": "lumber-bdf65/app/1 Action Processor",
           "type": "ActionProcessor",
           "configSchema": {
             "type": "object",
             "properties": {
-              "AddHealthCheckConfig": {
-                "type": "object",
-                "properties": {
-                  "ProcessQueuedEvent": {
-                    "type": "boolean"
-                  },
-                  "TestAPIFailure": {
-                    "type": "boolean"
-                  },
-                  "TestCacheSyncFailure": {
-                    "type": "boolean"
-                  }
-                }
-              },
               "CreateEmployeesConfig": {
                 "type": "object",
                 "properties": {
@@ -113,28 +95,11 @@
           }
         },
         {
-          "name": "lumber-connector/app/1 Cache Writer",
+          "name": "lumber-bdf65/app/1 Cache Writer",
           "type": "CacheWriter",
           "configSchema": {
             "type": "object",
             "properties": {
-              "HealthCheckConfig": {
-                "type": "object",
-                "properties": {
-                  "UploadObject": {
-                    "type": "boolean"
-                  },
-                  "ValidateCacheInsert": {
-                    "type": "boolean"
-                  },
-                  "ValidateCacheUpdate": {
-                    "type": "boolean"
-                  },
-                  "ValidateCacheDelete": {
-                    "type": "boolean"
-                  }
-                }
-              },
               "EmployeesConfig": {
                 "type": "object",
                 "properties": {
@@ -306,7 +271,8 @@
                 },
                 "required": [
                   "first_name",
-                  "last_name"
+                  "last_name",
+                  "phone"
                 ],
                 "description": "User details"
               },
@@ -368,11 +334,13 @@
             "required": [
               "id",
               "company_id",
+              "user",
               "company_user_type",
               "employment_type",
               "user_status",
               "start_date",
-              "active"
+              "active",
+              "payroll_enabled"
             ],
             "description": "Example description of the object."
           },
@@ -400,11 +368,17 @@
                     "description": "Example primary key of the object"
                   },
                   "source_system": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Source system of the employee data"
                   },
                   "source_system_id": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Identifier from the source system"
                   },
                   "company_id": {
@@ -496,7 +470,10 @@
                     "description": "User details"
                   },
                   "employee_id": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Employee ID"
                   },
                   "company_user_type": {
@@ -508,11 +485,17 @@
                     "description": "Employment type"
                   },
                   "contract_employee_type": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Contract Employee Type"
                   },
                   "contract_employee_business_name": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Business name of the contract employee"
                   },
                   "user_status": {
@@ -524,7 +507,10 @@
                     "description": "Start date of employment"
                   },
                   "end_date": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "End date of employment"
                   },
                   "active": {
@@ -538,7 +524,167 @@
                 }
               },
               "outputSchema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Example primary key of the object"
+                  },
+                  "source_system": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Source system of the employee data"
+                  },
+                  "source_system_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier from the source system"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Company ID"
+                  },
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "first_name": {
+                        "type": "string",
+                        "description": "First name of the Employee"
+                      },
+                      "middle_name": {
+                        "type": "string",
+                        "description": "Middle name of the Employee"
+                      },
+                      "last_name": {
+                        "type": "string",
+                        "description": "Last name of the Employee"
+                      },
+                      "gender": {
+                        "type": "string",
+                        "description": "Gender of the Employee"
+                      },
+                      "date_of_birth": {
+                        "type": "string",
+                        "description": "Date of Birth of the Employee"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "Phone number of the Employee"
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "Email address of the Employee"
+                      },
+                      "address": {
+                        "type": "object",
+                        "properties": {
+                          "street_line1": {
+                            "type": "string",
+                            "description": "Street address line 1"
+                          },
+                          "street_line2": {
+                            "type": "string",
+                            "description": "Street address line 2"
+                          },
+                          "city": {
+                            "type": "string",
+                            "description": "City name"
+                          },
+                          "state": {
+                            "type": "string",
+                            "description": "State or region"
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Country code"
+                          },
+                          "postal_code": {
+                            "type": "string",
+                            "description": "Postal code"
+                          },
+                          "latitude": {
+                            "type": "number",
+                            "description": "Latitude coordinate"
+                          },
+                          "longitude": {
+                            "type": "number",
+                            "description": "Longitude coordinate"
+                          }
+                        },
+                        "description": "Address details of the Employee"
+                      },
+                      "user_type": {
+                        "type": "string",
+                        "description": "User type"
+                      },
+                      "short_ssn": {
+                        "type": "string",
+                        "description": "Short SSN"
+                      },
+                      "job_title": {
+                        "type": "string",
+                        "description": "Job title"
+                      }
+                    },
+                    "description": "User details"
+                  },
+                  "employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employee ID"
+                  },
+                  "company_user_type": {
+                    "type": "string",
+                    "description": "Company user type"
+                  },
+                  "employment_type": {
+                    "type": "string",
+                    "description": "Employment type"
+                  },
+                  "contract_employee_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Contract Employee Type"
+                  },
+                  "contract_employee_business_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Business name of the contract employee"
+                  },
+                  "user_status": {
+                    "type": "string",
+                    "description": "Current status of the user"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "Start date of employment"
+                  },
+                  "end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End date of employment"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the employee active?"
+                  },
+                  "payroll_enabled": {
+                    "type": "boolean",
+                    "description": "Is the employee payroll enable?"
+                  }
+                }
               },
               "failureSchema": {
                 "type": "object",

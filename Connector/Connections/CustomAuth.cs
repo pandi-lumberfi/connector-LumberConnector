@@ -36,8 +36,6 @@ public class CustomAuth : ICustomAuth
                     return "https://qa-integration.lumberfi.com/";
                 case ConnectionEnvironmentCustomAuth.Develop:
                     return "https://dev-integration.lumberfi.com/";
-                case ConnectionEnvironmentCustomAuth.Local:
-                    return "http://localhost:8080/";
                 default:
                     throw new Exception("No base url was set.");
             }
@@ -51,6 +49,5 @@ public enum ConnectionEnvironmentCustomAuth
     Production = 1,
     Stage = 2,
     QA = 3,
-    Develop = 4,
-    Local = 5
+    Develop = 4
 }
