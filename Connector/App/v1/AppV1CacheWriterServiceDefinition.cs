@@ -1,5 +1,8 @@
 namespace Connector.App.v1;
+using Connector.App.v1.CostCode;
+using Connector.App.v1.CostType;
 using Connector.App.v1.Employees;
+using Connector.App.v1.Project;
 using ESR.Hosting.CacheWriter;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -22,6 +25,9 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         serviceCollection.AddSingleton<ICacheWriterServiceDefinition<AppV1CacheWriterConfig>>(this);
         // Register Data Readers as Singletons
         serviceCollection.AddSingleton<EmployeesDataReader>();
+        serviceCollection.AddSingleton<ProjectDataReader>();
+        serviceCollection.AddSingleton<CostCodeDataReader>();
+        serviceCollection.AddSingleton<CostTypeDataReader>();
     }
 
     public override IDataObjectChangeDetectorProvider ConfigureChangeDetectorProvider(IChangeDetectorFactory factory, ConnectorDefinition connectorDefinition)
@@ -29,6 +35,9 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         var options = factory.CreateProviderOptionsWithNoDefaultResolver();
         // Configure Data Object Keys for Data Objects that do not use the default
         this.RegisterKeysForObject<EmployeesDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<ProjectDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<CostCodeDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<CostTypeDataObject>(options, connectorDefinition);
         return factory.CreateProvider(options);
     }
 
@@ -41,5 +50,8 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         };
         // Register Data Reader configurations for the Cache Writer Service
         service.RegisterDataReader<EmployeesDataReader, EmployeesDataObject>(ModuleId, config.EmployeesConfig, dataReaderSettings);
+        service.RegisterDataReader<ProjectDataReader, ProjectDataObject>(ModuleId, config.ProjectConfig, dataReaderSettings);
+        service.RegisterDataReader<CostCodeDataReader, CostCodeDataObject>(ModuleId, config.CostCodeConfig, dataReaderSettings);
+        service.RegisterDataReader<CostTypeDataReader, CostTypeDataObject>(ModuleId, config.CostTypeConfig, dataReaderSettings);
     }
 }

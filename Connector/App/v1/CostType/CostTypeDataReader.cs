@@ -9,51 +9,51 @@ using System.Threading;
 using Xchange.Connector.SDK.CacheWriter;
 using System.Net.Http;
 
-namespace Connector.App.v1.Employees;
+namespace Connector.App.v1.CostType;
 
-public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
+public class CostTypeDataReader : TypedAsyncDataReaderBase<CostTypeDataObject>
 {
     private readonly ApiClient _apiClient;
     private readonly ConnectorRegistrationConfig _connectorRegistrationConfig;
-    private readonly ILogger<EmployeesDataReader> _logger;
-
+    private readonly ILogger<CostTypeDataReader> _logger;
     private int _currentPage = 0;
     private int _pageSize = 100;
 
-    public EmployeesDataReader(
+    public CostTypeDataReader(
         ApiClient apiClient,
         ConnectorRegistrationConfig connectorRegistrationConfig,
-        ILogger<EmployeesDataReader> logger)
+        ILogger<CostTypeDataReader> logger)
     {
         _apiClient = apiClient;
         _connectorRegistrationConfig = connectorRegistrationConfig;
         _logger = logger;
     }
 
-    public override async IAsyncEnumerable<EmployeesDataObject> GetTypedDataAsync(DataObjectCacheWriteArguments ? dataObjectRunArguments, [EnumeratorCancellation] CancellationToken cancellationToken)
+    public override async IAsyncEnumerable<CostTypeDataObject> GetTypedDataAsync(DataObjectCacheWriteArguments ? dataObjectRunArguments, [EnumeratorCancellation] CancellationToken cancellationToken)
     {
         while (true)
         {
-            var response = new ApiResponse<PaginatedResponse<EmployeesDataObject>>();
+            var response = new ApiResponse<PaginatedResponse<CostTypeDataObject>>();
+            
+            // Make a call to your API/system to retrieve the objects/type for the connector's configuration.
             try
             {
-                response = await _apiClient.GetEmployeeRecords<EmployeesDataObject>(
-                   relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users",
+                response = await _apiClient.GetCostTypeRecords<CostTypeDataObject>(
+                   relativeUrl: $"api/v1/companies/{_connectorRegistrationConfig.CompanyId}/cost_type",
                    page: _currentPage,
                    size: _pageSize,
                    cancellationToken: cancellationToken)
                    .ConfigureAwait(false);
-
             }
             catch (HttpRequestException exception)
             {
-                _logger.LogError(exception, "Exception while making a read request to data object 'EmployeesDataObject'");
+                _logger.LogError(exception, "Exception while making a read request to data object 'CostTypeDataObject'");
                 throw;
             }
 
             if (!response.IsSuccessful)
             {
-                throw new Exception($"Failed to retrieve records for 'EmployeesDataObject'. API StatusCode: {response.StatusCode}");
+                throw new Exception($"Failed to retrieve records for 'CostTypeDataObject'. API StatusCode: {response.StatusCode}");
             }
 
             if (response.Data == null || !response.Data.Items.Any()) break;

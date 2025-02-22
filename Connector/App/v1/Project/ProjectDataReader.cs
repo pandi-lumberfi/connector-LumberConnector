@@ -9,51 +9,50 @@ using System.Threading;
 using Xchange.Connector.SDK.CacheWriter;
 using System.Net.Http;
 
-namespace Connector.App.v1.Employees;
+namespace Connector.App.v1.Project;
 
-public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
+public class ProjectDataReader : TypedAsyncDataReaderBase<ProjectDataObject>
 {
     private readonly ApiClient _apiClient;
     private readonly ConnectorRegistrationConfig _connectorRegistrationConfig;
-    private readonly ILogger<EmployeesDataReader> _logger;
-
+    private readonly ILogger<ProjectDataReader> _logger;
     private int _currentPage = 0;
     private int _pageSize = 100;
 
-    public EmployeesDataReader(
+    public ProjectDataReader(
         ApiClient apiClient,
         ConnectorRegistrationConfig connectorRegistrationConfig,
-        ILogger<EmployeesDataReader> logger)
+        ILogger<ProjectDataReader> logger)
     {
         _apiClient = apiClient;
         _connectorRegistrationConfig = connectorRegistrationConfig;
         _logger = logger;
     }
 
-    public override async IAsyncEnumerable<EmployeesDataObject> GetTypedDataAsync(DataObjectCacheWriteArguments ? dataObjectRunArguments, [EnumeratorCancellation] CancellationToken cancellationToken)
+    public override async IAsyncEnumerable<ProjectDataObject> GetTypedDataAsync(DataObjectCacheWriteArguments ? dataObjectRunArguments, [EnumeratorCancellation] CancellationToken cancellationToken)
     {
         while (true)
         {
-            var response = new ApiResponse<PaginatedResponse<EmployeesDataObject>>();
+            var response = new ApiResponse<PaginatedResponse<ProjectDataObject>>();
+            // Make a call to your API/system to retrieve the objects/type for the connector's configuration.
             try
             {
-                response = await _apiClient.GetEmployeeRecords<EmployeesDataObject>(
-                   relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users",
+                response = await _apiClient.GetProjectRecords<ProjectDataObject>(
+                   relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/projects",
                    page: _currentPage,
                    size: _pageSize,
                    cancellationToken: cancellationToken)
                    .ConfigureAwait(false);
-
             }
             catch (HttpRequestException exception)
             {
-                _logger.LogError(exception, "Exception while making a read request to data object 'EmployeesDataObject'");
+                _logger.LogError(exception, "Exception while making a read request to data object 'ProjectDataObject'");
                 throw;
             }
 
             if (!response.IsSuccessful)
             {
-                throw new Exception($"Failed to retrieve records for 'EmployeesDataObject'. API StatusCode: {response.StatusCode}");
+                throw new Exception($"Failed to retrieve records for 'ProjectDataObject'. API StatusCode: {response.StatusCode}");
             }
 
             if (response.Data == null || !response.Data.Items.Any()) break;

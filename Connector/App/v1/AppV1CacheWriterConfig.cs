@@ -1,5 +1,8 @@
 namespace Connector.App.v1;
+using Connector.App.v1.CostCode;
+using Connector.App.v1.CostType;
 using Connector.App.v1.Employees;
+using Connector.App.v1.Project;
 using ESR.Hosting.CacheWriter;
 using Json.Schema.Generation;
 
@@ -15,4 +18,7 @@ public class AppV1CacheWriterConfig
 {
     // Data Reader configuration
     public CacheWriterObjectConfig EmployeesConfig { get; set; } = new();
+    public CacheWriterObjectConfig ProjectConfig { get; set; } = new();
+    public CacheWriterObjectConfig CostCodeConfig { get; set; } = new();
+    public CacheWriterObjectConfig CostTypeConfig { get; set; } = new();
 }

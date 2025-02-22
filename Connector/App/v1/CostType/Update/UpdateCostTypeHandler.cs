@@ -2,7 +2,6 @@ using Connector.Client;
 using ESR.Hosting.Action;
 using ESR.Hosting.CacheWriter;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
@@ -12,18 +11,18 @@ using Xchange.Connector.SDK.Action;
 using Xchange.Connector.SDK.CacheWriter;
 using Xchange.Connector.SDK.Client.AppNetwork;
 
-namespace Connector.App.v1.Employees.Create;
+namespace Connector.App.v1.CostType.Update;
 
-public class CreateEmployeesHandler : IActionHandler<CreateEmployeesAction>
+public class UpdateCostTypeHandler : IActionHandler<UpdateCostTypeAction>
 {
     private readonly ApiClient _apiClient;
     private readonly ConnectorRegistrationConfig _connectorRegistrationConfig;
-    private readonly ILogger<CreateEmployeesHandler> _logger;
+    private readonly ILogger<UpdateCostTypeHandler> _logger;
 
-    public CreateEmployeesHandler(
+    public UpdateCostTypeHandler(
         ApiClient apiClient,
         ConnectorRegistrationConfig connectorRegistrationConfig,
-        ILogger<CreateEmployeesHandler> logger)
+        ILogger<UpdateCostTypeHandler> logger)
     {
         _apiClient = apiClient;
         _connectorRegistrationConfig = connectorRegistrationConfig;
@@ -32,20 +31,28 @@ public class CreateEmployeesHandler : IActionHandler<CreateEmployeesAction>
     
     public async Task<ActionHandlerOutcome> HandleQueuedActionAsync(ActionInstance actionInstance, CancellationToken cancellationToken)
     {
-        var input = JsonSerializer.Deserialize<CreateEmployeesActionInput>(actionInstance.InputJson);
+        var input = JsonSerializer.Deserialize<UpdateCostTypeActionInput>(actionInstance.InputJson);
+        if (input == null || string.IsNullOrEmpty(input.Id))
+        {
+            return ActionHandlerOutcome.Failed(new StandardActionFailure
+            {
+                Code = "400",
+                Errors = [new Error { Source = ["UpdateCostTypeHandler"], Text = "Invalid input" }]
+            });
+        }
         try
         {
             // Given the input for the action, make a call to your API/system
-            var response = new ApiResponse<CreateEmployeesActionOutput>();
-            response = await _apiClient.PostEmployeesDataObject($"api/v1/companies/{_connectorRegistrationConfig.CompanyId}/users", input, cancellationToken)
+            var response = new ApiResponse<UpdateCostTypeActionOutput>();
+            response = await _apiClient.UpdateCostTypeDataObject($"api/v1/companies/{_connectorRegistrationConfig.CompanyId}/cost_code/{input.Id}", input, cancellationToken)
             .ConfigureAwait(false);
-
-            if (response.Data == null)
+            
+            if (!response.IsSuccessful || response.Data == null)
             {
                 return ActionHandlerOutcome.Failed(new StandardActionFailure
                 {
-                    Code = "400",
-                    Errors = [new Error { Source = ["CreateEmployeesHandler"], Text = "Invalid response" }]
+                    Code = response.IsSuccessful ? "400" : response.StatusCode.ToString(),
+                    Errors = [new Error { Source = ["UpdateCostTypeHandler"], Text = "Invalid response" }]
                 });
             }
 
@@ -56,21 +63,16 @@ public class CreateEmployeesHandler : IActionHandler<CreateEmployeesAction>
 
             var resultList = new List<CacheSyncCollection>
             {
-                new CacheSyncCollection() { DataObjectType = typeof(EmployeesDataObject), CacheChanges = operations.ToArray() }
+                new CacheSyncCollection() { DataObjectType = typeof(CostTypeDataObject), CacheChanges = operations.ToArray() }
             };
 
             return ActionHandlerOutcome.Successful(response.Data, resultList);
         }
         catch (HttpRequestException exception)
         {
-            // If an error occurs, we want to create a failure result for the action that matches
-            // the failure type for the action. 
-            // Common to create extension methods to map to Standard Action Failure
-
-            var errorSource = new List<string> { "CreateEmployeesHandler" };
+            var errorSource = new List<string> { "UpdateCostTypeHandler" };
             if (string.IsNullOrEmpty(exception.Source)) errorSource.Add(exception.Source!);
-            _logger.LogError(exception.Message);
-
+            
             return ActionHandlerOutcome.Failed(new StandardActionFailure
             {
                 Code = exception.StatusCode?.ToString() ?? "500",

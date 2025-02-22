@@ -1,4 +1,4 @@
-namespace Connector.App.v1.Employees.Create;
+namespace Connector.App.v1.Project.Update;
 
 using Json.Schema.Generation;
 using System;
@@ -14,22 +14,22 @@ using Xchange.Connector.SDK.Action;
 /// are properly formed. The schema also helps provide integrators more information for what the values 
 /// are intended to be.
 /// </summary>
-[Description("CreateEmployeesAction Action description goes here")]
-public class CreateEmployeesAction : IStandardAction<CreateEmployeesActionInput, CreateEmployeesActionOutput>
+[Description("UpdateProjectAction Action description goes here")]
+public class UpdateProjectAction : IStandardAction<UpdateProjectActionInput, UpdateProjectActionOutput>
 {
-    public CreateEmployeesActionInput ActionInput { get; set; } = new();
-    public CreateEmployeesActionOutput ActionOutput { get; set; } = new();
+    public UpdateProjectActionInput ActionInput { get; set; } = new();
+    public UpdateProjectActionOutput ActionOutput { get; set; } = new();
     public StandardActionFailure ActionFailure { get; set; } = new();
 
     public bool CreateRtap => true;
 }
 
-public class CreateEmployeesActionInput: EmployeeObject
+public class UpdateProjectActionInput: ProjectObject
 {
-    
+
 }
 
-public class CreateEmployeesActionOutput : EmployeeObject
+public class UpdateProjectActionOutput: ProjectObject
 {
-    
+
 }
