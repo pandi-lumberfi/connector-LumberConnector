@@ -74,8 +74,8 @@ public class ProjectDataObject
 
     [JsonPropertyName("prevailing_wage_project")]
     [Description("Is prevailing wage project?")]
-    [Nullable(true)]
-    public bool PrevailingWageProject { get; set; } = false;
+    [Required]
+    public bool PrevailingWageProject { get; set; }
 
     [JsonPropertyName("contract_type")]
     [Description("Type of project contract")]
@@ -84,13 +84,13 @@ public class ProjectDataObject
 
     [JsonPropertyName("active")]
     [Description("Is project active?")]
-    [Nullable(true)]
-    public bool Active { get; set; } = true;
+    [Required]
+    public bool Active { get; set; }
 
     [JsonPropertyName("allow_only_assigned_crews")]
     [Description("Is allow only assigned crew to clock in")]
-    [Nullable(true)]
-    public bool AllowOnlyAssignedCrews { get; set; } = false;
+    [Required]
+    public bool AllowOnlyAssignedCrews { get; set; }
 }
 
 public class Address

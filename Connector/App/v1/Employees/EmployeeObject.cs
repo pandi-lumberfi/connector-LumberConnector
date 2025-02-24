@@ -8,7 +8,7 @@ public class EmployeeObject
 {
     [JsonPropertyName("id")]
     [Description("Example primary key of the object")]
-    [Nullable(true)]
+    [Required]
     public string? Id { get; init; }
 
     [JsonPropertyName("source_system")]
@@ -23,7 +23,7 @@ public class EmployeeObject
 
     [JsonPropertyName("company_id")]
     [Description("Company ID")]
-    [Nullable(true)]
+    [Required]
     public string? CompanyId { get; init; }
 
     [JsonPropertyName("user")]
@@ -57,8 +57,8 @@ public class EmployeeObject
 
     [JsonPropertyName("user_status")]
     [Description("Current status of the user")]
-    [Nullable(true)]
-    public string? UserStatus { get; init; } = "ENABLED";
+    [Required]
+    public string UserStatus { get; init; } = "ENABLED";
 
     [JsonPropertyName("start_date")]
     [Description("Start date of employment")]
@@ -72,10 +72,12 @@ public class EmployeeObject
 
     [JsonPropertyName("active")]
     [Description("Is the employee active?")]
+    [Required]
     public bool Active { get; init; } = true;
 
     [JsonPropertyName("payroll_enabled")]
     [Description("Is the employee payroll enable?")]
+    [Required]
     public bool PayrollEnabled { get; init; } = true;
 }
 
@@ -83,7 +85,7 @@ public class User
 {
     [JsonPropertyName("first_name")]
     [Description("First name of the Employee")]
-    [Nullable(true)]
+    [Required]
     public string? FirstName { get; init; }
 
     [JsonPropertyName("middle_name")]
@@ -93,7 +95,7 @@ public class User
 
     [JsonPropertyName("last_name")]
     [Description("Last name of the Employee")]
-    [Nullable(true)]
+    [Required]
     public string? LastName { get; init; }
 
     [JsonPropertyName("gender")]
@@ -103,12 +105,12 @@ public class User
 
     [JsonPropertyName("date_of_birth")]
     [Description("Date of Birth of the Employee")]
-    [Nullable(true)]
+    [Required]
     public string? DateOfBirth { get; init; }
 
     [JsonPropertyName("phone")]
     [Description("Phone number of the Employee")]
-    [Nullable(true)]
+    [Required]
     public string? Phone { get; init; }
 
     [JsonPropertyName("email")]
@@ -133,7 +135,7 @@ public class User
 
     [JsonPropertyName("job_title")]
     [Description("Job title")]
-    [Nullable(true)]
+    [Required]
     public string? JobTitle { get; init; }
 }
 

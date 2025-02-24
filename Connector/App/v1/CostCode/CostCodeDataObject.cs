@@ -45,5 +45,6 @@ public class CostCodeDataObject
 
     [JsonPropertyName("active")]
     [Description("Flag indicating if the cost code is active")]
-    public bool Active { get; init; } = true;
+    [Required]
+    public bool Active { get; init; }
 }

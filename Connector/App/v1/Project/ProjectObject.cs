@@ -8,17 +8,17 @@ public class ProjectObject
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("id")]
     [Description("Example primary key of the object")]
-    [Nullable(true)]
+    [Required]
     public string? Id { get; init; }
 
     [JsonPropertyName("company_id")]
     [Description("Id of the company to which the Project belongs")]
-    [Nullable(true)]
+    [Required]
     public string? CompanyId { get; set; }
 
     [JsonPropertyName("project_name")]
     [Description("Name of the project")]
-    [Nullable(true)]
+    [Required]
     public string? ProjectName { get; set; }
 
     [JsonPropertyName("project_code")]
@@ -63,7 +63,6 @@ public class ProjectObject
 
     [JsonPropertyName("prevailing_wage_project")]
     [Description("Is prevailing wage project?")]
-    [Nullable(true)]
     public bool? PrevailingWageProject { get; set; } = false;
 
     [JsonPropertyName("contract_type")]
@@ -73,11 +72,11 @@ public class ProjectObject
 
     [JsonPropertyName("active")]
     [Description("Is project active?")]
-    [Nullable(true)]
+    [Required]
     public bool Active { get; set; } = true;
 
     [JsonPropertyName("allow_only_assigned_crews")]
     [Description("Is allow only assigned crew to clock in")]
-    [Nullable(true)]
+    [Required]
     public bool AllowOnlyAssignedCrews { get; set; } = false;
 }

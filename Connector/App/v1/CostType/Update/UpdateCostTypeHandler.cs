@@ -44,7 +44,7 @@ public class UpdateCostTypeHandler : IActionHandler<UpdateCostTypeAction>
         {
             // Given the input for the action, make a call to your API/system
             var response = new ApiResponse<UpdateCostTypeActionOutput>();
-            response = await _apiClient.UpdateCostTypeDataObject($"api/v1/companies/{_connectorRegistrationConfig.CompanyId}/cost_code/{input.Id}", input, cancellationToken)
+            response = await _apiClient.UpdateCostTypeDataObject($"api/v1/companies/{_connectorRegistrationConfig.CompanyId}/cost_type/{input.Id}", input, cancellationToken)
             .ConfigureAwait(false);
             
             if (!response.IsSuccessful || response.Data == null)
@@ -76,14 +76,14 @@ public class UpdateCostTypeHandler : IActionHandler<UpdateCostTypeAction>
             return ActionHandlerOutcome.Failed(new StandardActionFailure
             {
                 Code = exception.StatusCode?.ToString() ?? "500",
-                Errors = new []
-                {
-                    new Xchange.Connector.SDK.Action.Error
+                Errors =
+                [
+                    new Error
                     {
                         Source = errorSource.ToArray(),
                         Text = exception.Message
                     }
-                }
+                ]
             });
         }
     }
