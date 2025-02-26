@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -369,6 +370,32 @@ public class ApiClient
                     cancellationToken: cancellationToken)
                 : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)  
+        };
+    }
+
+    internal async Task<ApiResponse<IEnumerable<TimesheetDataObject>>> GetTimesheetRecords<TimesheetDataObject>(
+        string relativeUrl,
+        CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync(
+            relativeUrl,
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to get timesheet records. Status Code: {response.StatusCode}");
+        }
+
+        return new ApiResponse<IEnumerable<TimesheetDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<IEnumerable<TimesheetDataObject>>(
+                    cancellationToken: cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
     }
 }

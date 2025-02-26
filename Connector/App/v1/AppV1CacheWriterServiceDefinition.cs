@@ -3,6 +3,7 @@ using Connector.App.v1.CostCode;
 using Connector.App.v1.CostType;
 using Connector.App.v1.Employees;
 using Connector.App.v1.Project;
+using Connector.App.v1.Timesheet;
 using ESR.Hosting.CacheWriter;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -28,6 +29,7 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         serviceCollection.AddSingleton<ProjectDataReader>();
         serviceCollection.AddSingleton<CostCodeDataReader>();
         serviceCollection.AddSingleton<CostTypeDataReader>();
+        serviceCollection.AddSingleton<TimesheetDataReader>();
     }
 
     public override IDataObjectChangeDetectorProvider ConfigureChangeDetectorProvider(IChangeDetectorFactory factory, ConnectorDefinition connectorDefinition)
@@ -38,6 +40,7 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         this.RegisterKeysForObject<ProjectDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<CostCodeDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<CostTypeDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<TimesheetDataObject>(options, connectorDefinition);
         return factory.CreateProvider(options);
     }
 
@@ -53,5 +56,6 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         service.RegisterDataReader<ProjectDataReader, ProjectDataObject>(ModuleId, config.ProjectConfig, dataReaderSettings);
         service.RegisterDataReader<CostCodeDataReader, CostCodeDataObject>(ModuleId, config.CostCodeConfig, dataReaderSettings);
         service.RegisterDataReader<CostTypeDataReader, CostTypeDataObject>(ModuleId, config.CostTypeConfig, dataReaderSettings);
+        service.RegisterDataReader<TimesheetDataReader, TimesheetDataObject>(ModuleId, config.TimesheetConfig, dataReaderSettings);
     }
 }
