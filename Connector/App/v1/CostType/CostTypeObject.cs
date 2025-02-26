@@ -9,7 +9,7 @@ public class CostTypeObject
 {
     [JsonPropertyName("id")]
     [Description("Example primary key of the object")]
-    [Required]
+    [Nullable(true)]
     public string?  Id { get; init; }
 
     [JsonPropertyName("company_id")] 

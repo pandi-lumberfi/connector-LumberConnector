@@ -61,12 +61,11 @@ public class CustomAuthHandler(CustomAuth customAuth) : DelegatingHandler
             {
                 _tokenSemaphore.Release();
             }
-
-            request.Headers.Add("Api-Key", _customAuth.ApiKey);
-            request.Headers.Add("Api-Secret", _customAuth.ApiSecretKey);
-            request.Headers.Add("User-Id", _customAuth.UserId);
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _token);
         }
+        request.Headers.Add("Api-Key", _customAuth.ApiKey);
+        request.Headers.Add("Api-Secret", _customAuth.ApiSecretKey);
+        request.Headers.Add("User-Id", _customAuth.UserId);
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _token);
     }
 
     private HttpRequestMessage GetTokenRequest()
