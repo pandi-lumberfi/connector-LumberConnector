@@ -10,10 +10,10 @@ public class CustomAuth : ICustomAuth
     //Create your own properties here like this (keep in mind only string types are supported currently):
     //[ConnectionProperty(title: "Custom Header", description: "", isRequired: true, isSensitive: false)]
     //public string CustomHeader { get; init; } = string.Empty;
-    [ConnectionProperty(title: "Api Key", description: "A unique key used to authenticate and authorize API requests", isRequired: true, isSensitive: false)]
+    [ConnectionProperty(title: "Api Key", description: "A unique key used to authenticate and authorize API requests", isRequired: true, isSensitive: true)]
     public string ApiKey { get; init; } = string.Empty;
 
-    [ConnectionProperty(title: "Api Secret Key", description: "A unique secret key used for authenticating API request", isRequired: true, isSensitive: false)]
+    [ConnectionProperty(title: "Api Secret Key", description: "A unique secret key used for authenticating API request", isRequired: true, isSensitive: true)]
     public string ApiSecretKey { get; init; } = string.Empty;
 
     [ConnectionProperty(title: "User Id", description: "Admin User ID for establishing the connection", isRequired: true, isSensitive: false)]

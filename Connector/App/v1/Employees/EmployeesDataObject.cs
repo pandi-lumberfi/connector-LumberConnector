@@ -132,6 +132,7 @@ public class UserData
 
     [JsonPropertyName("address")]
     [Description("Address details of the Employee")]
+    [Nullable(true)]
     public AddressData? Address { get; init; }
 
     [JsonPropertyName("user_type")]

@@ -1,5 +1,5 @@
 {
-  "name": "LumberConnector",
+  "name": "Lumber",
   "urlPart": "lumber-bdf65",
   "key": "lumber-bdf65",
   "description": "Lumber Time Tracking, HR and Payroll",
@@ -12,30 +12,42 @@
         {
           "title": "Api Key",
           "key": "apiKey",
-          "isSensitive": false,
+          "isSensitive": true,
           "isRequired": true,
-          "description": "A unique key used to authenticate and authorize API requests"
+          "isArray": false,
+          "type": "string",
+          "description": "A unique key used to authenticate and authorize API requests",
+          "attributes": []
         },
         {
           "title": "Api Secret Key",
           "key": "apiSecretKey",
-          "isSensitive": false,
+          "isSensitive": true,
           "isRequired": true,
-          "description": "A unique secret key used for authenticating API request"
+          "isArray": false,
+          "type": "string",
+          "description": "A unique secret key used for authenticating API request",
+          "attributes": []
         },
         {
           "title": "User Id",
           "key": "userId",
           "isSensitive": false,
           "isRequired": true,
-          "description": "Admin User ID for establishing the connection"
+          "isArray": false,
+          "type": "string",
+          "description": "Admin User ID for establishing the connection",
+          "attributes": []
         },
         {
           "title": "Connection Environment",
           "key": "connectionEnvironment",
           "isSensitive": false,
           "isRequired": true,
+          "isArray": false,
+          "type": "string",
           "description": "Connection Environment",
+          "attributes": [],
           "options": [
             {
               "label": "Production",
@@ -67,6 +79,7 @@
       }
     }
   },
+  "settingsSchema": {},
   "modules": [
     {
       "name": "App",
@@ -88,6 +101,62 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "UpdateEmployeesConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CreateProjectConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "UpdateProjectConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CreateCostCodeConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "UpdateCostCodeConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CreateCostTypeConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "UpdateCostTypeConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Action Processor Configuration",
@@ -101,6 +170,38 @@
             "type": "object",
             "properties": {
               "EmployeesConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "ProjectConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CostCodeConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CostTypeConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "TimesheetConfig": {
                 "type": "object",
                 "properties": {
                   "UploadObject": {
@@ -192,7 +293,10 @@
                     "description": "Email address of the Employee"
                   },
                   "address": {
-                    "type": "object",
+                    "type": [
+                      "object",
+                      "null"
+                    ],
                     "properties": {
                       "street_line1": {
                         "type": [
@@ -346,11 +450,12 @@
           },
           "keys": [
             {
+              "key": "id",
               "urlPart": "id",
+              "isPrimary": true,
               "propertyNames": [
                 "id"
-              ],
-              "isPrimary": true
+              ]
             }
           ],
           "actions": [
@@ -360,11 +465,28 @@
               "key": "create",
               "description": "CreateEmployeesAction Action description goes here",
               "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateEmployeesConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
               "inputSchema": {
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Example primary key of the object"
                   },
                   "source_system": {
@@ -373,13 +495,6 @@
                       "null"
                     ],
                     "description": "Source system of the employee data"
-                  },
-                  "source_system_id": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "description": "Identifier from the source system"
                   },
                   "company_id": {
                     "type": "string",
@@ -393,7 +508,10 @@
                         "description": "First name of the Employee"
                       },
                       "middle_name": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Middle name of the Employee"
                       },
                       "last_name": {
@@ -401,7 +519,10 @@
                         "description": "Last name of the Employee"
                       },
                       "gender": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Gender of the Employee"
                       },
                       "date_of_birth": {
@@ -413,26 +534,44 @@
                         "description": "Phone number of the Employee"
                       },
                       "email": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Email address of the Employee"
                       },
                       "address": {
-                        "type": "object",
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "properties": {
                           "street_line1": {
-                            "type": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ],
                             "description": "Street address line 1"
                           },
                           "street_line2": {
-                            "type": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ],
                             "description": "Street address line 2"
                           },
                           "city": {
-                            "type": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ],
                             "description": "City name"
                           },
                           "state": {
-                            "type": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ],
                             "description": "State or region"
                           },
                           "country": {
@@ -444,22 +583,34 @@
                             "description": "Postal code"
                           },
                           "latitude": {
-                            "type": "number",
+                            "type": [
+                              "number",
+                              "null"
+                            ],
                             "description": "Latitude coordinate"
                           },
                           "longitude": {
-                            "type": "number",
+                            "type": [
+                              "number",
+                              "null"
+                            ],
                             "description": "Longitude coordinate"
                           }
                         },
                         "description": "Address details of the Employee"
                       },
                       "user_type": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "User type"
                       },
                       "short_ssn": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Short SSN"
                       },
                       "job_title": {
@@ -467,6 +618,13 @@
                         "description": "Job title"
                       }
                     },
+                    "required": [
+                      "first_name",
+                      "last_name",
+                      "date_of_birth",
+                      "phone",
+                      "job_title"
+                    ],
                     "description": "User details"
                   },
                   "employee_id": {
@@ -477,11 +635,17 @@
                     "description": "Employee ID"
                   },
                   "company_user_type": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Company user type"
                   },
                   "employment_type": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Employment type"
                   },
                   "contract_employee_type": {
@@ -503,7 +667,10 @@
                     "description": "Current status of the user"
                   },
                   "start_date": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Start date of employment"
                   },
                   "end_date": {
@@ -521,13 +688,22 @@
                     "type": "boolean",
                     "description": "Is the employee payroll enable?"
                   }
-                }
+                },
+                "required": [
+                  "company_id",
+                  "user_status",
+                  "active",
+                  "payroll_enabled"
+                ]
               },
               "outputSchema": {
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Example primary key of the object"
                   },
                   "source_system": {
@@ -536,13 +712,6 @@
                       "null"
                     ],
                     "description": "Source system of the employee data"
-                  },
-                  "source_system_id": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "description": "Identifier from the source system"
                   },
                   "company_id": {
                     "type": "string",
@@ -556,7 +725,10 @@
                         "description": "First name of the Employee"
                       },
                       "middle_name": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Middle name of the Employee"
                       },
                       "last_name": {
@@ -564,7 +736,10 @@
                         "description": "Last name of the Employee"
                       },
                       "gender": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Gender of the Employee"
                       },
                       "date_of_birth": {
@@ -576,26 +751,44 @@
                         "description": "Phone number of the Employee"
                       },
                       "email": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Email address of the Employee"
                       },
                       "address": {
-                        "type": "object",
+                        "type": [
+                          "object",
+                          "null"
+                        ],
                         "properties": {
                           "street_line1": {
-                            "type": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ],
                             "description": "Street address line 1"
                           },
                           "street_line2": {
-                            "type": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ],
                             "description": "Street address line 2"
                           },
                           "city": {
-                            "type": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ],
                             "description": "City name"
                           },
                           "state": {
-                            "type": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ],
                             "description": "State or region"
                           },
                           "country": {
@@ -607,22 +800,34 @@
                             "description": "Postal code"
                           },
                           "latitude": {
-                            "type": "number",
+                            "type": [
+                              "number",
+                              "null"
+                            ],
                             "description": "Latitude coordinate"
                           },
                           "longitude": {
-                            "type": "number",
+                            "type": [
+                              "number",
+                              "null"
+                            ],
                             "description": "Longitude coordinate"
                           }
                         },
                         "description": "Address details of the Employee"
                       },
                       "user_type": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "User type"
                       },
                       "short_ssn": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Short SSN"
                       },
                       "job_title": {
@@ -630,6 +835,13 @@
                         "description": "Job title"
                       }
                     },
+                    "required": [
+                      "first_name",
+                      "last_name",
+                      "date_of_birth",
+                      "phone",
+                      "job_title"
+                    ],
                     "description": "User details"
                   },
                   "employee_id": {
@@ -640,11 +852,17 @@
                     "description": "Employee ID"
                   },
                   "company_user_type": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Company user type"
                   },
                   "employment_type": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Employment type"
                   },
                   "contract_employee_type": {
@@ -666,7 +884,10 @@
                     "description": "Current status of the user"
                   },
                   "start_date": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Start date of employment"
                   },
                   "end_date": {
@@ -684,7 +905,506 @@
                     "type": "boolean",
                     "description": "Is the employee payroll enable?"
                   }
+                },
+                "required": [
+                  "company_id",
+                  "user_status",
+                  "active",
+                  "payroll_enabled"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
                 }
+              }
+            },
+            {
+              "name": "Update",
+              "urlPart": "update",
+              "key": "update",
+              "description": "UpdateEmployeesAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateEmployeesConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "source_system": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Source system of the employee data"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Company ID"
+                  },
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "first_name": {
+                        "type": "string",
+                        "description": "First name of the Employee"
+                      },
+                      "middle_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Middle name of the Employee"
+                      },
+                      "last_name": {
+                        "type": "string",
+                        "description": "Last name of the Employee"
+                      },
+                      "gender": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Gender of the Employee"
+                      },
+                      "date_of_birth": {
+                        "type": "string",
+                        "description": "Date of Birth of the Employee"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "Phone number of the Employee"
+                      },
+                      "email": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Email address of the Employee"
+                      },
+                      "address": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "street_line1": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Street address line 1"
+                          },
+                          "street_line2": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Street address line 2"
+                          },
+                          "city": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "City name"
+                          },
+                          "state": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "State or region"
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Country code"
+                          },
+                          "postal_code": {
+                            "type": "string",
+                            "description": "Postal code"
+                          },
+                          "latitude": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "description": "Latitude coordinate"
+                          },
+                          "longitude": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "description": "Longitude coordinate"
+                          }
+                        },
+                        "description": "Address details of the Employee"
+                      },
+                      "user_type": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "User type"
+                      },
+                      "short_ssn": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Short SSN"
+                      },
+                      "job_title": {
+                        "type": "string",
+                        "description": "Job title"
+                      }
+                    },
+                    "required": [
+                      "first_name",
+                      "last_name",
+                      "date_of_birth",
+                      "phone",
+                      "job_title"
+                    ],
+                    "description": "User details"
+                  },
+                  "employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employee ID"
+                  },
+                  "company_user_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Company user type"
+                  },
+                  "employment_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employment type"
+                  },
+                  "contract_employee_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Contract Employee Type"
+                  },
+                  "contract_employee_business_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Business name of the contract employee"
+                  },
+                  "user_status": {
+                    "type": "string",
+                    "description": "Current status of the user"
+                  },
+                  "start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Start date of employment"
+                  },
+                  "end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End date of employment"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the employee active?"
+                  },
+                  "payroll_enabled": {
+                    "type": "boolean",
+                    "description": "Is the employee payroll enable?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "user_status",
+                  "active",
+                  "payroll_enabled"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "source_system": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Source system of the employee data"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Company ID"
+                  },
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "first_name": {
+                        "type": "string",
+                        "description": "First name of the Employee"
+                      },
+                      "middle_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Middle name of the Employee"
+                      },
+                      "last_name": {
+                        "type": "string",
+                        "description": "Last name of the Employee"
+                      },
+                      "gender": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Gender of the Employee"
+                      },
+                      "date_of_birth": {
+                        "type": "string",
+                        "description": "Date of Birth of the Employee"
+                      },
+                      "phone": {
+                        "type": "string",
+                        "description": "Phone number of the Employee"
+                      },
+                      "email": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Email address of the Employee"
+                      },
+                      "address": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "street_line1": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Street address line 1"
+                          },
+                          "street_line2": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Street address line 2"
+                          },
+                          "city": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "City name"
+                          },
+                          "state": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "State or region"
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Country code"
+                          },
+                          "postal_code": {
+                            "type": "string",
+                            "description": "Postal code"
+                          },
+                          "latitude": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "description": "Latitude coordinate"
+                          },
+                          "longitude": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "description": "Longitude coordinate"
+                          }
+                        },
+                        "description": "Address details of the Employee"
+                      },
+                      "user_type": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "User type"
+                      },
+                      "short_ssn": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Short SSN"
+                      },
+                      "job_title": {
+                        "type": "string",
+                        "description": "Job title"
+                      }
+                    },
+                    "required": [
+                      "first_name",
+                      "last_name",
+                      "date_of_birth",
+                      "phone",
+                      "job_title"
+                    ],
+                    "description": "User details"
+                  },
+                  "employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employee ID"
+                  },
+                  "company_user_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Company user type"
+                  },
+                  "employment_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employment type"
+                  },
+                  "contract_employee_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Contract Employee Type"
+                  },
+                  "contract_employee_business_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Business name of the contract employee"
+                  },
+                  "user_status": {
+                    "type": "string",
+                    "description": "Current status of the user"
+                  },
+                  "start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Start date of employment"
+                  },
+                  "end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End date of employment"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the employee active?"
+                  },
+                  "payroll_enabled": {
+                    "type": "boolean",
+                    "description": "Is the employee payroll enable?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "user_status",
+                  "active",
+                  "payroll_enabled"
+                ]
               },
               "failureSchema": {
                 "type": "object",
@@ -726,6 +1446,2009 @@
               }
             }
           ]
+        },
+        {
+          "name": "Project",
+          "urlPart": "project",
+          "key": "project",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "company_id": {
+                "type": "string",
+                "description": "Id of the company to which the Project belongs"
+              },
+              "project_name": {
+                "type": "string",
+                "description": "Name of the project"
+              },
+              "project_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Code for the project"
+              },
+              "project_number": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Project Number"
+              },
+              "address": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "street_line1": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Street address line 1"
+                  },
+                  "street_line2": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Street address line 2"
+                  },
+                  "city": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "City name"
+                  },
+                  "state": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "State or region"
+                  },
+                  "country": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Country code"
+                  },
+                  "postal_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Postal code"
+                  },
+                  "latitude": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Latitude coordinate"
+                  },
+                  "longitude": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Longitude coordinate"
+                  }
+                },
+                "description": "Address of the project"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Description of the project"
+              },
+              "budget": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Budget of the project"
+              },
+              "start_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "description": "Start date of the project"
+              },
+              "end_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "description": "End date of the project"
+              },
+              "status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Status of the project"
+              },
+              "prevailing_wage_project": {
+                "type": "boolean",
+                "description": "Is prevailing wage project?"
+              },
+              "contract_type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Type of project contract"
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Is project active?"
+              },
+              "allow_only_assigned_crews": {
+                "type": "boolean",
+                "description": "Is allow only assigned crew to clock in"
+              }
+            },
+            "required": [
+              "id",
+              "company_id",
+              "project_name",
+              "prevailing_wage_project",
+              "active",
+              "allow_only_assigned_crews"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateProjectAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateProjectConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Id of the company to which the Project belongs"
+                  },
+                  "project_name": {
+                    "type": "string",
+                    "description": "Name of the project"
+                  },
+                  "project_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the project"
+                  },
+                  "project_number": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Project Number"
+                  },
+                  "address": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1"
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2"
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name"
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region"
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Address of the project"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the project"
+                  },
+                  "budget": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Budget of the project"
+                  },
+                  "start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Start date of the project"
+                  },
+                  "end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End date of the project"
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Status of the project"
+                  },
+                  "prevailing_wage_project": {
+                    "type": "boolean",
+                    "description": "Is prevailing wage project?"
+                  },
+                  "contract_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Type of project contract"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is project active?"
+                  },
+                  "allow_only_assigned_crews": {
+                    "type": "boolean",
+                    "description": "Is allow only assigned crew to clock in"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "project_name",
+                  "active",
+                  "allow_only_assigned_crews"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Id of the company to which the Project belongs"
+                  },
+                  "project_name": {
+                    "type": "string",
+                    "description": "Name of the project"
+                  },
+                  "project_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the project"
+                  },
+                  "project_number": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Project Number"
+                  },
+                  "address": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1"
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2"
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name"
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region"
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Address of the project"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the project"
+                  },
+                  "budget": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Budget of the project"
+                  },
+                  "start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Start date of the project"
+                  },
+                  "end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End date of the project"
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Status of the project"
+                  },
+                  "prevailing_wage_project": {
+                    "type": "boolean",
+                    "description": "Is prevailing wage project?"
+                  },
+                  "contract_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Type of project contract"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is project active?"
+                  },
+                  "allow_only_assigned_crews": {
+                    "type": "boolean",
+                    "description": "Is allow only assigned crew to clock in"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "project_name",
+                  "active",
+                  "allow_only_assigned_crews"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update",
+              "urlPart": "update",
+              "key": "update",
+              "description": "UpdateProjectAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateProjectConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Id of the company to which the Project belongs"
+                  },
+                  "project_name": {
+                    "type": "string",
+                    "description": "Name of the project"
+                  },
+                  "project_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the project"
+                  },
+                  "project_number": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Project Number"
+                  },
+                  "address": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1"
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2"
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name"
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region"
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Address of the project"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the project"
+                  },
+                  "budget": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Budget of the project"
+                  },
+                  "start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Start date of the project"
+                  },
+                  "end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End date of the project"
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Status of the project"
+                  },
+                  "prevailing_wage_project": {
+                    "type": "boolean",
+                    "description": "Is prevailing wage project?"
+                  },
+                  "contract_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Type of project contract"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is project active?"
+                  },
+                  "allow_only_assigned_crews": {
+                    "type": "boolean",
+                    "description": "Is allow only assigned crew to clock in"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "project_name",
+                  "active",
+                  "allow_only_assigned_crews"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Id of the company to which the Project belongs"
+                  },
+                  "project_name": {
+                    "type": "string",
+                    "description": "Name of the project"
+                  },
+                  "project_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the project"
+                  },
+                  "project_number": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Project Number"
+                  },
+                  "address": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1"
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2"
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name"
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region"
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Address of the project"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the project"
+                  },
+                  "budget": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Budget of the project"
+                  },
+                  "start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Start date of the project"
+                  },
+                  "end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "End date of the project"
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Status of the project"
+                  },
+                  "prevailing_wage_project": {
+                    "type": "boolean",
+                    "description": "Is prevailing wage project?"
+                  },
+                  "contract_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Type of project contract"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is project active?"
+                  },
+                  "allow_only_assigned_crews": {
+                    "type": "boolean",
+                    "description": "Is allow only assigned crew to clock in"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "project_name",
+                  "active",
+                  "allow_only_assigned_crews"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Cost Code",
+          "urlPart": "cost-code",
+          "key": "cost-code",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "company_id": {
+                "type": "string",
+                "description": "ID of the company associated with the cost code"
+              },
+              "code": {
+                "type": "string",
+                "description": "Code of the cost code"
+              },
+              "cost_code_name": {
+                "type": "string",
+                "description": "Name of the cost code"
+              },
+              "cost_code_description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Description of the cost code"
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Flag indicating if the cost code is active"
+              }
+            },
+            "required": [
+              "id",
+              "company_id",
+              "code",
+              "cost_code_name",
+              "active"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateCostCodeAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateCostCodeConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Code of the cost code"
+                  },
+                  "cost_code_name": {
+                    "type": "string",
+                    "description": "Name of the cost code"
+                  },
+                  "cost_code_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the cost code"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Flag indicating if the cost code is active"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "code",
+                  "cost_code_name"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Code of the cost code"
+                  },
+                  "cost_code_name": {
+                    "type": "string",
+                    "description": "Name of the cost code"
+                  },
+                  "cost_code_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the cost code"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Flag indicating if the cost code is active"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "code",
+                  "cost_code_name"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update",
+              "urlPart": "update",
+              "key": "update",
+              "description": "UpdateCostCodeAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateCostCodeConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Code of the cost code"
+                  },
+                  "cost_code_name": {
+                    "type": "string",
+                    "description": "Name of the cost code"
+                  },
+                  "cost_code_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the cost code"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Flag indicating if the cost code is active"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "code",
+                  "cost_code_name"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "code": {
+                    "type": "string",
+                    "description": "Code of the cost code"
+                  },
+                  "cost_code_name": {
+                    "type": "string",
+                    "description": "Name of the cost code"
+                  },
+                  "cost_code_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the cost code"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Flag indicating if the cost code is active"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "code",
+                  "cost_code_name"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Cost Type",
+          "urlPart": "cost-type",
+          "key": "cost-type",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "company_id": {
+                "type": "string",
+                "description": "ID of the company to which the cost type belongs"
+              },
+              "cost_type_name": {
+                "type": "string",
+                "description": "Name of the cost type"
+              },
+              "cost_type_description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Description of the cost type"
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Flag indicating if the cost type is active"
+              }
+            },
+            "required": [
+              "id",
+              "company_id",
+              "cost_type_name",
+              "active"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateCostTypeAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateCostTypeConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "cost_type_name": {
+                    "type": "string",
+                    "description": "Name of the cost type"
+                  },
+                  "cost_type_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the cost type"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Flag indicating if the cost type is active"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "cost_type_name"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "cost_type_name": {
+                    "type": "string",
+                    "description": "Name of the cost type"
+                  },
+                  "cost_type_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the cost type"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Flag indicating if the cost type is active"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "cost_type_name"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update",
+              "urlPart": "update",
+              "key": "update",
+              "description": "UpdateCostTypeAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateCostTypeConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "cost_type_name": {
+                    "type": "string",
+                    "description": "Name of the cost type"
+                  },
+                  "cost_type_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the cost type"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Flag indicating if the cost type is active"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "cost_type_name"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "cost_type_name": {
+                    "type": "string",
+                    "description": "Name of the cost type"
+                  },
+                  "cost_type_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the cost type"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Flag indicating if the cost type is active"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "cost_type_name"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Timesheet",
+          "urlPart": "timesheet",
+          "key": "timesheet",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier for the timesheet record"
+              },
+              "user_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Unique identifier for the user"
+              },
+              "username": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Username/email of the user"
+              },
+              "first_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "User\u0027s first name"
+              },
+              "middle_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "User\u0027s middle name"
+              },
+              "last_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "User\u0027s last name"
+              },
+              "user_active": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether the user is active"
+              },
+              "phone": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "User\u0027s phone number"
+              },
+              "email": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "User\u0027s email address"
+              },
+              "employment_type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Type of employment (e.g. EMPLOYEE)"
+              },
+              "company_user_start_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Date when user started with company"
+              },
+              "company_user_end_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Date when user ended with company"
+              },
+              "base_pay_rate": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Base pay rate for the user"
+              },
+              "date_worked": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Date the work was performed"
+              },
+              "clockin_time": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Time user clocked in"
+              },
+              "clockout_time": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Time user clocked out"
+              },
+              "travelled": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether travel was involved"
+              },
+              "travel_duration": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Duration of travel in seconds"
+              },
+              "work_duration": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Total duration of work in seconds"
+              },
+              "regular_work_duration": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Duration of regular work hours in seconds"
+              },
+              "overtime_duration": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Duration of overtime in seconds"
+              },
+              "double_overtime_duration": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Duration of double overtime in seconds"
+              },
+              "meal_break_duration": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Duration of meal breaks in seconds"
+              },
+              "break_duration": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Total duration of breaks in seconds"
+              },
+              "paid_break_duration": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Duration of paid breaks in seconds"
+              },
+              "unpaid_break_duration": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Duration of unpaid breaks in seconds"
+              },
+              "miles_travelled": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Miles travelled for work"
+              },
+              "injury": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether an injury occurred"
+              },
+              "status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Current status (e.g. CLOCKED_OUT)"
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Type of timesheet (e.g. REGULAR)"
+              },
+              "processed": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether timesheet has been processed"
+              },
+              "project_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Unique identifier for the project"
+              },
+              "project_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the project"
+              },
+              "budget": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Project budget"
+              },
+              "project_start_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Project start date"
+              },
+              "project_end_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Project end date"
+              },
+              "project_description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Description of the project"
+              },
+              "project_active": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether project is active"
+              },
+              "project_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Project code identifier"
+              },
+              "company_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Unique identifier for the company"
+              },
+              "company_legal_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Legal name of the company"
+              },
+              "company_trade_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Trade name of the company"
+              },
+              "company_company_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Company name"
+              },
+              "has_notes": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether timesheet has notes"
+              },
+              "note_files_count": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "Number of note files"
+              },
+              "create_change_request": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether to create change request"
+              },
+              "created_by_user_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "ID of user who created the record"
+              },
+              "created_by_username": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Username of user who created the record"
+              },
+              "modified_by_user_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "ID of user who last modified the record"
+              },
+              "modified_by_username": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Username of user who last modified the record"
+              },
+              "modified_by_first_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "First name of user who last modified the record"
+              },
+              "per_diem": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether per diem applies"
+              },
+              "lodging": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether lodging is included"
+              },
+              "employee_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Employee identifier"
+              },
+              "manual_time_card": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether timecard was entered manually"
+              },
+              "allocation_done": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether allocation is complete"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": []
         }
       ]
     }

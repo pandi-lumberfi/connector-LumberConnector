@@ -373,12 +373,14 @@ public class ApiClient
         };
     }
 
-    internal async Task<ApiResponse<IEnumerable<TimesheetDataObject>>> GetTimesheetRecords<TimesheetDataObject>(
+    internal async Task<ApiResponse<PaginatedResponse<TimesheetDataObject>>> GetTimesheetRecords<TimesheetDataObject>(
         string relativeUrl,
+        int page,
+        int size,
         CancellationToken cancellationToken = default)
     {
         var response = await _httpClient.GetAsync(
-            relativeUrl,
+            $"{relativeUrl}?page={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
@@ -387,13 +389,18 @@ public class ApiClient
             throw new HttpRequestException($"Failed to get timesheet records. Status Code: {response.StatusCode}");
         }
 
-        return new ApiResponse<IEnumerable<TimesheetDataObject>>
+        return new ApiResponse<PaginatedResponse<TimesheetDataObject>>
         {
             IsSuccessful = response.IsSuccessStatusCode,
             StatusCode = (int)response.StatusCode,
             Data = response.IsSuccessStatusCode 
-                ? await response.Content.ReadFromJsonAsync<IEnumerable<TimesheetDataObject>>(
-                    cancellationToken: cancellationToken)
+                ? await response.Content.ReadFromJsonAsync<PaginatedResponse<TimesheetDataObject>>(
+                    new JsonSerializerOptions
+                    {
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true
+                    },
+                    cancellationToken)
                 : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
