@@ -1,6 +1,8 @@
 namespace Connector.App.v1;
+using Connector.App.v1.CompCode;
 using Connector.App.v1.CostCode;
 using Connector.App.v1.CostType;
+using Connector.App.v1.Department;
 using Connector.App.v1.Employees;
 using Connector.App.v1.Project;
 using Connector.App.v1.Timesheet;
@@ -23,4 +25,6 @@ public class AppV1CacheWriterConfig
     public CacheWriterObjectConfig CostCodeConfig { get; set; } = new();
     public CacheWriterObjectConfig CostTypeConfig { get; set; } = new();
     public CacheWriterObjectConfig TimesheetConfig { get; set; } = new();
+    public CacheWriterObjectConfig CompCodeConfig { get; set; } = new();
+    public CacheWriterObjectConfig DepartmentConfig { get; set; } = new();
 }

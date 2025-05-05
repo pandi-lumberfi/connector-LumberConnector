@@ -1,8 +1,12 @@
 namespace Connector.App.v1;
+using Connector.App.v1.CompCode.Create;
+using Connector.App.v1.CompCode.Update;
 using Connector.App.v1.CostCode.Create;
 using Connector.App.v1.CostCode.Update;
 using Connector.App.v1.CostType.Create;
 using Connector.App.v1.CostType.Update;
+using Connector.App.v1.Department.Create;
+using Connector.App.v1.Department.Update;
 using Connector.App.v1.Employees.Create;
 using Connector.App.v1.Employees.Update;
 using Connector.App.v1.Project.Create;
@@ -29,4 +33,8 @@ public class AppV1ActionProcessorConfig
     public DefaultActionHandlerConfig UpdateCostCodeConfig { get; set; } = new();
     public DefaultActionHandlerConfig CreateCostTypeConfig { get; set; } = new();
     public DefaultActionHandlerConfig UpdateCostTypeConfig { get; set; } = new();
+    public DefaultActionHandlerConfig CreateCompCodeConfig { get; set; } = new();
+    public DefaultActionHandlerConfig UpdateCompCodeConfig { get; set; } = new();
+    public DefaultActionHandlerConfig CreateDepartmentConfig { get; set; } = new();
+    public DefaultActionHandlerConfig UpdateDepartmentConfig { get; set; } = new();
 }

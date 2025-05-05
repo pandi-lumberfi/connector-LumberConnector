@@ -157,6 +157,38 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "CreateCompCodeConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "UpdateCompCodeConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CreateDepartmentConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "UpdateDepartmentConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Action Processor Configuration",
@@ -202,6 +234,22 @@
                 }
               },
               "TimesheetConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CompCodeConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "DepartmentConfig": {
                 "type": "object",
                 "properties": {
                   "UploadObject": {
@@ -425,6 +473,141 @@
                 ],
                 "format": "date-time",
                 "description": "End date of employment"
+              },
+              "user_benefits": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the benefit"
+                    },
+                    "benefit_type": {
+                      "type": "string",
+                      "description": "Type of the benefit"
+                    },
+                    "period": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Period of the benefit"
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Description of the benefit"
+                    },
+                    "effective_start": {
+                      "type": "string",
+                      "description": "Effective start date of the benefit"
+                    },
+                    "effective_end": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Effective end date of the benefit"
+                    },
+                    "company_contribution": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Company contribution"
+                    },
+                    "employee_contribution": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Employee contribution"
+                    },
+                    "contribution_type": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Type of contribution"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "benefit_type",
+                    "effective_start"
+                  ],
+                  "description": "List of user benefits"
+                },
+                "description": "List of user benefits"
+              },
+              "bank_accounts": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID of the bank account"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the bank account"
+                    },
+                    "raw_bank_account": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "institution_name": {
+                          "type": "string",
+                          "description": "Name of the financial institution"
+                        },
+                        "account_number_last_four": {
+                          "type": "string",
+                          "description": "Last four digits of the account number"
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number of the bank account"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of the bank account"
+                        },
+                        "subtype": {
+                          "type": "string",
+                          "description": "Subtype of the bank account"
+                        }
+                      },
+                      "description": "Raw bank account details"
+                    },
+                    "employee": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Employee ID associated with the bank account"
+                    }
+                  },
+                  "description": "List of bank accounts"
+                },
+                "description": "List of bank accounts"
               },
               "active": {
                 "type": "boolean",
@@ -3449,6 +3632,820 @@
             }
           ],
           "actions": []
+        },
+        {
+          "name": "Comp Code",
+          "urlPart": "comp-code",
+          "key": "comp-code",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "company_id": {
+                "type": "string",
+                "description": "ID of the company to which the Comp Code belongs"
+              },
+              "short_name": {
+                "type": "string",
+                "description": "Short Name of the Comp Code"
+              },
+              "state_code": {
+                "type": "string",
+                "description": "State Code for the Comp Code"
+              },
+              "class_code": {
+                "type": "string",
+                "description": "Class Code for the Comp Code"
+              },
+              "work_description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Work Description for the Comp Code"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Description for the Comp Code"
+              },
+              "risk_rate": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Risk Rate for the particular Comp Code"
+              },
+              "work_year": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "Work Year for the Comp Code"
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Is the Comp Code active?"
+              }
+            },
+            "required": [
+              "id",
+              "company_id",
+              "short_name",
+              "state_code",
+              "class_code",
+              "active"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateCompCodeAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateCompCodeConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "short_name": {
+                    "type": "string",
+                    "description": "Short Name of the Comp Code"
+                  },
+                  "state_code": {
+                    "type": "string",
+                    "description": "State Code for the Comp Code"
+                  },
+                  "class_code": {
+                    "type": "string",
+                    "description": "Class Code for the Comp Code"
+                  },
+                  "work_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Work Description for the Comp Code"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description for the Comp Code"
+                  },
+                  "risk_rate": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Risk Rate for the particular Comp Code"
+                  },
+                  "work_year": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "description": "Work Year for the Comp Code"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the Comp Code active?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "short_name",
+                  "state_code",
+                  "class_code",
+                  "active"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "short_name": {
+                    "type": "string",
+                    "description": "Short Name of the Comp Code"
+                  },
+                  "state_code": {
+                    "type": "string",
+                    "description": "State Code for the Comp Code"
+                  },
+                  "class_code": {
+                    "type": "string",
+                    "description": "Class Code for the Comp Code"
+                  },
+                  "work_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Work Description for the Comp Code"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description for the Comp Code"
+                  },
+                  "risk_rate": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Risk Rate for the particular Comp Code"
+                  },
+                  "work_year": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "description": "Work Year for the Comp Code"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the Comp Code active?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "short_name",
+                  "state_code",
+                  "class_code",
+                  "active"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update",
+              "urlPart": "update",
+              "key": "update",
+              "description": "UpdateCompCodeAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateCompCodeConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "short_name": {
+                    "type": "string",
+                    "description": "Short Name of the Comp Code"
+                  },
+                  "state_code": {
+                    "type": "string",
+                    "description": "State Code for the Comp Code"
+                  },
+                  "class_code": {
+                    "type": "string",
+                    "description": "Class Code for the Comp Code"
+                  },
+                  "work_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Work Description for the Comp Code"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description for the Comp Code"
+                  },
+                  "risk_rate": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Risk Rate for the particular Comp Code"
+                  },
+                  "work_year": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "description": "Work Year for the Comp Code"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the Comp Code active?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "short_name",
+                  "state_code",
+                  "class_code",
+                  "active"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "short_name": {
+                    "type": "string",
+                    "description": "Short Name of the Comp Code"
+                  },
+                  "state_code": {
+                    "type": "string",
+                    "description": "State Code for the Comp Code"
+                  },
+                  "class_code": {
+                    "type": "string",
+                    "description": "Class Code for the Comp Code"
+                  },
+                  "work_description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Work Description for the Comp Code"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description for the Comp Code"
+                  },
+                  "risk_rate": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Risk Rate for the particular Comp Code"
+                  },
+                  "work_year": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "description": "Work Year for the Comp Code"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the Comp Code active?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "short_name",
+                  "state_code",
+                  "class_code",
+                  "active"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Department",
+          "urlPart": "department",
+          "key": "department",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "company_id": {
+                "type": "string",
+                "description": "ID of the company associated with the department"
+              },
+              "department_code": {
+                "type": "string",
+                "description": "Department code of the department"
+              },
+              "department_name": {
+                "type": "string",
+                "description": "Name of the department"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Description of the department"
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Is department active?"
+              }
+            },
+            "required": [
+              "id",
+              "company_id",
+              "department_code",
+              "department_name",
+              "active"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateDepartmentAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateDepartmentConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "department_code": {
+                    "type": "string",
+                    "description": "Code of the department"
+                  },
+                  "department_name": {
+                    "type": "string",
+                    "description": "Name of the department"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the department"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is department active?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "department_code",
+                  "department_name",
+                  "active"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "department_code": {
+                    "type": "string",
+                    "description": "Code of the department"
+                  },
+                  "department_name": {
+                    "type": "string",
+                    "description": "Name of the department"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the department"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is department active?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "department_code",
+                  "department_name",
+                  "active"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update",
+              "urlPart": "update",
+              "key": "update",
+              "description": "UpdateDepartmentAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateDepartmentConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "department_code": {
+                    "type": "string",
+                    "description": "Code of the department"
+                  },
+                  "department_name": {
+                    "type": "string",
+                    "description": "Name of the department"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the department"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is department active?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "department_code",
+                  "department_name",
+                  "active"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "ID of the company associated with the cost code"
+                  },
+                  "department_code": {
+                    "type": "string",
+                    "description": "Code of the department"
+                  },
+                  "department_name": {
+                    "type": "string",
+                    "description": "Name of the department"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the department"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is department active?"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "department_code",
+                  "department_name",
+                  "active"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
         }
       ]
     }

@@ -4,6 +4,7 @@ using Json.Schema.Generation;
 using System;
 using System.Text.Json.Serialization;
 using Xchange.Connector.SDK.CacheWriter;
+using System.Collections.Generic;
 
 /// <summary>
 /// Data object that will represent an object in the Xchange system. This will be converted to a JsonSchema, 
@@ -81,6 +82,16 @@ public class EmployeesDataObject
     [Description("End date of employment")]
     [Nullable(true)]
     public DateTime? EndDate { get; init; }
+
+    [JsonPropertyName("user_benefits")]
+    [Description("List of user benefits")]
+    [Nullable(true)]
+    public List<UserBenefit>? UserBenefits { get; set; } = new List<UserBenefit>();
+
+    [JsonPropertyName("bank_accounts")]
+    [Description("List of bank accounts")]
+    [Nullable(true)]
+    public List<BankAccount>? BankAccounts { get; set; } = new List<BankAccount>();
 
     [JsonPropertyName("active")]
     [Description("Is the employee active?")]

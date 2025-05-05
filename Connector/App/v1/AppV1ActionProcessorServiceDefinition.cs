@@ -1,10 +1,16 @@
 namespace Connector.App.v1;
+using Connector.App.v1.CompCode;
+using Connector.App.v1.CompCode.Create;
+using Connector.App.v1.CompCode.Update;
 using Connector.App.v1.CostCode;
 using Connector.App.v1.CostCode.Create;
 using Connector.App.v1.CostCode.Update;
 using Connector.App.v1.CostType;
 using Connector.App.v1.CostType.Create;
 using Connector.App.v1.CostType.Update;
+using Connector.App.v1.Department;
+using Connector.App.v1.Department.Create;
+using Connector.App.v1.Department.Update;
 using Connector.App.v1.Employees;
 using Connector.App.v1.Employees.Create;
 using Connector.App.v1.Employees.Update;
@@ -45,6 +51,10 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         serviceCollection.AddScoped<UpdateCostCodeHandler>();
         serviceCollection.AddScoped<CreateCostTypeHandler>();
         serviceCollection.AddScoped<UpdateCostTypeHandler>();
+        serviceCollection.AddScoped<CreateCompCodeHandler>();
+        serviceCollection.AddScoped<UpdateCompCodeHandler>();
+        serviceCollection.AddScoped<CreateDepartmentHandler>();
+        serviceCollection.AddScoped<UpdateDepartmentHandler>();
     }
 
     public override void ConfigureService(IActionHandlerService service, AppV1ActionProcessorConfig config)
@@ -58,5 +68,9 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         service.RegisterHandlerForDataObjectAction<UpdateCostCodeHandler, CostCodeDataObject>(ModuleId, "cost-code", "update", config.UpdateCostCodeConfig);
         service.RegisterHandlerForDataObjectAction<CreateCostTypeHandler, CostTypeDataObject>(ModuleId, "cost-type", "create", config.CreateCostTypeConfig);
         service.RegisterHandlerForDataObjectAction<UpdateCostTypeHandler, CostTypeDataObject>(ModuleId, "cost-type", "update", config.UpdateCostTypeConfig);
+        service.RegisterHandlerForDataObjectAction<CreateCompCodeHandler, CompCodeDataObject>(ModuleId, "comp-code", "create", config.CreateCompCodeConfig);
+        service.RegisterHandlerForDataObjectAction<UpdateCompCodeHandler, CompCodeDataObject>(ModuleId, "comp-code", "update", config.UpdateCompCodeConfig);
+        service.RegisterHandlerForDataObjectAction<CreateDepartmentHandler, DepartmentDataObject>(ModuleId, "department", "create", config.CreateDepartmentConfig);
+        service.RegisterHandlerForDataObjectAction<UpdateDepartmentHandler, DepartmentDataObject>(ModuleId, "department", "update", config.UpdateDepartmentConfig);
     }
 }

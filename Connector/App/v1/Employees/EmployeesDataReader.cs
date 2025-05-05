@@ -61,7 +61,36 @@ public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
             // Return the data objects to Cache.
             foreach (var item in response.Data.Items)
             {
+                if (item.PayrollEnabled && item.SourceSystem != null) {
+                try
+                    {
+                        var bankAccounts = new List<BankAccount>();
+                        await foreach (var bankAccount in _apiClient.GetBankAccounts<BankAccount>(
+                            relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users/" + item.Id + "/bank-accounts",
+                            cancellationToken: cancellationToken))
+                        {
+                            bankAccounts.Add(bankAccount);
+                        }
+
+                        var userBenefits = new List<UserBenefit>();
+                        await foreach (var userBenefit in _apiClient.GetUserBenefits<UserBenefit>(
+                            relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users/" + item.Id + "/benefits",
+                            cancellationToken: cancellationToken))
+                        {
+                            userBenefits.Add(userBenefit);
+                        }
+
+                        item.BankAccounts = bankAccounts;
+                        item.UserBenefits = userBenefits;
+                    }
+                    catch (Exception exception)
+                    {
+                        _logger.LogError(exception, "Exception while processing data object 'EmployeesDataObject'");
+                    }
+                }
+                
                 yield return item;
+
             }
 
             // Handle pagination per API client design

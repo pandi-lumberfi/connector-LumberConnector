@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using Connector.App.v1.CostCode.Create;
 using Connector.App.v1.CostCode.Update;
 using Connector.App.v1.CostType.Create;
@@ -13,6 +15,10 @@ using Connector.App.v1.Employees.Create;
 using Connector.App.v1.Employees.Update;
 using Connector.App.v1.Project.Create;
 using Connector.App.v1.Project.Update;
+using Connector.App.v1.CompCode.Create;
+using Connector.App.v1.CompCode.Update;
+using Connector.App.v1.Department.Create;
+using Connector.App.v1.Department.Update;
 
 namespace Connector.Client;
 
@@ -120,6 +126,50 @@ public class ApiClient
                 WriteIndented = true },cancellationToken) : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
+    }
+
+    public async IAsyncEnumerable<BankAccount> GetBankAccounts<BankAccount>(
+        string relativeUrl,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+            
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<BankAccount>(stream))
+        {
+            if (record == null)
+            {
+                continue;
+            }
+            
+            yield return record;
+        }
+    }
+
+    public async IAsyncEnumerable<UserBenefit> GetUserBenefits<UserBenefit>(
+        string relativeUrl, 
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+            
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<UserBenefit>(stream))
+        {
+            if (record == null)
+            {
+                continue;
+            }
+            
+            yield return record;
+        }
     }
 
     public async Task<ApiResponse<PaginatedResponse<ProjectDataObject>>> GetProjectRecords<ProjectDataObject>(
@@ -402,6 +452,158 @@ public class ApiClient
                     },
                     cancellationToken)
                 : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<PaginatedResponse<CompCodeDataObject>>> GetCompCodeRecords<CompCodeDataObject>(
+        string relativeUrl,
+        int page,
+        int size,
+        CancellationToken cancellationToken = default)
+    {   
+        var response = await _httpClient.GetAsync(
+            $"{relativeUrl}?page={page}&page_size={size}",
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        return new ApiResponse<PaginatedResponse<CompCodeDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<PaginatedResponse<CompCodeDataObject>>(
+                    new JsonSerializerOptions
+                    {
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true
+                    },
+                    cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<CreateCompCodeActionOutput>> CreateCompCodeDataObject(
+        string relativeUrl,
+        CreateCompCodeActionInput input,
+        CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);    
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to create comp code data. Status Code: {response.StatusCode}");
+        }
+        
+        return new ApiResponse<CreateCompCodeActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<CreateCompCodeActionOutput>(
+                    new JsonSerializerOptions
+                    {
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true
+                    },
+                    cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<UpdateCompCodeActionOutput>> UpdateCompCodeDataObject(
+        string relativeUrl,
+        UpdateCompCodeActionInput input,
+        CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PatchAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to update comp code data. Status Code: {response.StatusCode}");
+        }
+        
+        return new ApiResponse<UpdateCompCodeActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<UpdateCompCodeActionOutput>(
+                    new JsonSerializerOptions
+                    {
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true
+                    },
+                    cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }     
+
+    internal async Task<ApiResponse<PaginatedResponse<DepartmentDataObject>>> GetDepartments<DepartmentDataObject>(
+        string relativeUrl,
+        int page,
+        int size,
+        CancellationToken cancellationToken = default)
+    {   
+        var response = await _httpClient.GetAsync(
+            $"{relativeUrl}?page={page}&page_size={size}",
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        return new ApiResponse<PaginatedResponse<DepartmentDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<PaginatedResponse<DepartmentDataObject>>(
+                    new JsonSerializerOptions
+                    {
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true
+                    },
+                    cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }  
+
+    internal async Task<ApiResponse<CreateDepartmentActionOutput>> CreateDepartmentDataObject(
+        string relativeUrl,
+        CreateDepartmentActionInput input,
+        CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)      
+        {
+            throw new HttpRequestException($"Failed to create department data. Status Code: {response.StatusCode}");
+        }
+
+        return new ApiResponse<CreateDepartmentActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<CreateDepartmentActionOutput>(cancellationToken: cancellationToken) : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }    
+
+    internal async Task<ApiResponse<UpdateDepartmentActionOutput>> UpdateDepartmentDataObject(
+        string relativeUrl,
+        UpdateDepartmentActionInput input,
+        CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to update department data. Status Code: {response.StatusCode}");
+        }
+
+        return new ApiResponse<UpdateDepartmentActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<UpdateDepartmentActionOutput>(cancellationToken: cancellationToken) : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
     }
