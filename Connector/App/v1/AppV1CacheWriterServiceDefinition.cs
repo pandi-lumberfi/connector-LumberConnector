@@ -1,10 +1,12 @@
 namespace Connector.App.v1;
+using Connector.App.v1.Branch;
 using Connector.App.v1.CompCode;
 using Connector.App.v1.CostCode;
 using Connector.App.v1.CostType;
 using Connector.App.v1.Department;
 using Connector.App.v1.Employees;
 using Connector.App.v1.Project;
+using Connector.App.v1.Task;
 using Connector.App.v1.Timesheet;
 using ESR.Hosting.CacheWriter;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +36,8 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         serviceCollection.AddSingleton<TimesheetDataReader>();
         serviceCollection.AddSingleton<CompCodeDataReader>();
         serviceCollection.AddSingleton<DepartmentDataReader>();
+        serviceCollection.AddSingleton<BranchDataReader>();
+        serviceCollection.AddSingleton<TaskDataReader>();
     }
 
     public override IDataObjectChangeDetectorProvider ConfigureChangeDetectorProvider(IChangeDetectorFactory factory, ConnectorDefinition connectorDefinition)
@@ -47,6 +51,8 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         this.RegisterKeysForObject<TimesheetDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<CompCodeDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<DepartmentDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<BranchDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<TaskDataObject>(options, connectorDefinition);
         return factory.CreateProvider(options);
     }
 
@@ -65,5 +71,7 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         service.RegisterDataReader<TimesheetDataReader, TimesheetDataObject>(ModuleId, config.TimesheetConfig, dataReaderSettings);
         service.RegisterDataReader<CompCodeDataReader, CompCodeDataObject>(ModuleId, config.CompCodeConfig, dataReaderSettings);
         service.RegisterDataReader<DepartmentDataReader, DepartmentDataObject>(ModuleId, config.DepartmentConfig, dataReaderSettings);
+        service.RegisterDataReader<BranchDataReader, BranchDataObject>(ModuleId, config.BranchConfig, dataReaderSettings);
+        service.RegisterDataReader<TaskDataReader, TaskDataObject>(ModuleId, config.TaskConfig, dataReaderSettings);
     }
 }

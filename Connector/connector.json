@@ -189,6 +189,30 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "CreateBranchConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CreateTaskConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "UpdateTaskConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Action Processor Configuration",
@@ -250,6 +274,22 @@
                 }
               },
               "DepartmentConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "BranchConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "TaskConfig": {
                 "type": "object",
                 "properties": {
                   "UploadObject": {
@@ -4404,6 +4444,1200 @@
                   "department_code",
                   "department_name",
                   "active"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Branch",
+          "urlPart": "branch",
+          "key": "branch",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "company_id": {
+                "type": "string",
+                "description": "Company ID"
+              },
+              "branch_code": {
+                "type": "string",
+                "description": "Branch code"
+              },
+              "branch_name": {
+                "type": "string",
+                "description": "Name of the Branch"
+              },
+              "address": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "street_line1": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Street address line 1"
+                  },
+                  "street_line2": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Street address line 2"
+                  },
+                  "city": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "City name"
+                  },
+                  "state": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "State or region"
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "Country code"
+                  },
+                  "postal_code": {
+                    "type": "string",
+                    "description": "Postal code"
+                  },
+                  "latitude": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Latitude coordinate"
+                  },
+                  "longitude": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Longitude coordinate"
+                  }
+                },
+                "description": "Address"
+              },
+              "legal_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Branch Legal Name"
+              },
+              "tax_registration_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Branch Tax Registration Id"
+              },
+              "tax_exemption_number": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Branch Tax Exemption Number"
+              },
+              "active": {
+                "type": "boolean",
+                "description": "Is the branch active?"
+              },
+              "legal_address": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "street_line1": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Street address line 1"
+                  },
+                  "street_line2": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Street address line 2"
+                  },
+                  "city": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "City name"
+                  },
+                  "state": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "State or region"
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "Country code"
+                  },
+                  "postal_code": {
+                    "type": "string",
+                    "description": "Postal code"
+                  },
+                  "latitude": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Latitude coordinate"
+                  },
+                  "longitude": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Longitude coordinate"
+                  }
+                },
+                "description": "Legal Address of the Branch"
+              }
+            },
+            "required": [
+              "id",
+              "company_id",
+              "branch_code",
+              "branch_name",
+              "active"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateBranchAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateBranchConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Company ID"
+                  },
+                  "branch_code": {
+                    "type": "string",
+                    "description": "Branch code"
+                  },
+                  "branch_name": {
+                    "type": "string",
+                    "description": "Name of the Branch"
+                  },
+                  "address": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1"
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2"
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name"
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region"
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Address"
+                  },
+                  "legal_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Branch Legal Name"
+                  },
+                  "tax_registration_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Branch Tax Registration Id"
+                  },
+                  "tax_exemption_number": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Branch Tax Exemption Number"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the branch active?"
+                  },
+                  "legal_address": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1"
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2"
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name"
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region"
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Legal Address of the Branch"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "branch_code",
+                  "branch_name",
+                  "active"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": "string",
+                    "description": "Company ID"
+                  },
+                  "branch_code": {
+                    "type": "string",
+                    "description": "Branch code"
+                  },
+                  "branch_name": {
+                    "type": "string",
+                    "description": "Name of the Branch"
+                  },
+                  "address": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1"
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2"
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name"
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region"
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Address"
+                  },
+                  "legal_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Branch Legal Name"
+                  },
+                  "tax_registration_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Branch Tax Registration Id"
+                  },
+                  "tax_exemption_number": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Branch Tax Exemption Number"
+                  },
+                  "active": {
+                    "type": "boolean",
+                    "description": "Is the branch active?"
+                  },
+                  "legal_address": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1"
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2"
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name"
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region"
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Legal Address of the Branch"
+                  }
+                },
+                "required": [
+                  "company_id",
+                  "branch_code",
+                  "branch_name",
+                  "active"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Task",
+          "urlPart": "task",
+          "key": "task",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "project_id": {
+                "type": "string",
+                "description": "Unique identifier for the project"
+              },
+              "job_code_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Unique identifier for the job code"
+              },
+              "comp_code_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Unique identifier for the comp code"
+              },
+              "cost_code_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Unique identifier for the cost code"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the task"
+              },
+              "task_code": {
+                "type": "string",
+                "description": "Task code"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Description of the task"
+              },
+              "status": {
+                "type": "string",
+                "description": "Status of the task"
+              },
+              "allow_placed_task_on_weekend": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Flag indicating if the task can be placed on the weekend"
+              },
+              "planned_start_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Planned start date of the task"
+              },
+              "planned_end_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Planned end date of the task"
+              },
+              "planned_start_time": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Planned start time of the task"
+              },
+              "planned_end_time": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Planned end time of the task"
+              },
+              "actual_end_date_time": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Actual end date and time of the task"
+              }
+            },
+            "required": [
+              "id",
+              "project_id",
+              "name",
+              "task_code",
+              "status"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateTaskAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateTaskConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the task"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the task"
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "description": "Project ID"
+                  },
+                  "job_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job code ID"
+                  },
+                  "comp_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Comp code ID"
+                  },
+                  "cost_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Cost code ID"
+                  },
+                  "task_code": {
+                    "type": "string",
+                    "description": "Task code"
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "Status of the task"
+                  },
+                  "allow_placed_task_on_weekend": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Flag indicating if the task can be placed on the weekend"
+                  },
+                  "planned_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Planned start date of the task"
+                  },
+                  "planned_end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Planned end date of the task"
+                  }
+                },
+                "required": [
+                  "name",
+                  "project_id",
+                  "task_code",
+                  "status"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the task"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the task"
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "description": "Project ID"
+                  },
+                  "job_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job code ID"
+                  },
+                  "comp_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Comp code ID"
+                  },
+                  "cost_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Cost code ID"
+                  },
+                  "task_code": {
+                    "type": "string",
+                    "description": "Task code"
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "Status of the task"
+                  },
+                  "allow_placed_task_on_weekend": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Flag indicating if the task can be placed on the weekend"
+                  },
+                  "planned_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Planned start date of the task"
+                  },
+                  "planned_end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Planned end date of the task"
+                  }
+                },
+                "required": [
+                  "name",
+                  "project_id",
+                  "task_code",
+                  "status"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update",
+              "urlPart": "update",
+              "key": "update",
+              "description": "UpdateTaskAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateTaskConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the task"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the task"
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "description": "Project ID"
+                  },
+                  "job_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job code ID"
+                  },
+                  "comp_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Comp code ID"
+                  },
+                  "cost_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Cost code ID"
+                  },
+                  "task_code": {
+                    "type": "string",
+                    "description": "Task code"
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "Status of the task"
+                  },
+                  "allow_placed_task_on_weekend": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Flag indicating if the task can be placed on the weekend"
+                  },
+                  "planned_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Planned start date of the task"
+                  },
+                  "planned_end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Planned end date of the task"
+                  }
+                },
+                "required": [
+                  "name",
+                  "project_id",
+                  "task_code",
+                  "status"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the task"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the task"
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "description": "Project ID"
+                  },
+                  "job_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job code ID"
+                  },
+                  "comp_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Comp code ID"
+                  },
+                  "cost_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Cost code ID"
+                  },
+                  "task_code": {
+                    "type": "string",
+                    "description": "Task code"
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "Status of the task"
+                  },
+                  "allow_placed_task_on_weekend": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Flag indicating if the task can be placed on the weekend"
+                  },
+                  "planned_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Planned start date of the task"
+                  },
+                  "planned_end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Planned end date of the task"
+                  }
+                },
+                "required": [
+                  "name",
+                  "project_id",
+                  "task_code",
+                  "status"
                 ]
               },
               "failureSchema": {

@@ -1,4 +1,6 @@
 namespace Connector.App.v1;
+using Connector.App.v1.Branch;
+using Connector.App.v1.Branch.Create;
 using Connector.App.v1.CompCode;
 using Connector.App.v1.CompCode.Create;
 using Connector.App.v1.CompCode.Update;
@@ -17,6 +19,9 @@ using Connector.App.v1.Employees.Update;
 using Connector.App.v1.Project;
 using Connector.App.v1.Project.Create;
 using Connector.App.v1.Project.Update;
+using Connector.App.v1.Task;
+using Connector.App.v1.Task.Create;
+using Connector.App.v1.Task.Update;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Text.Json;
@@ -55,6 +60,9 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         serviceCollection.AddScoped<UpdateCompCodeHandler>();
         serviceCollection.AddScoped<CreateDepartmentHandler>();
         serviceCollection.AddScoped<UpdateDepartmentHandler>();
+        serviceCollection.AddScoped<CreateBranchHandler>();
+        serviceCollection.AddScoped<CreateTaskHandler>();
+        serviceCollection.AddScoped<UpdateTaskHandler>();
     }
 
     public override void ConfigureService(IActionHandlerService service, AppV1ActionProcessorConfig config)
@@ -72,5 +80,8 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         service.RegisterHandlerForDataObjectAction<UpdateCompCodeHandler, CompCodeDataObject>(ModuleId, "comp-code", "update", config.UpdateCompCodeConfig);
         service.RegisterHandlerForDataObjectAction<CreateDepartmentHandler, DepartmentDataObject>(ModuleId, "department", "create", config.CreateDepartmentConfig);
         service.RegisterHandlerForDataObjectAction<UpdateDepartmentHandler, DepartmentDataObject>(ModuleId, "department", "update", config.UpdateDepartmentConfig);
+        service.RegisterHandlerForDataObjectAction<CreateBranchHandler, BranchDataObject>(ModuleId, "branch", "create", config.CreateBranchConfig);
+        service.RegisterHandlerForDataObjectAction<CreateTaskHandler, TaskDataObject>(ModuleId, "task", "create", config.CreateTaskConfig);
+        service.RegisterHandlerForDataObjectAction<UpdateTaskHandler, TaskDataObject>(ModuleId, "task", "update", config.UpdateTaskConfig);
     }
 }

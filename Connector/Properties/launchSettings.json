@@ -5,7 +5,7 @@
     },
     "Action Processor Local Development": {
       "commandName": "Project",
-      "commandLineArgs": "--isLocal true --moduleId app-1 --serviceType ActionProcessor --dataObjectUrl department --actionUrl create",
+      "commandLineArgs": "--isLocal true --moduleId app-1 --serviceType ActionProcessor --dataObjectUrl task --actionUrl update",
       "environmentVariables": {
         "DIFFYCACHE_DBLOCATION": "./databases",
         "ESR__QueueName": "localrun"

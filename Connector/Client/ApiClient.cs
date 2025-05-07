@@ -19,6 +19,9 @@ using Connector.App.v1.CompCode.Create;
 using Connector.App.v1.CompCode.Update;
 using Connector.App.v1.Department.Create;
 using Connector.App.v1.Department.Update;
+using Connector.App.v1.Branch.Create;
+using Connector.App.v1.Task.Create;
+using Connector.App.v1.Task.Update;
 
 namespace Connector.Client;
 
@@ -607,4 +610,95 @@ public class ApiClient
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
     }
+
+    internal async Task<ApiResponse<PaginatedResponse<BranchDataObject>>> GetBranches<BranchDataObject>(
+        string relativeUrl,
+        int page,
+        int size,
+        CancellationToken cancellationToken = default)
+    {   
+        var response = await _httpClient.GetAsync(
+            $"{relativeUrl}?page={page}&page_size={size}",
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+            
+        return new ApiResponse<PaginatedResponse<BranchDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<PaginatedResponse<BranchDataObject>>(cancellationToken: cancellationToken) : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<CreateBranchActionOutput>> CreateBranch(string relativeUrl, CreateBranchActionInput input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to create branch data. Status Code: {response.StatusCode}");    
+        }
+
+        return new ApiResponse<CreateBranchActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<CreateBranchActionOutput>(cancellationToken: cancellationToken) : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<PaginatedResponse<TaskDataObject>>> GetTasks<TaskDataObject>(
+        string relativeUrl,
+        int page,
+        int size,
+        CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync(
+            $"{relativeUrl}?page={page}&page_size={size}",
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        return new ApiResponse<PaginatedResponse<TaskDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<PaginatedResponse<TaskDataObject>>(cancellationToken: cancellationToken) : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }   
+
+    internal async Task<ApiResponse<CreateTaskActionOutput>> CreateTask(string relativeUrl, CreateTaskActionInput input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to create task data. Status Code: {response.StatusCode}");  
+        }
+
+        return new ApiResponse<CreateTaskActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,  
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<CreateTaskActionOutput>(cancellationToken: cancellationToken) : default, 
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<UpdateTaskActionOutput>> UpdateTask(string relativeUrl, UpdateTaskActionInput input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PatchAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to update task data. Status Code: {response.StatusCode}");
+        }   
+
+        return new ApiResponse<UpdateTaskActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<UpdateTaskActionOutput>(cancellationToken: cancellationToken) : default, 
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)  
+        };
+    }   
 }

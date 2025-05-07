@@ -1,4 +1,5 @@
 namespace Connector.App.v1;
+using Connector.App.v1.Branch.Create;
 using Connector.App.v1.CompCode.Create;
 using Connector.App.v1.CompCode.Update;
 using Connector.App.v1.CostCode.Create;
@@ -11,6 +12,8 @@ using Connector.App.v1.Employees.Create;
 using Connector.App.v1.Employees.Update;
 using Connector.App.v1.Project.Create;
 using Connector.App.v1.Project.Update;
+using Connector.App.v1.Task.Create;
+using Connector.App.v1.Task.Update;
 using Json.Schema.Generation;
 using Xchange.Connector.SDK.Action;
 
@@ -37,4 +40,7 @@ public class AppV1ActionProcessorConfig
     public DefaultActionHandlerConfig UpdateCompCodeConfig { get; set; } = new();
     public DefaultActionHandlerConfig CreateDepartmentConfig { get; set; } = new();
     public DefaultActionHandlerConfig UpdateDepartmentConfig { get; set; } = new();
+    public DefaultActionHandlerConfig CreateBranchConfig { get; set; } = new();
+    public DefaultActionHandlerConfig CreateTaskConfig { get; set; } = new();
+    public DefaultActionHandlerConfig UpdateTaskConfig { get; set; } = new();
 }
