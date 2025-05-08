@@ -80,8 +80,26 @@ public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
                             userBenefits.Add(userBenefit);
                         }
 
+                        var userPayRates = new List<UserPayRate>();
+                        await foreach (var userPayRate in _apiClient.GetUserPayRates<UserPayRate>(
+                            relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users/" + item.Id + "/pay-rates",
+                            cancellationToken: cancellationToken))
+                        {   
+                            userPayRates.Add(userPayRate);
+                        }
+
+                        var userTaxWithHoldings = new List<UserTaxWithHolding>();   
+                        await foreach (var userTaxWithHolding in _apiClient.GetUserTaxWithHoldings<UserTaxWithHolding>(
+                            relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users/" + item.Id + "/tax-with-holdings",
+                            cancellationToken: cancellationToken))
+                        {
+                            userTaxWithHoldings.Add(userTaxWithHolding);
+                        }       
+                        
                         item.BankAccounts = bankAccounts;
                         item.UserBenefits = userBenefits;
+                        item.UserPayRates = userPayRates;
+                        item.UserTaxWithHoldings = userTaxWithHoldings;
                     }
                     catch (Exception exception)
                     {

@@ -514,6 +514,48 @@
                 "format": "date-time",
                 "description": "End date of employment"
               },
+              "department": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Department"
+              },
+              "branch": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Branch"
+              },
+              "comp_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Comp Code"
+              },
+              "compensation_type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Compensation Type"
+              },
+              "pay_rate": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Pay Rate"
+              },
+              "pay_frequency": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Pay Frequency"
+              },
               "user_benefits": {
                 "type": [
                   "array",
@@ -648,6 +690,243 @@
                   "description": "List of bank accounts"
                 },
                 "description": "List of bank accounts"
+              },
+              "user_pay_rates": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Id of the pay rate"
+                    },
+                    "name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Name of the pay rate"
+                    },
+                    "effective_start": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "format": "date-time",
+                      "description": "Effective start date"
+                    },
+                    "effective_end": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "format": "date-time",
+                      "description": "Effective end date"
+                    },
+                    "compensation_type": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Compensation type"
+                    },
+                    "state": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "State"
+                    },
+                    "city": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "City"
+                    },
+                    "standard_time_pay_rate": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Standard time pay rate"
+                    },
+                    "overtime_pay_rate": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Overtime pay rate"
+                    },
+                    "double_overtime_pay_rate": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Double overtime pay rate"
+                    },
+                    "travel_pay_rate": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Travel pay rate"
+                    },
+                    "active": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ],
+                      "description": "Active"
+                    }
+                  },
+                  "description": "List of user pay rates"
+                },
+                "description": "List of user pay rates"
+              },
+              "user_tax_with_holdings": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "company_user_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Company user id"
+                    },
+                    "employee_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Employee id"
+                    },
+                    "tax_code": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Tax code"
+                    },
+                    "subjectToTax": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Taxable"
+                    },
+                    "fica": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "FICA"
+                    },
+                    "fica_value": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "FICA value"
+                    },
+                    "medicare": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Medicare"
+                    },
+                    "medicare_value": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Medicare value"
+                    },
+                    "income_tax": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Income tax"
+                    },
+                    "income_tax_value": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Income tax value"
+                    },
+                    "insurance": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Insurance"
+                    },
+                    "unemployment_tax": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Unemployment tax"
+                    },
+                    "unemployment_tax_value": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Unemployment tax value"
+                    },
+                    "filing_status": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Filing status"
+                    },
+                    "tax_override": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Tax override"
+                    },
+                    "tax_override_type": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Tax override type"
+                    },
+                    "tax_override_value": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Tax override value"
+                    }
+                  },
+                  "description": "List of user tax with holdings"
+                },
+                "description": "List of user tax with holdings"
               },
               "active": {
                 "type": "boolean",

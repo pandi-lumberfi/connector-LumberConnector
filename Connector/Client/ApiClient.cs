@@ -175,6 +175,51 @@ public class ApiClient
         }
     }
 
+    public async IAsyncEnumerable<UserPayRate> GetUserPayRates<UserPayRate>(
+        string relativeUrl,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)    
+            .ConfigureAwait(false);
+
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<UserPayRate>(stream))    
+        {
+            if (record == null)
+            {
+                continue;
+            }
+            
+            yield return record;
+        }
+    }
+
+    public async IAsyncEnumerable<UserTaxWithHolding> GetUserTaxWithHoldings<UserTaxWithHolding>(
+        string relativeUrl,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<UserTaxWithHolding>(stream))     
+        {
+            if (record == null)
+            {
+                continue;
+            }
+            
+            yield return record;
+        }
+    }
+        
+
     public async Task<ApiResponse<PaginatedResponse<ProjectDataObject>>> GetProjectRecords<ProjectDataObject>(
         string relativeUrl,
         int page,

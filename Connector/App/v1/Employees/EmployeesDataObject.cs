@@ -83,6 +83,36 @@ public class EmployeesDataObject
     [Nullable(true)]
     public DateTime? EndDate { get; init; }
 
+    [JsonPropertyName("department")]
+    [Description("Department")]
+    [Nullable(true)]
+    public string? Department { get; init; }
+
+    [JsonPropertyName("branch")]
+    [Description("Branch")]
+    [Nullable(true)]
+    public string? Branch { get; init; }
+
+    [JsonPropertyName("comp_code")]
+    [Description("Comp Code")]
+    [Nullable(true)]
+    public string? CompCode { get; init; }
+
+    [JsonPropertyName("compensation_type")]
+    [Description("Compensation Type")]
+    [Nullable(true)]
+    public string? CompensationType { get; init; }
+
+    [JsonPropertyName("pay_rate")]
+    [Description("Pay Rate")]
+    [Nullable(true)]
+    public double? PayRate { get; init; }
+
+    [JsonPropertyName("pay_frequency")]
+    [Description("Pay Frequency")]
+    [Nullable(true)]
+    public string? PayFrequency { get; init; }
+    
     [JsonPropertyName("user_benefits")]
     [Description("List of user benefits")]
     [Nullable(true)]
@@ -92,6 +122,16 @@ public class EmployeesDataObject
     [Description("List of bank accounts")]
     [Nullable(true)]
     public List<BankAccount>? BankAccounts { get; set; } = new List<BankAccount>();
+
+    [JsonPropertyName("user_pay_rates")]
+    [Description("List of user pay rates")]
+    [Nullable(true)]
+    public List<UserPayRate>? UserPayRates { get; set; } = new List<UserPayRate>();
+
+    [JsonPropertyName("user_tax_with_holdings")]
+    [Description("List of user tax with holdings")]
+    [Nullable(true)]
+    public List<UserTaxWithHolding>? UserTaxWithHoldings { get; set; } = new List<UserTaxWithHolding>();
 
     [JsonPropertyName("active")]
     [Description("Is the employee active?")]
