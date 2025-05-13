@@ -818,82 +818,33 @@
                       ],
                       "description": "Employee id"
                     },
-                    "tax_code": {
+                    "jurisdiction": {
                       "type": [
                         "string",
                         "null"
                       ],
-                      "description": "Tax code"
+                      "description": "Jurisdiction"
                     },
-                    "subjectToTax": {
+                    "medicare_tax_exempt": {
                       "type": [
-                        "string",
+                        "boolean",
                         "null"
                       ],
-                      "description": "Taxable"
+                      "description": "Medicare tax exempt"
                     },
-                    "fica": {
+                    "income_tax_exempt": {
                       "type": [
-                        "string",
+                        "boolean",
                         "null"
                       ],
-                      "description": "FICA"
+                      "description": "Income tax exempt"
                     },
-                    "fica_value": {
+                    "un_employment_tax_exempt": {
                       "type": [
-                        "string",
+                        "boolean",
                         "null"
                       ],
-                      "description": "FICA value"
-                    },
-                    "medicare": {
-                      "type": [
-                        "string",
-                        "null"
-                      ],
-                      "description": "Medicare"
-                    },
-                    "medicare_value": {
-                      "type": [
-                        "string",
-                        "null"
-                      ],
-                      "description": "Medicare value"
-                    },
-                    "income_tax": {
-                      "type": [
-                        "string",
-                        "null"
-                      ],
-                      "description": "Income tax"
-                    },
-                    "income_tax_value": {
-                      "type": [
-                        "string",
-                        "null"
-                      ],
-                      "description": "Income tax value"
-                    },
-                    "insurance": {
-                      "type": [
-                        "string",
-                        "null"
-                      ],
-                      "description": "Insurance"
-                    },
-                    "unemployment_tax": {
-                      "type": [
-                        "string",
-                        "null"
-                      ],
-                      "description": "Unemployment tax"
-                    },
-                    "unemployment_tax_value": {
-                      "type": [
-                        "string",
-                        "null"
-                      ],
-                      "description": "Unemployment tax value"
+                      "description": "Unemployment tax exempt"
                     },
                     "filing_status": {
                       "type": [
@@ -904,7 +855,7 @@
                     },
                     "tax_override": {
                       "type": [
-                        "string",
+                        "number",
                         "null"
                       ],
                       "description": "Tax override"
@@ -915,13 +866,6 @@
                         "null"
                       ],
                       "description": "Tax override type"
-                    },
-                    "tax_override_value": {
-                      "type": [
-                        "string",
-                        "null"
-                      ],
-                      "description": "Tax override value"
                     }
                   },
                   "description": "List of user tax with holdings"

@@ -12,18 +12,11 @@ No breaking changes found.
 
 These changes expand or maintain the Connector's metadata and are safe to be applied to Xchange.
 
-- `app/1` (Service): `lumber-bdf65/app/1 Action Processor` `/properties/CreateBranchConfig` Property added to the schema without being required.
-- `app/1` (Service): `lumber-bdf65/app/1 Action Processor` `/properties/CreateTaskConfig` Property added to the schema without being required.
-- `app/1` (Service): `lumber-bdf65/app/1 Action Processor` `/properties/UpdateTaskConfig` Property added to the schema without being required.
-- `app/1` (Service): `lumber-bdf65/app/1 Cache Writer` `/properties/BranchConfig` Property added to the schema without being required.
-- `app/1` (Service): `lumber-bdf65/app/1 Cache Writer` `/properties/TaskConfig` Property added to the schema without being required.
-- `app/1` (Data Object): `branch`  Data object is being added
-- `app/1` (Data Object Key): `branch/id`  Data object key is being added
-- `app/1` (Action): `branch/create`  Action is being added
-- `app/1` (Real Time Action Processing): `branch/create`  Real time action processing is being added
-- `app/1` (Data Object): `task`  Data object is being added
-- `app/1` (Data Object Key): `task/id`  Data object key is being added
-- `app/1` (Action): `task/create`  Action is being added
-- `app/1` (Real Time Action Processing): `task/create`  Real time action processing is being added
-- `app/1` (Action): `task/update`  Action is being added
-- `app/1` (Real Time Action Processing): `task/update`  Real time action processing is being added
+- `app/1` (Data Object): `employees` `/properties/department` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/branch` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/comp_code` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/compensation_type` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/pay_rate` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/pay_frequency` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/user_pay_rates` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/user_tax_with_holdings` Property added to the schema without being required.
