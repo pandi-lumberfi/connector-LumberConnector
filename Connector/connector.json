@@ -213,6 +213,14 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "CreatePaystubEmployeesConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Action Processor Configuration",
@@ -1850,6 +1858,606 @@
                   "user_status",
                   "active",
                   "payroll_enabled"
+                ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Create Paystub",
+              "urlPart": "create-paystub",
+              "key": "create-paystub",
+              "description": "CreatePaystubEmployeesAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreatePaystubEmployeesConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "payroll": {
+                    "type": "string",
+                    "description": "Payroll"
+                  },
+                  "payday": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Payday"
+                  },
+                  "period_start": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Period start"
+                  },
+                  "period_end": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Period end"
+                  },
+                  "company_user_id": {
+                    "type": "string",
+                    "description": "Company user id"
+                  },
+                  "employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employee id"
+                  },
+                  "earnings": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Type"
+                        },
+                        "code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Code"
+                        },
+                        "earning_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Earning code"
+                        },
+                        "amount": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount"
+                        },
+                        "amount_ytd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount YTD"
+                        },
+                        "hours": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Hours"
+                        },
+                        "hours_ytd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Hours YTD"
+                        },
+                        "name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name"
+                        }
+                      },
+                      "description": "Earnings"
+                    },
+                    "description": "Earnings"
+                  },
+                  "reimbursements": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Code"
+                        },
+                        "amount": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount"
+                        },
+                        "amount_ytd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount YTD"
+                        },
+                        "current_reimbursements": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "object",
+                              "null"
+                            ],
+                            "properties": {
+                              "description": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Description"
+                              },
+                              "amount": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ],
+                                "description": "Amount"
+                              }
+                            },
+                            "description": "Current reimbursements"
+                          },
+                          "description": "Current reimbursements"
+                        }
+                      },
+                      "description": "Reimbursements"
+                    },
+                    "description": "Reimbursements"
+                  },
+                  "employee_taxes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "amount": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount"
+                        },
+                        "amount_ytd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount YTD"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description"
+                        }
+                      },
+                      "description": "Employee taxes"
+                    },
+                    "description": "Employee taxes"
+                  },
+                  "company_taxes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "amount": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount"
+                        },
+                        "amount_ytd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount YTD"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description"
+                        }
+                      },
+                      "description": "Company taxes"
+                    },
+                    "description": "Company taxes"
+                  },
+                  "employee_benefit_contributions": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "benefit": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Benefit"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description"
+                        },
+                        "amount": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount"
+                        },
+                        "amount_ytd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount YTD"
+                        }
+                      },
+                      "description": "Employee benefit contributions"
+                    },
+                    "description": "Employee benefit contributions"
+                  },
+                  "company_benefit_contributions": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "benefit": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Benefit"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description"
+                        },
+                        "amount": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount"
+                        },
+                        "amount_ytd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount YTD"
+                        }
+                      },
+                      "description": "Company benefit contributions"
+                    },
+                    "description": "Company benefit contributions"
+                  },
+                  "post_tax_deductions": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Type"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description"
+                        },
+                        "calculation_method": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Calculation method"
+                        },
+                        "amount": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount"
+                        },
+                        "amount_ytd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Amount YTD"
+                        }
+                      },
+                      "description": "Post tax deductions"
+                    },
+                    "description": "Post tax deductions"
+                  },
+                  "summary": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "earnings": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Earnings"
+                      },
+                      "earnings_ytd": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Earnings YTD"
+                      },
+                      "reimbursements": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Reimbursements"
+                      },
+                      "reimbursements_ytd": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Reimbursements YTD"
+                      },
+                      "employee_taxes": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Employee taxes"
+                      },
+                      "employee_taxes_ytd": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Employee taxes YTD"
+                      },
+                      "company_taxes": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Company taxes"
+                      },
+                      "company_taxes_ytd": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Company taxes YTD"
+                      },
+                      "employee_benefit_contributions": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Employee benefit contributions"
+                      },
+                      "employee_benefit_contributions_ytd": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Employee benefit contributions YTD"
+                      },
+                      "company_benefit_contributions": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Company benefit contributions"
+                      },
+                      "company_benefit_contributions_ytd": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Company benefit contributions YTD"
+                      },
+                      "post_tax_deductions": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Post tax deductions"
+                      },
+                      "post_tax_deductions_ytd": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Post tax deductions YTD"
+                      },
+                      "net_pay": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Net pay"
+                      },
+                      "net_pay_ytd": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Net pay YTD"
+                      }
+                    },
+                    "description": "Summary"
+                  },
+                  "total_hours": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Total hours"
+                  },
+                  "payment_method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Payment method"
+                  }
+                },
+                "required": [
+                  "payroll",
+                  "payday",
+                  "period_start",
+                  "period_end",
+                  "company_user_id"
+                ]
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Id"
+                  }
+                },
+                "required": [
+                  "id"
                 ]
               },
               "failureSchema": {

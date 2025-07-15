@@ -15,6 +15,7 @@ using Connector.App.v1.Department.Create;
 using Connector.App.v1.Department.Update;
 using Connector.App.v1.Employees;
 using Connector.App.v1.Employees.Create;
+using Connector.App.v1.Employees.CreatePaystub;
 using Connector.App.v1.Employees.Update;
 using Connector.App.v1.Project;
 using Connector.App.v1.Project.Create;
@@ -63,6 +64,7 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         serviceCollection.AddScoped<CreateBranchHandler>();
         serviceCollection.AddScoped<CreateTaskHandler>();
         serviceCollection.AddScoped<UpdateTaskHandler>();
+        serviceCollection.AddScoped<CreatePaystubEmployeesHandler>();
     }
 
     public override void ConfigureService(IActionHandlerService service, AppV1ActionProcessorConfig config)
@@ -83,5 +85,6 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         service.RegisterHandlerForDataObjectAction<CreateBranchHandler, BranchDataObject>(ModuleId, "branch", "create", config.CreateBranchConfig);
         service.RegisterHandlerForDataObjectAction<CreateTaskHandler, TaskDataObject>(ModuleId, "task", "create", config.CreateTaskConfig);
         service.RegisterHandlerForDataObjectAction<UpdateTaskHandler, TaskDataObject>(ModuleId, "task", "update", config.UpdateTaskConfig);
+        service.RegisterHandlerForDataObjectAction<CreatePaystubEmployeesHandler, EmployeesDataObject>(ModuleId, "employees", "create-paystub", config.CreatePaystubEmployeesConfig);
     }
 }

@@ -22,6 +22,7 @@ using Connector.App.v1.Department.Update;
 using Connector.App.v1.Branch.Create;
 using Connector.App.v1.Task.Create;
 using Connector.App.v1.Task.Update;
+using Connector.App.v1.Employees.CreatePaystub;
 
 namespace Connector.Client;
 
@@ -125,6 +126,25 @@ public class ApiClient
             IsSuccessful = response.IsSuccessStatusCode,
             StatusCode = (int)response.StatusCode,
             Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<UpdateEmployeesActionOutput>(
+                new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true },cancellationToken) : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<CreatePaystubEmployeesActionOutput>> CreatePaystubEmployeesDataObject(string relativeUrl, CreatePaystubEmployeesActionInput? input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to post paystub employee data. Status Code: {response.StatusCode}");
+        }
+
+        return new ApiResponse<CreatePaystubEmployeesActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<CreatePaystubEmployeesActionOutput>(
                 new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 WriteIndented = true },cancellationToken) : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
