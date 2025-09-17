@@ -36,4 +36,9 @@ public class DepartmentObject
     [Description("Is department active?")]
     [Required]
     public bool Active { get; init; }
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }   

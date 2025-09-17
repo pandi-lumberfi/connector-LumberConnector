@@ -3,6 +3,7 @@ namespace Connector.App.v1.Branch;
 using Json.Schema.Generation;
 using System.Text.Json.Serialization;
 using System;
+using System.Collections.Generic;
 
 public class BranchObject
 {
@@ -55,6 +56,11 @@ public class BranchObject
     [Description("Legal Address of the Branch")]
     [Nullable(true)]
     public Address? LegalAddress { get; init; }
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }
 
 public class Address

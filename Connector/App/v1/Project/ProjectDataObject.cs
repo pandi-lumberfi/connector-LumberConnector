@@ -2,6 +2,7 @@ namespace Connector.App.v1.Project;
 
 using Json.Schema.Generation;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Xchange.Connector.SDK.CacheWriter;
 
@@ -91,6 +92,11 @@ public class ProjectDataObject
     [Description("Is allow only assigned crew to clock in")]
     [Required]
     public bool AllowOnlyAssignedCrews { get; set; }
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }
 
 public class Address

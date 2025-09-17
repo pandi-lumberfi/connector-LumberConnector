@@ -46,7 +46,7 @@ public class ApiClient
         CancellationToken cancellationToken = default)
     {
         var response = await _httpClient.GetAsync(
-            $"{relativeUrl}?page={page}&page_size={size}",
+            $"{relativeUrl}?page_no={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
@@ -247,7 +247,7 @@ public class ApiClient
         CancellationToken cancellationToken = default)
     {
         var response = await _httpClient.GetAsync(
-            $"{relativeUrl}?page={page}&page_size={size}",
+            $"{relativeUrl}?page_no={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
@@ -334,7 +334,7 @@ public class ApiClient
         CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync(
-            $"{relativeUrl}?page={page}&page_size={size}",
+            $"{relativeUrl}?page_no={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
@@ -426,7 +426,7 @@ public class ApiClient
         CancellationToken cancellationToken)
     {   
         var response = await _httpClient.GetAsync(
-            $"{relativeUrl}?page={page}&page_size={size}",
+            $"{relativeUrl}?page_no={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
@@ -498,7 +498,7 @@ public class ApiClient
         CancellationToken cancellationToken = default)
     {
         var response = await _httpClient.GetAsync(
-            $"{relativeUrl}?page={page}&page_size={size}",
+            $"{relativeUrl}?page_no={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
@@ -531,7 +531,7 @@ public class ApiClient
         CancellationToken cancellationToken = default)
     {   
         var response = await _httpClient.GetAsync(
-            $"{relativeUrl}?page={page}&page_size={size}",
+            $"{relativeUrl}?page_no={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
@@ -615,7 +615,7 @@ public class ApiClient
         CancellationToken cancellationToken = default)
     {   
         var response = await _httpClient.GetAsync(
-            $"{relativeUrl}?page={page}&page_size={size}",
+            $"{relativeUrl}?page_no={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
@@ -683,7 +683,7 @@ public class ApiClient
         CancellationToken cancellationToken = default)
     {   
         var response = await _httpClient.GetAsync(
-            $"{relativeUrl}?page={page}&page_size={size}",
+            $"{relativeUrl}?page_no={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
             
@@ -720,7 +720,7 @@ public class ApiClient
         CancellationToken cancellationToken = default)
     {
         var response = await _httpClient.GetAsync(
-            $"{relativeUrl}?page={page}&page_size={size}",
+            $"{relativeUrl}?page_no={page}&page_size={size}",
             cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 

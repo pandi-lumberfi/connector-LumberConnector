@@ -3,6 +3,7 @@ namespace Connector.App.v1.Employees;
 using Json.Schema.Generation;
 using System.Text.Json.Serialization;
 using System;
+using System.Collections.Generic;
 
 public class EmployeeObject
 {
@@ -79,6 +80,11 @@ public class EmployeeObject
     [Description("Is the employee payroll enable?")]
     [Required]
     public bool PayrollEnabled { get; init; } = true;
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }
 
 public class User

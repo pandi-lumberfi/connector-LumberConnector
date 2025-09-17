@@ -2,6 +2,7 @@ namespace Connector.App.v1.Department;
 
 using Json.Schema.Generation;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Xchange.Connector.SDK.CacheWriter;
 
@@ -46,4 +47,9 @@ public class DepartmentDataObject
     [Description("Is department active?")]
     [Required]
     public bool Active { get; set; }
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }

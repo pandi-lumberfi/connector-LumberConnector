@@ -2,6 +2,7 @@ namespace Connector.App.v1.Branch;
 
 using Json.Schema.Generation;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Xchange.Connector.SDK.CacheWriter;
 
@@ -66,8 +67,12 @@ public class BranchDataObject
     [Description("Legal Address of the Branch")]
     [Nullable(true)]
     public AddressData? LegalAddress { get; init; }
-}
 
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
+}
 public class AddressData
 {
     [JsonPropertyName("street_line1")]

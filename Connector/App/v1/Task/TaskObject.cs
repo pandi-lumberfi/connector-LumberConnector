@@ -3,6 +3,7 @@ namespace Connector.App.v1.Task;
 using Json.Schema.Generation;
 using System.Text.Json.Serialization;
 using System;
+using System.Collections.Generic;
 
 public class TaskObject
 {
@@ -64,5 +65,10 @@ public class TaskObject
     [JsonPropertyName("planned_end_date")]
     [Description("Planned end date of the task")]
     [Nullable(true)]
-    public string? PlannedEndDate { get; init; }          
+    public string? PlannedEndDate { get; init; }   
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }       
 }

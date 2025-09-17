@@ -2,6 +2,7 @@ namespace Connector.App.v1.CompCode;
 
 using Json.Schema.Generation;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Xchange.Connector.SDK.CacheWriter;
 
@@ -66,4 +67,9 @@ public class CompCodeDataObject
     [Description("Is the Comp Code active?")]
     [Required]
     public bool Active { get; init; } = true;
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }

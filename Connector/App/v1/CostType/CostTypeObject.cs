@@ -30,4 +30,9 @@ public class CostTypeObject
     [JsonPropertyName("active")]
     [Description("Flag indicating if the cost type is active")]
     public bool Active { get; init; } = true;
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }

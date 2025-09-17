@@ -47,4 +47,9 @@ public class CostCodeDataObject
     [Description("Flag indicating if the cost code is active")]
     [Required]
     public bool Active { get; init; }
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }

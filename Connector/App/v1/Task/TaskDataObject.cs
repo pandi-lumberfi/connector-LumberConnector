@@ -2,6 +2,7 @@ namespace Connector.App.v1.Task;
 
 using Json.Schema.Generation;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Xchange.Connector.SDK.CacheWriter;
 
@@ -91,4 +92,10 @@ public class TaskDataObject
     [Description("Actual end date and time of the task")]
     [Nullable(true)]
     public string? ActualEndDateTime { get; init; }
+
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }

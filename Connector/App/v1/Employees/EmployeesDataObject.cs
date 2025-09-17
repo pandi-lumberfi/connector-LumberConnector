@@ -75,7 +75,7 @@ public class EmployeesDataObject
 
     [JsonPropertyName("start_date")]
     [Description("Start date of employment")]
-    [Required]
+    [Nullable(true)]
     public required DateTime? StartDate { get; init; }
 
     [JsonPropertyName("end_date")]
@@ -142,6 +142,11 @@ public class EmployeesDataObject
     [Description("Is the employee payroll enable?")]
     [Required]
     public required bool PayrollEnabled { get; init; }
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; } = new List<SourceSystemLink>();
 }
 
 public class UserData

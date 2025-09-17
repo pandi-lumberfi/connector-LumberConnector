@@ -56,4 +56,9 @@ public class CompCodeObject
     [Description("Is the Comp Code active?")]
     [Required]
     public bool? Active { get; init; } = true;
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }

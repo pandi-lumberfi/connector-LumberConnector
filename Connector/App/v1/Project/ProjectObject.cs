@@ -2,6 +2,7 @@ namespace Connector.App.v1.Project;
 
 using Json.Schema.Generation;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 public class ProjectObject
 {
@@ -79,4 +80,9 @@ public class ProjectObject
     [Description("Is allow only assigned crew to clock in")]
     [Required]
     public bool AllowOnlyAssignedCrews { get; set; } = false;
+
+    [JsonPropertyName("source_system_links")]
+    [Description("List of source system links")]
+    [Nullable(true)]
+    public List<SourceSystemLink>? SourceSystemLinks { get; set; }
 }

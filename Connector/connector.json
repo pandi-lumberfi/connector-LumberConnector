@@ -510,7 +510,10 @@
                 "description": "Current status of the user"
               },
               "start_date": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "format": "date-time",
                 "description": "Start date of employment"
               },
@@ -887,6 +890,41 @@
               "payroll_enabled": {
                 "type": "boolean",
                 "description": "Is the employee payroll enable?"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "List of source system links"
+                },
+                "description": "List of source system links"
               }
             },
             "required": [
@@ -896,7 +934,6 @@
               "company_user_type",
               "employment_type",
               "user_status",
-              "start_date",
               "active",
               "payroll_enabled"
             ],
@@ -1141,6 +1178,41 @@
                   "payroll_enabled": {
                     "type": "boolean",
                     "description": "Is the employee payroll enable?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -1358,6 +1430,41 @@
                   "payroll_enabled": {
                     "type": "boolean",
                     "description": "Is the employee payroll enable?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -1634,6 +1741,41 @@
                   "payroll_enabled": {
                     "type": "boolean",
                     "description": "Is the employee payroll enable?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -1851,6 +1993,41 @@
                   "payroll_enabled": {
                     "type": "boolean",
                     "description": "Is the employee payroll enable?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -2657,6 +2834,41 @@
               "allow_only_assigned_crews": {
                 "type": "boolean",
                 "description": "Is allow only assigned crew to clock in"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "List of source system links"
+                },
+                "description": "List of source system links"
               }
             },
             "required": [
@@ -2850,6 +3062,41 @@
                   "allow_only_assigned_crews": {
                     "type": "boolean",
                     "description": "Is allow only assigned crew to clock in"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -3009,6 +3256,41 @@
                   "allow_only_assigned_crews": {
                     "type": "boolean",
                     "description": "Is allow only assigned crew to clock in"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -3227,6 +3509,41 @@
                   "allow_only_assigned_crews": {
                     "type": "boolean",
                     "description": "Is allow only assigned crew to clock in"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -3386,6 +3703,41 @@
                   "allow_only_assigned_crews": {
                     "type": "boolean",
                     "description": "Is allow only assigned crew to clock in"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -3472,6 +3824,41 @@
               "active": {
                 "type": "boolean",
                 "description": "Flag indicating if the cost code is active"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "List of source system links"
+                },
+                "description": "List of source system links"
               }
             },
             "required": [
@@ -3546,6 +3933,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Flag indicating if the cost code is active"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -3586,6 +4008,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Flag indicating if the cost code is active"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -3685,6 +4142,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Flag indicating if the cost code is active"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -3725,6 +4217,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Flag indicating if the cost code is active"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -3806,6 +4333,41 @@
               "active": {
                 "type": "boolean",
                 "description": "Flag indicating if the cost type is active"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "List of source system links"
+                },
+                "description": "List of source system links"
               }
             },
             "required": [
@@ -3875,6 +4437,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Flag indicating if the cost type is active"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -3910,6 +4507,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Flag indicating if the cost type is active"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -4004,6 +4636,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Flag indicating if the cost type is active"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -4039,6 +4706,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Flag indicating if the cost type is active"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -4565,6 +5267,41 @@
               "active": {
                 "type": "boolean",
                 "description": "Is the Comp Code active?"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "List of source system links"
+                },
+                "description": "List of source system links"
               }
             },
             "required": [
@@ -4665,6 +5402,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Is the Comp Code active?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -4732,6 +5504,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Is the Comp Code active?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -4858,6 +5665,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Is the Comp Code active?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -4925,6 +5767,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Is the Comp Code active?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -5012,6 +5889,41 @@
               "active": {
                 "type": "boolean",
                 "description": "Is department active?"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "List of source system links"
+                },
+                "description": "List of source system links"
               }
             },
             "required": [
@@ -5086,6 +5998,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Is department active?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -5127,6 +6074,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Is department active?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -5227,6 +6209,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Is department active?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -5268,6 +6285,41 @@
                   "active": {
                     "type": "boolean",
                     "description": "Is department active?"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -5486,6 +6538,41 @@
                   }
                 },
                 "description": "Legal Address of the Branch"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "List of source system links"
+                },
+                "description": "List of source system links"
               }
             },
             "required": [
@@ -5704,6 +6791,41 @@
                       }
                     },
                     "description": "Legal Address of the Branch"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -5889,6 +7011,41 @@
                       }
                     },
                     "description": "Legal Address of the Branch"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -6038,6 +7195,41 @@
                   "null"
                 ],
                 "description": "Actual end date and time of the task"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "List of source system links"
+                },
+                "description": "List of source system links"
               }
             },
             "required": [
@@ -6154,6 +7346,41 @@
                       "null"
                     ],
                     "description": "Planned end date of the task"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -6237,6 +7464,41 @@
                       "null"
                     ],
                     "description": "Planned end date of the task"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -6379,6 +7641,41 @@
                       "null"
                     ],
                     "description": "Planned end date of the task"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
@@ -6462,6 +7759,41 @@
                       "null"
                     ],
                     "description": "Planned end date of the task"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
                   }
                 },
                 "required": [
