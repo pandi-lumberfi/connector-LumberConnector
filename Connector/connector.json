@@ -467,6 +467,83 @@
                       "null"
                     ],
                     "description": "Job title"
+                  },
+                  "secondary_email": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Secondary Email of the user"
+                  },
+                  "emergency_contact_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Emergency Contact Name of the user"
+                  },
+                  "emergency_contact_phone": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Emergency Contact Phone of the user"
+                  },
+                  "emergency_contact_relation": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Emergency Contact Relation of the user"
+                  },
+                  "veteran_status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Veteran Status of the user"
+                  },
+                  "disability_status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Disability Status of the user"
+                  },
+                  "birth_place_address": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Birth Place Address of the user"
+                  },
+                  "minority": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Minority of the user"
+                  },
+                  "marital_status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Marital Status of the user"
+                  },
+                  "ethnicity": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Ethnicity of the user"
+                  },
+                  "driver_license": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Driver License of the user"
                   }
                 },
                 "required": [
@@ -925,6 +1002,50 @@
                   "description": "List of source system links"
                 },
                 "description": "List of source system links"
+              },
+              "secondary_employee_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Secondary Employee Id of the user"
+              },
+              "employment_category": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Employment Category of the user"
+              },
+              "work_start_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "description": "Work Start Date of the user"
+              },
+              "rehire_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "description": "Rehire Date of the user"
+              },
+              "rehire_enable": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Rehire Enable of the user"
+              },
+              "hiring_status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Hiring Status of the user"
               }
             },
             "required": [
@@ -1213,6 +1334,50 @@
                       "description": "List of source system links"
                     },
                     "description": "List of source system links"
+                  },
+                  "secondary_employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Secondary Employee Id of the user"
+                  },
+                  "employment_category": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employment Category of the user"
+                  },
+                  "work_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "Work Start Date of the user"
+                  },
+                  "rehire_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "Rehire Date of the user"
+                  },
+                  "rehire_enable": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Rehire Enable of the user"
+                  },
+                  "hiring_status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Hiring Status of the user"
                   }
                 },
                 "required": [
@@ -1465,6 +1630,50 @@
                       "description": "List of source system links"
                     },
                     "description": "List of source system links"
+                  },
+                  "secondary_employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Secondary Employee Id of the user"
+                  },
+                  "employment_category": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employment Category of the user"
+                  },
+                  "work_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "Work Start Date of the user"
+                  },
+                  "rehire_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "Rehire Date of the user"
+                  },
+                  "rehire_enable": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Rehire Enable of the user"
+                  },
+                  "hiring_status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Hiring Status of the user"
                   }
                 },
                 "required": [
@@ -1776,6 +1985,50 @@
                       "description": "List of source system links"
                     },
                     "description": "List of source system links"
+                  },
+                  "secondary_employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Secondary Employee Id of the user"
+                  },
+                  "employment_category": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employment Category of the user"
+                  },
+                  "work_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "Work Start Date of the user"
+                  },
+                  "rehire_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "Rehire Date of the user"
+                  },
+                  "rehire_enable": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Rehire Enable of the user"
+                  },
+                  "hiring_status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Hiring Status of the user"
                   }
                 },
                 "required": [
@@ -2028,6 +2281,50 @@
                       "description": "List of source system links"
                     },
                     "description": "List of source system links"
+                  },
+                  "secondary_employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Secondary Employee Id of the user"
+                  },
+                  "employment_category": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employment Category of the user"
+                  },
+                  "work_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "Work Start Date of the user"
+                  },
+                  "rehire_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time",
+                    "description": "Rehire Date of the user"
+                  },
+                  "rehire_enable": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Rehire Enable of the user"
+                  },
+                  "hiring_status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Hiring Status of the user"
                   }
                 },
                 "required": [

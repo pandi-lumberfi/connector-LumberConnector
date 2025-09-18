@@ -85,6 +85,36 @@ public class EmployeeObject
     [Description("List of source system links")]
     [Nullable(true)]
     public List<SourceSystemLink>? SourceSystemLinks { get; set; }
+
+    [JsonPropertyName("secondary_employee_id")]
+    [Description("Secondary Employee Id of the user")]
+    [Nullable(true)]
+    public string? SecondaryEmployeeId { get; init; }
+
+    [JsonPropertyName("employment_category")]
+    [Description("Employment Category of the user")]
+    [Nullable(true)]
+    public string? EmploymentCategory { get; init; }
+
+    [JsonPropertyName("work_start_date")]
+    [Description("Work Start Date of the user")]
+    [Nullable(true)]
+    public DateTime? WorkStartDate { get; init; }
+
+    [JsonPropertyName("rehire_date")]
+    [Description("Rehire Date of the user")]
+    [Nullable(true)]
+    public DateTime? RehireDate { get; init; }
+
+    [JsonPropertyName("rehire_enable")]
+    [Description("Rehire Enable of the user")]
+    [Nullable(true)]
+    public bool RehireEnable { get; init; } = true;
+
+    [JsonPropertyName("hiring_status")]
+    [Description("Hiring Status of the user")]
+    [Nullable(true)]
+    public string? HiringStatus { get; init; }
 }
 
 public class User

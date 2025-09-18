@@ -147,6 +147,36 @@ public class EmployeesDataObject
     [Description("List of source system links")]
     [Nullable(true)]
     public List<SourceSystemLink>? SourceSystemLinks { get; set; } = new List<SourceSystemLink>();
+
+    [JsonPropertyName("secondary_employee_id")]
+    [Description("Secondary Employee Id of the user")]
+    [Nullable(true)]
+    public string? SecondaryEmployeeId { get; init; }
+
+    [JsonPropertyName("employment_category")]
+    [Description("Employment Category of the user")]
+    [Nullable(true)]
+    public string? EmploymentCategory { get; init; }
+
+    [JsonPropertyName("work_start_date")]
+    [Description("Work Start Date of the user")]
+    [Nullable(true)]
+    public DateTime? WorkStartDate { get; init; }
+
+    [JsonPropertyName("rehire_date")]
+    [Description("Rehire Date of the user")]
+    [Nullable(true)]
+    public DateTime? RehireDate { get; init; }
+
+    [JsonPropertyName("rehire_enable")]
+    [Description("Rehire Enable of the user")]
+    [Nullable(true)]
+    public bool RehireEnable { get; init; } = true;
+
+    [JsonPropertyName("hiring_status")]
+    [Description("Hiring Status of the user")]
+    [Nullable(true)]
+    public string? HiringStatus { get; init; }
 }
 
 public class UserData
@@ -205,6 +235,61 @@ public class UserData
     [Description("Job title")]
     [Nullable(true)]
     public string? JobTitle { get; init; }
+
+    [JsonPropertyName("secondary_email")]
+    [Description("Secondary Email of the user")]
+    [Nullable(true)]
+    public string? SecondaryEmail { get; init; }
+
+    [JsonPropertyName("emergency_contact_name")]
+    [Description("Emergency Contact Name of the user")]
+    [Nullable(true)]
+    public string? EmergencyContactName { get; init; }
+
+    [JsonPropertyName("emergency_contact_phone")]
+    [Description("Emergency Contact Phone of the user")]
+    [Nullable(true)]
+    public string? EmergencyContactPhone { get; init; }
+
+    [JsonPropertyName("emergency_contact_relation")]
+    [Description("Emergency Contact Relation of the user")]
+    [Nullable(true)]
+    public string? EmergencyContactRelation { get; init; }
+
+    [JsonPropertyName("veteran_status")]
+    [Description("Veteran Status of the user")]
+    [Nullable(true)]
+    public string? VeteranStatus { get; init; }
+
+    [JsonPropertyName("disability_status")]
+    [Description("Disability Status of the user")]
+    [Nullable(true)]
+    public string? DisabilityStatus { get; init; }
+
+    [JsonPropertyName("birth_place_address")]
+    [Description("Birth Place Address of the user")]
+    [Nullable(true)]
+    public string? BirthPlaceAddress { get; init; }
+
+    [JsonPropertyName("minority")]
+    [Description("Minority of the user")]
+    [Nullable(true)]
+    public string? Minority { get; init; }
+
+    [JsonPropertyName("marital_status")]
+    [Description("Marital Status of the user")]
+    [Nullable(true)]
+    public string? MaritalStatus { get; init; }
+
+    [JsonPropertyName("ethnicity")]
+    [Description("Ethnicity of the user")]
+    [Nullable(true)]
+    public string? Ethnicity { get; init; }
+
+    [JsonPropertyName("driver_license")]
+    [Description("Driver License of the user")]
+    [Nullable(true)]
+    public string? DriverLicense { get; init; }
 }
 
 public class AddressData
