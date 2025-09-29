@@ -1,8 +1,6 @@
 using Json.Schema.Generation;
 using System;
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using Xchange.Connector.SDK.CacheWriter;
 
 public class SourceSystemLink
 {

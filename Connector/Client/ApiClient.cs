@@ -238,7 +238,19 @@ public class ApiClient
             yield return record;
         }
     }
-        
+
+    public async Task<UserLeaveBalance?> GetUserLeaveBalance<UserLeaveBalance>(
+        string relativeUrl,
+        CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync<UserLeaveBalance>(cancellationToken: cancellationToken);
+    }
 
     public async Task<ApiResponse<PaginatedResponse<ProjectDataObject>>> GetProjectRecords<ProjectDataObject>(
         string relativeUrl,

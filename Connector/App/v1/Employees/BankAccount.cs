@@ -31,16 +31,24 @@ public class RawBankAccount
     [Description("Name of the financial institution")]
     public string InstitutionName { get; set; } = string.Empty;
 
+    [JsonPropertyName("account_number")]
+    [Description("Account number")]
+    [WriteOnly]
+    public string AccountNumber { get; set; } = string.Empty;
+
     [JsonPropertyName("account_number_last_four")]
     [Description("Last four digits of the account number")]
+    [WriteOnly]
     public string AccountNumberLastFour { get; set; } = string.Empty;
 
     [JsonPropertyName("routing_number")]
     [Description("Routing number of the bank account")]
+    [WriteOnly]
     public string RoutingNumber { get; set; } = string.Empty;
 
     [JsonPropertyName("type")]
     [Description("Type of the bank account")]
+    [WriteOnly]
     public string Type { get; set; } = string.Empty;
 
     [JsonPropertyName("subtype")]

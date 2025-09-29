@@ -106,7 +106,14 @@ public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
                         _logger.LogError(exception, "Exception while processing data object 'EmployeesDataObject'");
                     }
                 }
-                
+                var userLeaveBalance = await _apiClient.GetUserLeaveBalance<UserLeaveBalance>(
+                    relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId + "/users/" + item.Id + "/leave_balance",
+                    cancellationToken: cancellationToken)
+                    .ConfigureAwait(false);
+                if (userLeaveBalance != null) {
+                    item.UserLeaveBalance = userLeaveBalance;
+                }
+
                 yield return item;
 
             }

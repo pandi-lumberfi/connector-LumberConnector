@@ -106,11 +106,13 @@ public class EmployeesDataObject
     [JsonPropertyName("pay_rate")]
     [Description("Pay Rate")]
     [Nullable(true)]
+    [WriteOnly]
     public double? PayRate { get; init; }
 
     [JsonPropertyName("pay_frequency")]
     [Description("Pay Frequency")]
     [Nullable(true)]
+    [WriteOnly]
     public string? PayFrequency { get; init; }
     
     [JsonPropertyName("user_benefits")]
@@ -132,6 +134,11 @@ public class EmployeesDataObject
     [Description("List of user tax with holdings")]
     [Nullable(true)]
     public List<UserTaxWithHolding>? UserTaxWithHoldings { get; set; } = new List<UserTaxWithHolding>();
+
+    [JsonPropertyName("user_leave_balance")]
+    [Description("User leave balance")]
+    [Nullable(true)]
+    public UserLeaveBalance? UserLeaveBalance { get; set; }
 
     [JsonPropertyName("active")]
     [Description("Is the employee active?")]
@@ -184,36 +191,43 @@ public class UserData
     [JsonPropertyName("first_name")]
     [Description("First name of the Employee")]
     [Required]
+    [WriteOnly]
     public required string FirstName { get; init; }
 
     [JsonPropertyName("middle_name")]
     [Description("Middle name of the Employee")]
     [Nullable(true)]
+    [WriteOnly]
     public string? MiddleName { get; init; }
 
     [JsonPropertyName("last_name")]
     [Description("Last name of the Employee")]
     [Required]
+    [WriteOnly]
     public required string LastName { get; init; }
 
     [JsonPropertyName("gender")]
     [Description("Gender of the Employee")]
     [Nullable(true)]
+    [WriteOnly]
     public string? Gender { get; init; }
 
     [JsonPropertyName("date_of_birth")]
     [Description("Date of Birth of the Employee")]
     [Nullable(true)]
+    [WriteOnly]
     public DateTime? DateOfBirth { get; init; }
 
     [JsonPropertyName("phone")]
     [Description("Phone number of the Employee")]
     [Required]
+    [WriteOnly]
     public required string? Phone { get; init; }
 
     [JsonPropertyName("email")]
     [Description("Email address of the Employee")]
     [Nullable(true)]
+    [WriteOnly]
     public string? Email { get; init; }
 
     [JsonPropertyName("address")]
@@ -229,16 +243,25 @@ public class UserData
     [JsonPropertyName("short_ssn")]
     [Description("Short SSN")]
     [Nullable(true)]
+    [WriteOnly]
     public string? ShortSsn { get; init; }
+
+    [JsonPropertyName("ssn")]
+    [Description("SSN")]
+    [Nullable(true)]
+    [WriteOnly] 
+    public string? Ssn { get; init; }
 
     [JsonPropertyName("job_title")]
     [Description("Job title")]
     [Nullable(true)]
+    [WriteOnly]
     public string? JobTitle { get; init; }
 
     [JsonPropertyName("secondary_email")]
     [Description("Secondary Email of the user")]
     [Nullable(true)]
+    [WriteOnly]
     public string? SecondaryEmail { get; init; }
 
     [JsonPropertyName("emergency_contact_name")]
@@ -289,6 +312,7 @@ public class UserData
     [JsonPropertyName("driver_license")]
     [Description("Driver License of the user")]
     [Nullable(true)]
+    [WriteOnly]
     public string? DriverLicense { get; init; }
 }
 
@@ -297,21 +321,25 @@ public class AddressData
     [JsonPropertyName("street_line1")]
     [Description("Street address line 1")]
     [Nullable(true)]
+    [WriteOnly] 
     public string? StreetLine1 { get; init; }
 
     [JsonPropertyName("street_line2")]
     [Description("Street address line 2")]
     [Nullable(true)]
+    [WriteOnly] 
     public string? StreetLine2 { get; init; }
 
     [JsonPropertyName("city")]
     [Description("City name")]
     [Nullable(true)]
+    [WriteOnly] 
     public string? City { get; init; }
 
     [JsonPropertyName("state")]
     [Description("State or region")]
     [Nullable(true)]
+    [WriteOnly] 
     public string? State { get; init; }
 
     [JsonPropertyName("country")]

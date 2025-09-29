@@ -122,6 +122,7 @@ public class User
     [JsonPropertyName("first_name")]
     [Description("First name of the Employee")]
     [Required]
+    [WriteOnly]
     public string? FirstName { get; init; }
 
     [JsonPropertyName("middle_name")]
@@ -132,26 +133,31 @@ public class User
     [JsonPropertyName("last_name")]
     [Description("Last name of the Employee")]
     [Required]
+    [WriteOnly]
     public string? LastName { get; init; }
 
     [JsonPropertyName("gender")]
     [Description("Gender of the Employee")]
     [Nullable(true)]
+    [WriteOnly]
     public string? Gender { get; init; }
 
     [JsonPropertyName("date_of_birth")]
     [Description("Date of Birth of the Employee")]
     [Required]
+    [WriteOnly]
     public string? DateOfBirth { get; init; }
 
     [JsonPropertyName("phone")]
     [Description("Phone number of the Employee")]
     [Required]
+    [WriteOnly]
     public string? Phone { get; init; }
 
     [JsonPropertyName("email")]
     [Description("Email address of the Employee")]
     [Nullable(true)]
+    [WriteOnly]
     public string? Email { get; init; }
 
     [JsonPropertyName("address")]
@@ -167,12 +173,79 @@ public class User
     [JsonPropertyName("short_ssn")]
     [Description("Short SSN")]
     [Nullable(true)]
+    [WriteOnly] 
     public string? ShortSsn { get; init; }
+
+    [JsonPropertyName("ssn")]
+    [Description("SSN")]
+    [Nullable(true)]
+    [WriteOnly] 
+    public string? Ssn { get; init; }
 
     [JsonPropertyName("job_title")]
     [Description("Job title")]
     [Required]
+    [WriteOnly]
     public string? JobTitle { get; init; }
+
+    [JsonPropertyName("secondary_email")]
+    [Description("Secondary Email of the user")]
+    [Nullable(true)]
+    [WriteOnly]
+    public string? SecondaryEmail { get; init; }
+
+    [JsonPropertyName("emergency_contact_name")]
+    [Description("Emergency Contact Name of the user")]
+    [Nullable(true)]
+    public string? EmergencyContactName { get; init; }
+
+    [JsonPropertyName("emergency_contact_phone")]
+    [Description("Emergency Contact Phone of the user")]
+    [Nullable(true)]
+    [WriteOnly]
+    public string? EmergencyContactPhone { get; init; }
+
+    [JsonPropertyName("emergency_contact_relation")]
+    [Description("Emergency Contact Relation of the user")]
+    [Nullable(true)]
+    public string? EmergencyContactRelation { get; init; }
+
+    [JsonPropertyName("veteran_status")]
+    [Description("Veteran Status of the user")]
+    [Nullable(true)]
+    public string? VeteranStatus { get; init; }
+
+    [JsonPropertyName("disability_status")]
+    [Description("Disability Status of the user")]
+    [Nullable(true)]
+    public string? DisabilityStatus { get; init; }
+
+    [JsonPropertyName("birth_place_address")]
+    [Description("Birth Place Address of the user")]
+    [Nullable(true)]
+    public string? BirthPlaceAddress { get; init; }
+
+    [JsonPropertyName("minority")]
+    [Description("Minority of the user")]
+    [Nullable(true)]
+    public string? Minority { get; init; }
+
+    [JsonPropertyName("marital_status")]
+    [Description("Marital Status of the user")]
+    [Nullable(true)]
+    public string? MaritalStatus { get; init; }
+
+    [JsonPropertyName("ethnicity")]
+    [Description("Ethnicity of the user")]
+    [Nullable(true)]
+    [WriteOnly] 
+    public string? Ethnicity { get; init; }
+
+    [JsonPropertyName("driver_license")]
+    [Description("Driver License of the user")]
+    [Nullable(true)]
+    [WriteOnly] 
+    public string? DriverLicense { get; init; }
 }
 
 public class Address
@@ -180,21 +253,25 @@ public class Address
     [JsonPropertyName("street_line1")]
     [Description("Street address line 1")]
     [Nullable(true)]
+    [WriteOnly]
     public string? StreetLine1 { get; init; }
 
     [JsonPropertyName("street_line2")]
     [Description("Street address line 2")]
     [Nullable(true)]
+    [WriteOnly]
     public string? StreetLine2 { get; init; }
 
     [JsonPropertyName("city")]
     [Description("City name")]
     [Nullable(true)]
+    [WriteOnly]
     public string? City { get; init; }
 
     [JsonPropertyName("state")]
     [Description("State or region")]
     [Nullable(true)]
+    [WriteOnly]
     public string? State { get; init; }
 
     [JsonPropertyName("country")]
