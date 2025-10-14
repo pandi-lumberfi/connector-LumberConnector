@@ -777,5 +777,24 @@ public class ApiClient
             Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<UpdateTaskActionOutput>(cancellationToken: cancellationToken) : default, 
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)  
         };
-    }   
+    }
+    public async Task<ApiResponse<PaginatedResponse<DeductionDataObject>>> GetDeductionRecords<DeductionDataObject>(
+        string relativeUrl,
+        int page,
+        int size,
+        CancellationToken cancellationToken = default)
+    {   
+        var response = await _httpClient.GetAsync(
+            $"{relativeUrl}?page_no={page}&page_size={size}",
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+            
+        return new ApiResponse<PaginatedResponse<DeductionDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<PaginatedResponse<DeductionDataObject>>(cancellationToken: cancellationToken) : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
 }

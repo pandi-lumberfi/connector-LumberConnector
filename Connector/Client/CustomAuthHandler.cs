@@ -80,6 +80,6 @@ public class CustomAuthHandler(CustomAuth customAuth) : DelegatingHandler
                     {"User-Id", $"{_customAuth.UserId}"}
                 }
         };
-        return tokenRequest;throw new NotImplementedException();
+        return tokenRequest;
     }
 }

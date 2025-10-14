@@ -304,6 +304,14 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "DeductionConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Cache Writer Configuration",
@@ -349,25 +357,29 @@
                 "properties": {
                   "first_name": {
                     "type": "string",
-                    "description": "First name of the Employee"
+                    "description": "First name of the Employee",
+                    "writeOnly": true
                   },
                   "middle_name": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Middle name of the Employee"
+                    "description": "Middle name of the Employee",
+                    "writeOnly": true
                   },
                   "last_name": {
                     "type": "string",
-                    "description": "Last name of the Employee"
+                    "description": "Last name of the Employee",
+                    "writeOnly": true
                   },
                   "gender": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Gender of the Employee"
+                    "description": "Gender of the Employee",
+                    "writeOnly": true
                   },
                   "date_of_birth": {
                     "type": [
@@ -375,18 +387,21 @@
                       "null"
                     ],
                     "format": "date-time",
-                    "description": "Date of Birth of the Employee"
+                    "description": "Date of Birth of the Employee",
+                    "writeOnly": true
                   },
                   "phone": {
                     "type": "string",
-                    "description": "Phone number of the Employee"
+                    "description": "Phone number of the Employee",
+                    "writeOnly": true
                   },
                   "email": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Email address of the Employee"
+                    "description": "Email address of the Employee",
+                    "writeOnly": true
                   },
                   "address": {
                     "type": [
@@ -399,28 +414,32 @@
                           "string",
                           "null"
                         ],
-                        "description": "Street address line 1"
+                        "description": "Street address line 1",
+                        "writeOnly": true
                       },
                       "street_line2": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "Street address line 2"
+                        "description": "Street address line 2",
+                        "writeOnly": true
                       },
                       "city": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "City name"
+                        "description": "City name",
+                        "writeOnly": true
                       },
                       "state": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "State or region"
+                        "description": "State or region",
+                        "writeOnly": true
                       },
                       "country": {
                         "type": "string",
@@ -459,21 +478,32 @@
                       "string",
                       "null"
                     ],
-                    "description": "Short SSN"
+                    "description": "Short SSN",
+                    "writeOnly": true
+                  },
+                  "ssn": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "SSN",
+                    "writeOnly": true
                   },
                   "job_title": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Job title"
+                    "description": "Job title",
+                    "writeOnly": true
                   },
                   "secondary_email": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Secondary Email of the user"
+                    "description": "Secondary Email of the user",
+                    "writeOnly": true
                   },
                   "emergency_contact_name": {
                     "type": [
@@ -543,7 +573,8 @@
                       "string",
                       "null"
                     ],
-                    "description": "Driver License of the user"
+                    "description": "Driver License of the user",
+                    "writeOnly": true
                   }
                 },
                 "required": [
@@ -635,14 +666,16 @@
                   "number",
                   "null"
                 ],
-                "description": "Pay Rate"
+                "description": "Pay Rate",
+                "writeOnly": true
               },
               "pay_frequency": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Pay Frequency"
+                "description": "Pay Frequency",
+                "writeOnly": true
               },
               "user_benefits": {
                 "type": [
@@ -748,17 +781,25 @@
                           "type": "string",
                           "description": "Name of the financial institution"
                         },
+                        "account_number": {
+                          "type": "string",
+                          "description": "Account number",
+                          "writeOnly": true
+                        },
                         "account_number_last_four": {
                           "type": "string",
-                          "description": "Last four digits of the account number"
+                          "description": "Last four digits of the account number",
+                          "writeOnly": true
                         },
                         "routing_number": {
                           "type": "string",
-                          "description": "Routing number of the bank account"
+                          "description": "Routing number of the bank account",
+                          "writeOnly": true
                         },
                         "type": {
                           "type": "string",
-                          "description": "Type of the bank account"
+                          "description": "Type of the bank account",
+                          "writeOnly": true
                         },
                         "subtype": {
                           "type": "string",
@@ -960,6 +1001,57 @@
                 },
                 "description": "List of user tax with holdings"
               },
+              "user_leave_balance": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "company_user_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Company user id"
+                  },
+                  "employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employee id"
+                  },
+                  "paid_time_off_balance": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Paid time off balance"
+                  },
+                  "sick_leave_balance": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Sick leave balance"
+                  },
+                  "other_paid_leave_balance": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Other paid leave balance"
+                  },
+                  "unpaid_leave_balance": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Unpaid leave balance"
+                  }
+                },
+                "description": "User leave balance"
+              },
               "active": {
                 "type": "boolean",
                 "description": "Is the employee active?"
@@ -1117,7 +1209,8 @@
                     "properties": {
                       "first_name": {
                         "type": "string",
-                        "description": "First name of the Employee"
+                        "description": "First name of the Employee",
+                        "writeOnly": true
                       },
                       "middle_name": {
                         "type": [
@@ -1128,29 +1221,34 @@
                       },
                       "last_name": {
                         "type": "string",
-                        "description": "Last name of the Employee"
+                        "description": "Last name of the Employee",
+                        "writeOnly": true
                       },
                       "gender": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "Gender of the Employee"
+                        "description": "Gender of the Employee",
+                        "writeOnly": true
                       },
                       "date_of_birth": {
                         "type": "string",
-                        "description": "Date of Birth of the Employee"
+                        "description": "Date of Birth of the Employee",
+                        "writeOnly": true
                       },
                       "phone": {
                         "type": "string",
-                        "description": "Phone number of the Employee"
+                        "description": "Phone number of the Employee",
+                        "writeOnly": true
                       },
                       "email": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "Email address of the Employee"
+                        "description": "Email address of the Employee",
+                        "writeOnly": true
                       },
                       "address": {
                         "type": [
@@ -1163,28 +1261,32 @@
                               "string",
                               "null"
                             ],
-                            "description": "Street address line 1"
+                            "description": "Street address line 1",
+                            "writeOnly": true
                           },
                           "street_line2": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "Street address line 2"
+                            "description": "Street address line 2",
+                            "writeOnly": true
                           },
                           "city": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "City name"
+                            "description": "City name",
+                            "writeOnly": true
                           },
                           "state": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "State or region"
+                            "description": "State or region",
+                            "writeOnly": true
                           },
                           "country": {
                             "type": "string",
@@ -1223,11 +1325,102 @@
                           "string",
                           "null"
                         ],
-                        "description": "Short SSN"
+                        "description": "Short SSN",
+                        "writeOnly": true
+                      },
+                      "ssn": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "SSN",
+                        "writeOnly": true
                       },
                       "job_title": {
                         "type": "string",
-                        "description": "Job title"
+                        "description": "Job title",
+                        "writeOnly": true
+                      },
+                      "secondary_email": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Secondary Email of the user",
+                        "writeOnly": true
+                      },
+                      "emergency_contact_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Name of the user"
+                      },
+                      "emergency_contact_phone": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Phone of the user",
+                        "writeOnly": true
+                      },
+                      "emergency_contact_relation": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Relation of the user"
+                      },
+                      "veteran_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Veteran Status of the user"
+                      },
+                      "disability_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Disability Status of the user"
+                      },
+                      "birth_place_address": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Birth Place Address of the user"
+                      },
+                      "minority": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Minority of the user"
+                      },
+                      "marital_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Marital Status of the user"
+                      },
+                      "ethnicity": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ethnicity of the user",
+                        "writeOnly": true
+                      },
+                      "driver_license": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Driver License of the user",
+                        "writeOnly": true
                       }
                     },
                     "required": [
@@ -1378,6 +1571,28 @@
                       "null"
                     ],
                     "description": "Hiring Status of the user"
+                  },
+                  "compensation_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Compensation Type"
+                  },
+                  "pay_rate": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay Rate",
+                    "writeOnly": true
+                  },
+                  "pay_frequency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay Frequency"
                   }
                 },
                 "required": [
@@ -1413,7 +1628,8 @@
                     "properties": {
                       "first_name": {
                         "type": "string",
-                        "description": "First name of the Employee"
+                        "description": "First name of the Employee",
+                        "writeOnly": true
                       },
                       "middle_name": {
                         "type": [
@@ -1424,29 +1640,34 @@
                       },
                       "last_name": {
                         "type": "string",
-                        "description": "Last name of the Employee"
+                        "description": "Last name of the Employee",
+                        "writeOnly": true
                       },
                       "gender": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "Gender of the Employee"
+                        "description": "Gender of the Employee",
+                        "writeOnly": true
                       },
                       "date_of_birth": {
                         "type": "string",
-                        "description": "Date of Birth of the Employee"
+                        "description": "Date of Birth of the Employee",
+                        "writeOnly": true
                       },
                       "phone": {
                         "type": "string",
-                        "description": "Phone number of the Employee"
+                        "description": "Phone number of the Employee",
+                        "writeOnly": true
                       },
                       "email": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "Email address of the Employee"
+                        "description": "Email address of the Employee",
+                        "writeOnly": true
                       },
                       "address": {
                         "type": [
@@ -1459,28 +1680,32 @@
                               "string",
                               "null"
                             ],
-                            "description": "Street address line 1"
+                            "description": "Street address line 1",
+                            "writeOnly": true
                           },
                           "street_line2": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "Street address line 2"
+                            "description": "Street address line 2",
+                            "writeOnly": true
                           },
                           "city": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "City name"
+                            "description": "City name",
+                            "writeOnly": true
                           },
                           "state": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "State or region"
+                            "description": "State or region",
+                            "writeOnly": true
                           },
                           "country": {
                             "type": "string",
@@ -1519,11 +1744,102 @@
                           "string",
                           "null"
                         ],
-                        "description": "Short SSN"
+                        "description": "Short SSN",
+                        "writeOnly": true
+                      },
+                      "ssn": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "SSN",
+                        "writeOnly": true
                       },
                       "job_title": {
                         "type": "string",
-                        "description": "Job title"
+                        "description": "Job title",
+                        "writeOnly": true
+                      },
+                      "secondary_email": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Secondary Email of the user",
+                        "writeOnly": true
+                      },
+                      "emergency_contact_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Name of the user"
+                      },
+                      "emergency_contact_phone": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Phone of the user",
+                        "writeOnly": true
+                      },
+                      "emergency_contact_relation": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Relation of the user"
+                      },
+                      "veteran_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Veteran Status of the user"
+                      },
+                      "disability_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Disability Status of the user"
+                      },
+                      "birth_place_address": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Birth Place Address of the user"
+                      },
+                      "minority": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Minority of the user"
+                      },
+                      "marital_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Marital Status of the user"
+                      },
+                      "ethnicity": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ethnicity of the user",
+                        "writeOnly": true
+                      },
+                      "driver_license": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Driver License of the user",
+                        "writeOnly": true
                       }
                     },
                     "required": [
@@ -1674,6 +1990,28 @@
                       "null"
                     ],
                     "description": "Hiring Status of the user"
+                  },
+                  "compensation_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Compensation Type"
+                  },
+                  "pay_rate": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay Rate",
+                    "writeOnly": true
+                  },
+                  "pay_frequency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay Frequency"
                   }
                 },
                 "required": [
@@ -1768,7 +2106,8 @@
                     "properties": {
                       "first_name": {
                         "type": "string",
-                        "description": "First name of the Employee"
+                        "description": "First name of the Employee",
+                        "writeOnly": true
                       },
                       "middle_name": {
                         "type": [
@@ -1779,29 +2118,34 @@
                       },
                       "last_name": {
                         "type": "string",
-                        "description": "Last name of the Employee"
+                        "description": "Last name of the Employee",
+                        "writeOnly": true
                       },
                       "gender": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "Gender of the Employee"
+                        "description": "Gender of the Employee",
+                        "writeOnly": true
                       },
                       "date_of_birth": {
                         "type": "string",
-                        "description": "Date of Birth of the Employee"
+                        "description": "Date of Birth of the Employee",
+                        "writeOnly": true
                       },
                       "phone": {
                         "type": "string",
-                        "description": "Phone number of the Employee"
+                        "description": "Phone number of the Employee",
+                        "writeOnly": true
                       },
                       "email": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "Email address of the Employee"
+                        "description": "Email address of the Employee",
+                        "writeOnly": true
                       },
                       "address": {
                         "type": [
@@ -1814,28 +2158,32 @@
                               "string",
                               "null"
                             ],
-                            "description": "Street address line 1"
+                            "description": "Street address line 1",
+                            "writeOnly": true
                           },
                           "street_line2": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "Street address line 2"
+                            "description": "Street address line 2",
+                            "writeOnly": true
                           },
                           "city": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "City name"
+                            "description": "City name",
+                            "writeOnly": true
                           },
                           "state": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "State or region"
+                            "description": "State or region",
+                            "writeOnly": true
                           },
                           "country": {
                             "type": "string",
@@ -1874,11 +2222,102 @@
                           "string",
                           "null"
                         ],
-                        "description": "Short SSN"
+                        "description": "Short SSN",
+                        "writeOnly": true
+                      },
+                      "ssn": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "SSN",
+                        "writeOnly": true
                       },
                       "job_title": {
                         "type": "string",
-                        "description": "Job title"
+                        "description": "Job title",
+                        "writeOnly": true
+                      },
+                      "secondary_email": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Secondary Email of the user",
+                        "writeOnly": true
+                      },
+                      "emergency_contact_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Name of the user"
+                      },
+                      "emergency_contact_phone": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Phone of the user",
+                        "writeOnly": true
+                      },
+                      "emergency_contact_relation": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Relation of the user"
+                      },
+                      "veteran_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Veteran Status of the user"
+                      },
+                      "disability_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Disability Status of the user"
+                      },
+                      "birth_place_address": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Birth Place Address of the user"
+                      },
+                      "minority": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Minority of the user"
+                      },
+                      "marital_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Marital Status of the user"
+                      },
+                      "ethnicity": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ethnicity of the user",
+                        "writeOnly": true
+                      },
+                      "driver_license": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Driver License of the user",
+                        "writeOnly": true
                       }
                     },
                     "required": [
@@ -2029,6 +2468,28 @@
                       "null"
                     ],
                     "description": "Hiring Status of the user"
+                  },
+                  "compensation_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Compensation Type"
+                  },
+                  "pay_rate": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay Rate",
+                    "writeOnly": true
+                  },
+                  "pay_frequency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay Frequency"
                   }
                 },
                 "required": [
@@ -2064,7 +2525,8 @@
                     "properties": {
                       "first_name": {
                         "type": "string",
-                        "description": "First name of the Employee"
+                        "description": "First name of the Employee",
+                        "writeOnly": true
                       },
                       "middle_name": {
                         "type": [
@@ -2075,29 +2537,34 @@
                       },
                       "last_name": {
                         "type": "string",
-                        "description": "Last name of the Employee"
+                        "description": "Last name of the Employee",
+                        "writeOnly": true
                       },
                       "gender": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "Gender of the Employee"
+                        "description": "Gender of the Employee",
+                        "writeOnly": true
                       },
                       "date_of_birth": {
                         "type": "string",
-                        "description": "Date of Birth of the Employee"
+                        "description": "Date of Birth of the Employee",
+                        "writeOnly": true
                       },
                       "phone": {
                         "type": "string",
-                        "description": "Phone number of the Employee"
+                        "description": "Phone number of the Employee",
+                        "writeOnly": true
                       },
                       "email": {
                         "type": [
                           "string",
                           "null"
                         ],
-                        "description": "Email address of the Employee"
+                        "description": "Email address of the Employee",
+                        "writeOnly": true
                       },
                       "address": {
                         "type": [
@@ -2110,28 +2577,32 @@
                               "string",
                               "null"
                             ],
-                            "description": "Street address line 1"
+                            "description": "Street address line 1",
+                            "writeOnly": true
                           },
                           "street_line2": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "Street address line 2"
+                            "description": "Street address line 2",
+                            "writeOnly": true
                           },
                           "city": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "City name"
+                            "description": "City name",
+                            "writeOnly": true
                           },
                           "state": {
                             "type": [
                               "string",
                               "null"
                             ],
-                            "description": "State or region"
+                            "description": "State or region",
+                            "writeOnly": true
                           },
                           "country": {
                             "type": "string",
@@ -2170,11 +2641,102 @@
                           "string",
                           "null"
                         ],
-                        "description": "Short SSN"
+                        "description": "Short SSN",
+                        "writeOnly": true
+                      },
+                      "ssn": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "SSN",
+                        "writeOnly": true
                       },
                       "job_title": {
                         "type": "string",
-                        "description": "Job title"
+                        "description": "Job title",
+                        "writeOnly": true
+                      },
+                      "secondary_email": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Secondary Email of the user",
+                        "writeOnly": true
+                      },
+                      "emergency_contact_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Name of the user"
+                      },
+                      "emergency_contact_phone": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Phone of the user",
+                        "writeOnly": true
+                      },
+                      "emergency_contact_relation": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Emergency Contact Relation of the user"
+                      },
+                      "veteran_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Veteran Status of the user"
+                      },
+                      "disability_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Disability Status of the user"
+                      },
+                      "birth_place_address": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Birth Place Address of the user"
+                      },
+                      "minority": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Minority of the user"
+                      },
+                      "marital_status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Marital Status of the user"
+                      },
+                      "ethnicity": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Ethnicity of the user",
+                        "writeOnly": true
+                      },
+                      "driver_license": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Driver License of the user",
+                        "writeOnly": true
                       }
                     },
                     "required": [
@@ -2325,6 +2887,28 @@
                       "null"
                     ],
                     "description": "Hiring Status of the user"
+                  },
+                  "compensation_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Compensation Type"
+                  },
+                  "pay_rate": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay Rate",
+                    "writeOnly": true
+                  },
+                  "pay_frequency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay Frequency"
                   }
                 },
                 "required": [
@@ -8140,6 +8724,135 @@
               }
             }
           ]
+        },
+        {
+          "name": "Deduction",
+          "urlPart": "deduction",
+          "key": "deduction",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "company_id": {
+                "type": "string",
+                "description": "ID of the company to which the deduction belongs"
+              },
+              "employee_code": {
+                "type": "string",
+                "description": "Code of the employee to which the deduction belongs"
+              },
+              "deduction_code": {
+                "type": "string",
+                "description": "Code of the deduction"
+              },
+              "deduction_type": {
+                "type": "string",
+                "description": "Type of the deduction"
+              },
+              "formula_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Code of the formula"
+              },
+              "formula_value": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Value of the formula"
+              },
+              "amount": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Amount of the deduction"
+              },
+              "percentage": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Percentage of the deduction"
+              },
+              "limit": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Limit of the deduction"
+              },
+              "monthly_limit": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Monthly limit of the deduction"
+              },
+              "annual_limit": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Annual limit of the deduction"
+              },
+              "vendor_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Vendor code of the deduction"
+              },
+              "remark": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Remark of the deduction"
+              },
+              "uploaded": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Flag indicating if the deduction is uploaded"
+              },
+              "upload_message": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Message of the upload"
+              }
+            },
+            "required": [
+              "id",
+              "company_id",
+              "employee_code",
+              "deduction_code",
+              "deduction_type"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": []
         }
       ]
     }

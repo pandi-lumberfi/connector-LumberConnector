@@ -3,6 +3,7 @@ using Connector.App.v1.Branch;
 using Connector.App.v1.CompCode;
 using Connector.App.v1.CostCode;
 using Connector.App.v1.CostType;
+using Connector.App.v1.Deduction;
 using Connector.App.v1.Department;
 using Connector.App.v1.Employees;
 using Connector.App.v1.Project;
@@ -38,6 +39,7 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         serviceCollection.AddSingleton<DepartmentDataReader>();
         serviceCollection.AddSingleton<BranchDataReader>();
         serviceCollection.AddSingleton<TaskDataReader>();
+        serviceCollection.AddSingleton<DeductionDataReader>();
     }
 
     public override IDataObjectChangeDetectorProvider ConfigureChangeDetectorProvider(IChangeDetectorFactory factory, ConnectorDefinition connectorDefinition)
@@ -53,6 +55,7 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         this.RegisterKeysForObject<DepartmentDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<BranchDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<TaskDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<DeductionDataObject>(options, connectorDefinition);
         return factory.CreateProvider(options);
     }
 
@@ -73,5 +76,6 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         service.RegisterDataReader<DepartmentDataReader, DepartmentDataObject>(ModuleId, config.DepartmentConfig, dataReaderSettings);
         service.RegisterDataReader<BranchDataReader, BranchDataObject>(ModuleId, config.BranchConfig, dataReaderSettings);
         service.RegisterDataReader<TaskDataReader, TaskDataObject>(ModuleId, config.TaskConfig, dataReaderSettings);
+        service.RegisterDataReader<DeductionDataReader, DeductionDataObject>(ModuleId, config.DeductionConfig, dataReaderSettings);
     }
 }

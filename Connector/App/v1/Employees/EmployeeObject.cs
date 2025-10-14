@@ -115,6 +115,22 @@ public class EmployeeObject
     [Description("Hiring Status of the user")]
     [Nullable(true)]
     public string? HiringStatus { get; init; }
+
+    [JsonPropertyName("compensation_type")]
+    [Description("Compensation Type")]
+    [Nullable(true)]
+    public string? CompensationType { get; init; }
+
+    [JsonPropertyName("pay_rate")]
+    [Description("Pay Rate")]
+    [Nullable(true)]
+    [WriteOnly]
+    public string? PayRate { get; init; }
+
+    [JsonPropertyName("pay_frequency")]
+    [Description("Pay Frequency")]
+    [Nullable(true)]
+    public string? PayFrequency { get; init; }
 }
 
 public class User

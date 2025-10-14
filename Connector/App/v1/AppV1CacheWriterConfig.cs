@@ -3,6 +3,7 @@ using Connector.App.v1.Branch;
 using Connector.App.v1.CompCode;
 using Connector.App.v1.CostCode;
 using Connector.App.v1.CostType;
+using Connector.App.v1.Deduction;
 using Connector.App.v1.Department;
 using Connector.App.v1.Employees;
 using Connector.App.v1.Project;
@@ -31,4 +32,5 @@ public class AppV1CacheWriterConfig
     public CacheWriterObjectConfig DepartmentConfig { get; set; } = new();
     public CacheWriterObjectConfig BranchConfig { get; set; } = new();
     public CacheWriterObjectConfig TaskConfig { get; set; } = new();
+    public CacheWriterObjectConfig DeductionConfig { get; set; } = new();
 }
