@@ -1,57 +1,59 @@
 namespace Connector.App.v1.Employees;
 
-using Json.Schema.Generation;
-using System.Text.Json.Serialization;
 using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using Json.Schema.Generation;
 
 public class BankAccount
 {
     [JsonPropertyName("id")]
     [Description("ID of the bank account")]
-    public string Id { get; set; } = string.Empty;
+    [Nullable(true)]
+    public string? Id { get; set; }
 
     [JsonPropertyName("status")]
     [Description("Status of the bank account")]
-    public string Status { get; set; } = string.Empty;
-
-    [JsonPropertyName("raw_bank_account")]
-    [Description("Raw bank account details")]
     [Nullable(true)]
-    public RawBankAccount? RawBankAccount { get; set; }
+    public string? Status { get; set; }
 
-    [JsonPropertyName("employee")]
-    [Description("Employee ID associated with the bank account")]
-    [Nullable(true)]
-    public string? Employee { get; set; }
-}
-
-public class RawBankAccount
-{
     [JsonPropertyName("institution_name")]
     [Description("Name of the financial institution")]
-    public string InstitutionName { get; set; } = string.Empty;
+    [Nullable(true)]
+    public string? InstitutionName { get; set; }
 
     [JsonPropertyName("account_number")]
     [Description("Account number")]
     [WriteOnly]
-    public string AccountNumber { get; set; } = string.Empty;
-
-    [JsonPropertyName("account_number_last_four")]
-    [Description("Last four digits of the account number")]
-    [WriteOnly]
-    public string AccountNumberLastFour { get; set; } = string.Empty;
+    public string? AccountNumber { get; set; }
 
     [JsonPropertyName("routing_number")]
     [Description("Routing number of the bank account")]
     [WriteOnly]
-    public string RoutingNumber { get; set; } = string.Empty;
+    public string? RoutingNumber { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonPropertyName("account_type")]
     [Description("Type of the bank account")]
     [WriteOnly]
-    public string Type { get; set; } = string.Empty;
+    public string? AccountType { get; set; }   
 
-    [JsonPropertyName("subtype")]
+    [JsonPropertyName("account_subtype")]
     [Description("Subtype of the bank account")]
-    public string Subtype { get; set; } = string.Empty;
+    [Nullable(true)]
+    public string? AccountSubtype { get; set; }
+
+    [JsonPropertyName("priority")]
+    [Description("Priority of the bank account")]
+    [Nullable(true)]
+    public int? Priority { get; set; }
+
+    [JsonPropertyName("amount")]
+    [Description("Amount of the bank account")]
+    [Nullable(true)]
+    public string? Amount { get; set; }
+
+    [JsonPropertyName("percentage")]
+    [Description("Percentage of the bank account")]
+    [Nullable(true)]
+    public string? Percentage { get; set; }
 }

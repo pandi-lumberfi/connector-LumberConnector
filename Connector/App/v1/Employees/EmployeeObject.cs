@@ -131,6 +131,46 @@ public class EmployeeObject
     [Description("Pay Frequency")]
     [Nullable(true)]
     public string? PayFrequency { get; init; }
+
+    [JsonPropertyName("department")]
+    [Description("Department")]
+    [Nullable(true)]
+    public Department? Department { get; init; }
+
+    [JsonPropertyName("job_classification")]
+    [Description("Job Classification")]
+    [Nullable(true)]
+    public JobClassification? JobClassification { get; init; }
+
+    [JsonPropertyName("job_level")]
+    [Description("Job Level")]
+    [Nullable(true)]
+    public JobLevel? JobLevel { get; init; }
+
+    [JsonPropertyName("union")]
+    [Description("Union details")]
+    [Nullable(true)]
+    public Union? Union { get; init; }
+
+    [JsonPropertyName("employee_class")]
+    [Description("Employee Class")]
+    [Nullable(true)]
+    public EmployeeClass? EmployeeClass { get; init; }
+
+    [JsonPropertyName("comp_codes")]
+    [Description("Comp Code")]
+    [Nullable(true)]
+    public List<CompCode>? CompCodes { get; init; }
+
+    [JsonPropertyName("job_codes")]
+    [Description("Job Code")]
+    [Nullable(true)]
+    public List<JobCode>? JobCodes { get; init; }
+
+    [JsonPropertyName("workplaces")]
+    [Description("Workplace")]
+    [Nullable(true)]
+    public List<Workplace>? Workplaces { get; init; }
 }
 
 public class User

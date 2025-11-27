@@ -23,7 +23,7 @@ using Connector.App.v1.Branch.Create;
 using Connector.App.v1.Task.Create;
 using Connector.App.v1.Task.Update;
 using Connector.App.v1.Employees.CreatePaystub;
-
+using Connector.App.v1.Employees.AddBankAccount;
 namespace Connector.Client;
 
 /// <summary>
@@ -147,6 +147,22 @@ public class ApiClient
             Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<CreatePaystubEmployeesActionOutput>(
                 new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 WriteIndented = true },cancellationToken) : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+    internal async Task<ApiResponse<AddBankAccountEmployeesActionOutput>> AddBankAccount(string relativeUrl, AddBankAccountEmployeesActionInput input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to add bank account. Status Code: {response.StatusCode}");
+        }
+
+        return new ApiResponse<AddBankAccountEmployeesActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<AddBankAccountEmployeesActionOutput>(cancellationToken: cancellationToken) : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
     }

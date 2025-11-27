@@ -221,6 +221,14 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "AddBankAccountEmployeesConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Action Processor Configuration",
@@ -635,24 +643,489 @@
               },
               "department": {
                 "type": [
-                  "string",
+                  "object",
                   "null"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "ID of the department"
+                  },
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the department"
+                  },
+                  "code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code of the department"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the department"
+                  },
+                  "active": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Is the department active?"
+                  }
+                },
+                "required": [
+                  "id"
                 ],
                 "description": "Department"
               },
               "branch": {
                 "type": [
-                  "string",
+                  "object",
                   "null"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "ID of the branch"
+                  },
+                  "branch_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the branch"
+                  },
+                  "legal_address": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_line1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 1",
+                        "writeOnly": true
+                      },
+                      "street_line2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street address line 2",
+                        "writeOnly": true
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "City name",
+                        "writeOnly": true
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "State or region",
+                        "writeOnly": true
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Country code"
+                      },
+                      "postal_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Postal code"
+                      },
+                      "latitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Latitude coordinate"
+                      },
+                      "longitude": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Longitude coordinate"
+                      }
+                    },
+                    "description": "Legal address of the branch"
+                  },
+                  "branch_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code of the branch"
+                  },
+                  "active": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Is the branch active?"
+                  },
+                  "legal_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Legal name of the branch"
+                  }
+                },
+                "required": [
+                  "id"
                 ],
                 "description": "Branch"
               },
-              "comp_code": {
+              "comp_codes": {
                 "type": [
-                  "string",
+                  "array",
                   "null"
                 ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID of the comp code"
+                    },
+                    "short_name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Short name of the comp code"
+                    },
+                    "state_code": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "State code of the comp code"
+                    },
+                    "class_code": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Class code of the comp code"
+                    },
+                    "work_description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Work description of the comp code"
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Description of the comp code"
+                    },
+                    "risk_rate": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Risk rate of the comp code"
+                    },
+                    "work_year": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "description": "Work year of the comp code"
+                    },
+                    "active": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ],
+                      "description": "Is the comp code active?"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "description": "Comp Code"
+                },
                 "description": "Comp Code"
+              },
+              "job_classification": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "ID of the job classification"
+                  },
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the job classification"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the job classification"
+                  },
+                  "active": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Is the job classification active?"
+                  },
+                  "alternate_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Alternate name of the job classification"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "description": "Job Classification"
+              },
+              "job_codes": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID of the job code"
+                    },
+                    "name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Name of the job code"
+                    },
+                    "code": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Code of the job code"
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Description of the job code"
+                    },
+                    "active": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ],
+                      "description": "Is the job code active?"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "description": "Job Code"
+                },
+                "description": "Job Code"
+              },
+              "job_level": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "ID of the job level"
+                  },
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the job level"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the job level"
+                  },
+                  "active": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Is the job level active?"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "description": "Job Level"
+              },
+              "employee_class": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "ID of the employee class"
+                  },
+                  "employee_class_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the employee class"
+                  },
+                  "employee_class_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code of the employee class"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the employee class"
+                  },
+                  "active": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Is the employee class active?"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "description": "Employee Class"
+              },
+              "workplaces": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID of the workplace"
+                    },
+                    "workplace_name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Name of the workplace"
+                    },
+                    "headquarters": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ],
+                      "description": "Is the workplace the headquarter?"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "description": "Workplaces"
+                },
+                "description": "Workplaces"
+              },
+              "union": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "ID of the union"
+                  },
+                  "union_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the union"
+                  },
+                  "union_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code of the union"
+                  },
+                  "active": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Is the union active?"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "description": "Union details"
               },
               "compensation_type": {
                 "type": [
@@ -764,56 +1237,68 @@
                   ],
                   "properties": {
                     "id": {
-                      "type": "string",
-                      "description": "ID of the bank account"
-                    },
-                    "status": {
-                      "type": "string",
-                      "description": "Status of the bank account"
-                    },
-                    "raw_bank_account": {
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "properties": {
-                        "institution_name": {
-                          "type": "string",
-                          "description": "Name of the financial institution"
-                        },
-                        "account_number": {
-                          "type": "string",
-                          "description": "Account number",
-                          "writeOnly": true
-                        },
-                        "account_number_last_four": {
-                          "type": "string",
-                          "description": "Last four digits of the account number",
-                          "writeOnly": true
-                        },
-                        "routing_number": {
-                          "type": "string",
-                          "description": "Routing number of the bank account",
-                          "writeOnly": true
-                        },
-                        "type": {
-                          "type": "string",
-                          "description": "Type of the bank account",
-                          "writeOnly": true
-                        },
-                        "subtype": {
-                          "type": "string",
-                          "description": "Subtype of the bank account"
-                        }
-                      },
-                      "description": "Raw bank account details"
-                    },
-                    "employee": {
                       "type": [
                         "string",
                         "null"
                       ],
-                      "description": "Employee ID associated with the bank account"
+                      "description": "ID of the bank account"
+                    },
+                    "status": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Status of the bank account"
+                    },
+                    "institution_name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Name of the financial institution"
+                    },
+                    "account_number": {
+                      "type": "string",
+                      "description": "Account number",
+                      "writeOnly": true
+                    },
+                    "routing_number": {
+                      "type": "string",
+                      "description": "Routing number of the bank account",
+                      "writeOnly": true
+                    },
+                    "account_type": {
+                      "type": "string",
+                      "description": "Type of the bank account",
+                      "writeOnly": true
+                    },
+                    "account_subtype": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Subtype of the bank account"
+                    },
+                    "priority": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "description": "Priority of the bank account"
+                    },
+                    "amount": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Amount of the bank account"
+                    },
+                    "percentage": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Percentage of the bank account"
                     }
                   },
                   "description": "List of bank accounts"
@@ -1593,6 +2078,379 @@
                       "null"
                     ],
                     "description": "Pay Frequency"
+                  },
+                  "department": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the department"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the department"
+                      },
+                      "code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the department"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the department"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the department active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Department"
+                  },
+                  "job_classification": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the job classification"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the job classification"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the job classification"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the job classification active?"
+                      },
+                      "alternate_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Alternate name of the job classification"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Job Classification"
+                  },
+                  "job_level": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the job level"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the job level"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the job level"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the job level active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Job Level"
+                  },
+                  "union": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the union"
+                      },
+                      "union_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the union"
+                      },
+                      "union_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the union"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the union active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Union details"
+                  },
+                  "employee_class": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the employee class"
+                      },
+                      "employee_class_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the employee class"
+                      },
+                      "employee_class_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the employee class"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the employee class"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the employee class active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Employee Class"
+                  },
+                  "comp_codes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the comp code"
+                        },
+                        "short_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Short name of the comp code"
+                        },
+                        "state_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "State code of the comp code"
+                        },
+                        "class_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Class code of the comp code"
+                        },
+                        "work_description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Work description of the comp code"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description of the comp code"
+                        },
+                        "risk_rate": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Risk rate of the comp code"
+                        },
+                        "work_year": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "description": "Work year of the comp code"
+                        },
+                        "active": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the comp code active?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Comp Code"
+                    },
+                    "description": "Comp Code"
+                  },
+                  "job_codes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the job code"
+                        },
+                        "name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name of the job code"
+                        },
+                        "code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Code of the job code"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description of the job code"
+                        },
+                        "active": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the job code active?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Job Code"
+                    },
+                    "description": "Job Code"
+                  },
+                  "workplaces": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the workplace"
+                        },
+                        "workplace_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name of the workplace"
+                        },
+                        "headquarters": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the workplace the headquarter?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Workplace"
+                    },
+                    "description": "Workplace"
                   }
                 },
                 "required": [
@@ -2012,6 +2870,379 @@
                       "null"
                     ],
                     "description": "Pay Frequency"
+                  },
+                  "department": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the department"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the department"
+                      },
+                      "code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the department"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the department"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the department active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Department"
+                  },
+                  "job_classification": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the job classification"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the job classification"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the job classification"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the job classification active?"
+                      },
+                      "alternate_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Alternate name of the job classification"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Job Classification"
+                  },
+                  "job_level": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the job level"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the job level"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the job level"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the job level active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Job Level"
+                  },
+                  "union": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the union"
+                      },
+                      "union_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the union"
+                      },
+                      "union_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the union"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the union active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Union details"
+                  },
+                  "employee_class": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the employee class"
+                      },
+                      "employee_class_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the employee class"
+                      },
+                      "employee_class_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the employee class"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the employee class"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the employee class active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Employee Class"
+                  },
+                  "comp_codes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the comp code"
+                        },
+                        "short_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Short name of the comp code"
+                        },
+                        "state_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "State code of the comp code"
+                        },
+                        "class_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Class code of the comp code"
+                        },
+                        "work_description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Work description of the comp code"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description of the comp code"
+                        },
+                        "risk_rate": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Risk rate of the comp code"
+                        },
+                        "work_year": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "description": "Work year of the comp code"
+                        },
+                        "active": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the comp code active?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Comp Code"
+                    },
+                    "description": "Comp Code"
+                  },
+                  "job_codes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the job code"
+                        },
+                        "name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name of the job code"
+                        },
+                        "code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Code of the job code"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description of the job code"
+                        },
+                        "active": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the job code active?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Job Code"
+                    },
+                    "description": "Job Code"
+                  },
+                  "workplaces": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the workplace"
+                        },
+                        "workplace_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name of the workplace"
+                        },
+                        "headquarters": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the workplace the headquarter?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Workplace"
+                    },
+                    "description": "Workplace"
                   }
                 },
                 "required": [
@@ -2490,6 +3721,379 @@
                       "null"
                     ],
                     "description": "Pay Frequency"
+                  },
+                  "department": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the department"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the department"
+                      },
+                      "code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the department"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the department"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the department active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Department"
+                  },
+                  "job_classification": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the job classification"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the job classification"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the job classification"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the job classification active?"
+                      },
+                      "alternate_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Alternate name of the job classification"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Job Classification"
+                  },
+                  "job_level": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the job level"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the job level"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the job level"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the job level active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Job Level"
+                  },
+                  "union": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the union"
+                      },
+                      "union_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the union"
+                      },
+                      "union_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the union"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the union active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Union details"
+                  },
+                  "employee_class": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the employee class"
+                      },
+                      "employee_class_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the employee class"
+                      },
+                      "employee_class_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the employee class"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the employee class"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the employee class active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Employee Class"
+                  },
+                  "comp_codes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the comp code"
+                        },
+                        "short_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Short name of the comp code"
+                        },
+                        "state_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "State code of the comp code"
+                        },
+                        "class_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Class code of the comp code"
+                        },
+                        "work_description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Work description of the comp code"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description of the comp code"
+                        },
+                        "risk_rate": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Risk rate of the comp code"
+                        },
+                        "work_year": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "description": "Work year of the comp code"
+                        },
+                        "active": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the comp code active?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Comp Code"
+                    },
+                    "description": "Comp Code"
+                  },
+                  "job_codes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the job code"
+                        },
+                        "name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name of the job code"
+                        },
+                        "code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Code of the job code"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description of the job code"
+                        },
+                        "active": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the job code active?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Job Code"
+                    },
+                    "description": "Job Code"
+                  },
+                  "workplaces": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the workplace"
+                        },
+                        "workplace_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name of the workplace"
+                        },
+                        "headquarters": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the workplace the headquarter?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Workplace"
+                    },
+                    "description": "Workplace"
                   }
                 },
                 "required": [
@@ -2909,6 +4513,379 @@
                       "null"
                     ],
                     "description": "Pay Frequency"
+                  },
+                  "department": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the department"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the department"
+                      },
+                      "code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the department"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the department"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the department active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Department"
+                  },
+                  "job_classification": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the job classification"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the job classification"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the job classification"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the job classification active?"
+                      },
+                      "alternate_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Alternate name of the job classification"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Job Classification"
+                  },
+                  "job_level": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the job level"
+                      },
+                      "name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the job level"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the job level"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the job level active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Job Level"
+                  },
+                  "union": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the union"
+                      },
+                      "union_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the union"
+                      },
+                      "union_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the union"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the union active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Union details"
+                  },
+                  "employee_class": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "ID of the employee class"
+                      },
+                      "employee_class_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Name of the employee class"
+                      },
+                      "employee_class_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Code of the employee class"
+                      },
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Description of the employee class"
+                      },
+                      "active": {
+                        "type": [
+                          "boolean",
+                          "null"
+                        ],
+                        "description": "Is the employee class active?"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "description": "Employee Class"
+                  },
+                  "comp_codes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the comp code"
+                        },
+                        "short_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Short name of the comp code"
+                        },
+                        "state_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "State code of the comp code"
+                        },
+                        "class_code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Class code of the comp code"
+                        },
+                        "work_description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Work description of the comp code"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description of the comp code"
+                        },
+                        "risk_rate": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "description": "Risk rate of the comp code"
+                        },
+                        "work_year": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "description": "Work year of the comp code"
+                        },
+                        "active": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the comp code active?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Comp Code"
+                    },
+                    "description": "Comp Code"
+                  },
+                  "job_codes": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the job code"
+                        },
+                        "name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name of the job code"
+                        },
+                        "code": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Code of the job code"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description of the job code"
+                        },
+                        "active": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the job code active?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Job Code"
+                    },
+                    "description": "Job Code"
+                  },
+                  "workplaces": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the workplace"
+                        },
+                        "workplace_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name of the workplace"
+                        },
+                        "headquarters": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Is the workplace the headquarter?"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "description": "Workplace"
+                    },
+                    "description": "Workplace"
                   }
                 },
                 "required": [
@@ -3517,6 +5494,143 @@
                 "required": [
                   "id"
                 ]
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Add Bank Account",
+              "urlPart": "add-bank-account",
+              "key": "add-bank-account",
+              "description": "AddBankAccountEmployeesAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "AddBankAccountEmployeesConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "ID of the bank account"
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Status of the bank account"
+                  },
+                  "institution_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the financial institution"
+                  },
+                  "account_number": {
+                    "type": "string",
+                    "description": "Account number",
+                    "writeOnly": true
+                  },
+                  "routing_number": {
+                    "type": "string",
+                    "description": "Routing number of the bank account",
+                    "writeOnly": true
+                  },
+                  "account_type": {
+                    "type": "string",
+                    "description": "Type of the bank account",
+                    "writeOnly": true
+                  },
+                  "account_subtype": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Subtype of the bank account"
+                  },
+                  "priority": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "description": "Priority of the bank account"
+                  },
+                  "amount": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Amount of the bank account"
+                  },
+                  "percentage": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Percentage of the bank account"
+                  }
+                }
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "ID of the bank account"
+                  }
+                }
               },
               "failureSchema": {
                 "type": "object",

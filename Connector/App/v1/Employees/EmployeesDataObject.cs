@@ -86,17 +86,47 @@ public class EmployeesDataObject
     [JsonPropertyName("department")]
     [Description("Department")]
     [Nullable(true)]
-    public string? Department { get; init; }
+    public Department? Department { get; init; }
 
     [JsonPropertyName("branch")]
     [Description("Branch")]
     [Nullable(true)]
-    public string? Branch { get; init; }
+    public Branch? Branch { get; init; }
 
-    [JsonPropertyName("comp_code")]
+    [JsonPropertyName("comp_codes")]
     [Description("Comp Code")]
     [Nullable(true)]
-    public string? CompCode { get; init; }
+    public List<CompCode>? CompCodes { get; init; }
+
+    [JsonPropertyName("job_classification")]
+    [Description("Job Classification")]
+    [Nullable(true)]
+    public JobClassification? JobClassification { get; init; }
+
+    [JsonPropertyName("job_codes")]
+    [Description("Job Code")]
+    [Nullable(true)]
+    public List<JobCode>? JobCodes { get; init; }
+
+    [JsonPropertyName("job_level")]
+    [Description("Job Level")]
+    [Nullable(true)]
+    public JobLevel? JobLevel { get; init; }
+
+    [JsonPropertyName("employee_class")]
+    [Description("Employee Class")]
+    [Nullable(true)]
+    public EmployeeClass? EmployeeClass { get; init; }
+
+    [JsonPropertyName("workplaces")]
+    [Description("Workplaces")]
+    [Nullable(true)]
+    public List<Workplace>? Workplaces { get; init; }
+
+    [JsonPropertyName("union")]
+    [Description("Union details")]
+    [Nullable(true)]
+    public Union? Union { get; init; }
 
     [JsonPropertyName("compensation_type")]
     [Description("Compensation Type")]
