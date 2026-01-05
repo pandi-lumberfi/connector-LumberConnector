@@ -43,15 +43,15 @@ public class EmployeesDataObject
     [Required]
     public required UserData User { get; init; }
 
-    [JsonPropertyName("employee_id")]
-    [Description("Employee ID")]
+    [JsonPropertyName("employee_code")]
+    [Description("Employee Code")]
     [Nullable(true)]
-    public string? EmployeeId { get; init; }
+    public string? EmployeeCode { get; init; }
 
-    [JsonPropertyName("company_user_type")]
-    [Description("Company user type")]
+    [JsonPropertyName("employee_type")]
+    [Description("Employee type")]
     [Required]
-    public required string CompanyUserType { get; init; }
+    public required string EmployeeType { get; init; }
 
     [JsonPropertyName("employment_type")]
     [Description("Employment type")]
@@ -83,50 +83,46 @@ public class EmployeesDataObject
     [Nullable(true)]
     public DateTime? EndDate { get; init; }
 
-    [JsonPropertyName("department")]
-    [Description("Department")]
+    [JsonPropertyName("department_id")]
+    [Description("Department ID")]
     [Nullable(true)]
-    public Department? Department { get; init; }
+    public string? DepartmentId { get; set; }
 
-    [JsonPropertyName("branch")]
-    [Description("Branch")]
+    [JsonPropertyName("department_code")]
+    [Description("Department Code")]
     [Nullable(true)]
-    public Branch? Branch { get; init; }
+    public string? DepartmentCode { get; set; }
 
-    [JsonPropertyName("comp_codes")]
-    [Description("Comp Code")]
+    [JsonPropertyName("branch_id")]
+    [Description("Branch ID")]
     [Nullable(true)]
-    public List<CompCode>? CompCodes { get; init; }
+    public string? BranchId { get; set; }
 
-    [JsonPropertyName("job_classification")]
-    [Description("Job Classification")]
+    [JsonPropertyName("branch_code")]
+    [Description("Branch code")]
     [Nullable(true)]
-    public JobClassification? JobClassification { get; init; }
+    public string? BranchCode { get; set; }
 
-    [JsonPropertyName("job_codes")]
-    [Description("Job Code")]
+    [JsonPropertyName("employee_class_id")]
+    [Description("Employee Class ID")]
     [Nullable(true)]
-    public List<JobCode>? JobCodes { get; init; }
+    public string? EmployeeClassId { get; set; }
 
-    [JsonPropertyName("job_level")]
-    [Description("Job Level")]
+    [JsonPropertyName("employee_class_code")]
+    [Description("Employee Class Code")]
     [Nullable(true)]
-    public JobLevel? JobLevel { get; init; }
+    public string? EmployeeClassCode { get; set; }
 
-    [JsonPropertyName("employee_class")]
-    [Description("Employee Class")]
+    [JsonPropertyName("job_classification_id")]
+    [Description("Job Classification ID")]
     [Nullable(true)]
-    public EmployeeClass? EmployeeClass { get; init; }
+    public string? JobClassificationId { get; set; }
 
-    [JsonPropertyName("workplaces")]
-    [Description("Workplaces")]
+    [JsonPropertyName("job_classification_code")]
+    [Description("Job Classification Code")]
     [Nullable(true)]
-    public List<Workplace>? Workplaces { get; init; }
+    public string? JobClassificationCode { get; set; }
 
-    [JsonPropertyName("union")]
-    [Description("Union details")]
-    [Nullable(true)]
-    public Union? Union { get; init; }
 
     [JsonPropertyName("compensation_type")]
     [Description("Compensation Type")]
@@ -159,6 +155,16 @@ public class EmployeesDataObject
     [Description("List of user pay rates")]
     [Nullable(true)]
     public List<UserPayRate>? UserPayRates { get; set; } = new List<UserPayRate>();
+
+    [JsonPropertyName("comp_codes")]
+    [Description("List of comp codes")]
+    [Nullable(true)]
+    public List<CompCode>? CompCodes { get; set; } = new List<CompCode>();
+
+    [JsonPropertyName("job_codes")]
+    [Description("List of job codes")]
+    [Nullable(true)]
+    public List<JobCode>? JobCodes { get; set; } = new List<JobCode>();
 
     [JsonPropertyName("user_tax_with_holdings")]
     [Description("List of user tax with holdings")]

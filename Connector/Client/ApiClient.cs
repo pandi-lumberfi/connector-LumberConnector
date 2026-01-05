@@ -268,6 +268,50 @@ public class ApiClient
         return await response.Content.ReadFromJsonAsync<UserLeaveBalance>(cancellationToken: cancellationToken);
     }
 
+    public async IAsyncEnumerable<CompCode> GetCompCodes<CompCode>(
+        string relativeUrl, 
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+            
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<CompCode>(stream))
+        {
+            if (record == null)
+            {
+                continue;
+            }
+            
+            yield return record;
+        }
+    }
+
+    public async IAsyncEnumerable<JobCode> GetJobCodes<JobCode>(
+        string relativeUrl, 
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+            
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<JobCode>(stream))
+        {
+            if (record == null)
+            {
+                continue;
+            }
+            
+            yield return record;
+        }
+    }
+
     public async Task<ApiResponse<PaginatedResponse<ProjectDataObject>>> GetProjectRecords<ProjectDataObject>(
         string relativeUrl,
         int page,

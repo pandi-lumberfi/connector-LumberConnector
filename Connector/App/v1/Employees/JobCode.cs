@@ -12,25 +12,23 @@ public class JobCode
     [Required]
     public string Id { get; set; } = string.Empty;
 
-    [JsonPropertyName("name")]
-    [Description("Name of the job code")]
+    [JsonPropertyName("company_user_id")]
+    [Description("Company user ID")]
     [Nullable(true)]
-    public string? Name { get; set; } = string.Empty;
+    public string? CompanyUserId { get; set; } = string.Empty;
 
-    [JsonPropertyName("code")]
-    [Description("Code of the job code")]
+    [JsonPropertyName("job_code_id")]
+    [Description("Job code ID")]
     [Nullable(true)]
-    public string? Code { get; set; } = string.Empty;
+    public string? JobCodeId { get; set; } = string.Empty;
 
-    [JsonPropertyName("description")]
-    [Description("Description of the job code")]
+    [JsonPropertyName("job_code_code")]
+    [Description("Job code code")]
     [Nullable(true)]
-    public string? Description { get; set; } = string.Empty;
+    public string? JobCodeCode { get; set; } = string.Empty;
 
     [JsonPropertyName("active")]
     [Description("Is the job code active?")]
     [Nullable(true)]
     public bool? Active { get; set; } = true;
-
-    
 }

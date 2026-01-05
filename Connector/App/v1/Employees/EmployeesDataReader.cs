@@ -61,7 +61,7 @@ public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
             // Return the data objects to Cache.
             foreach (var item in response.Data.Items)
             {
-                if (item.PayrollEnabled && item.SourceSystem != null) {
+                if (item.PayrollEnabled) {
                 try
                     {
                         var bankAccounts = new List<BankAccount>();
@@ -72,13 +72,14 @@ public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
                             bankAccounts.Add(bankAccount);
                         }
 
-                        var userBenefits = new List<UserBenefit>();
-                        await foreach (var userBenefit in _apiClient.GetUserBenefits<UserBenefit>(
-                            relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users/" + item.Id + "/benefits",
-                            cancellationToken: cancellationToken))
-                        {
-                            userBenefits.Add(userBenefit);
-                        }
+                        // TODO: Uncomment this when the API is implemented
+                        // var userBenefits = new List<UserBenefit>();
+                        // await foreach (var userBenefit in _apiClient.GetUserBenefits<UserBenefit>(
+                        //     relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users/" + item.Id + "/benefits",
+                        //     cancellationToken: cancellationToken))
+                        // {
+                        //     userBenefits.Add(userBenefit);
+                        // }
 
                         var userPayRates = new List<UserPayRate>();
                         await foreach (var userPayRate in _apiClient.GetUserPayRates<UserPayRate>(
@@ -95,24 +96,44 @@ public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
                         {
                             userTaxWithHoldings.Add(userTaxWithHolding);
                         }       
-                        
+
+                        var compCodes = new List<CompCode>();
+                        await foreach (var compCode in _apiClient.GetCompCodes<CompCode>(
+                            relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users/" + item.Id + "/comp-codes",
+                            cancellationToken: cancellationToken))
+                        {
+                            compCodes.Add(compCode);
+                        }
+
+                        var jobCodes = new List<JobCode>();
+                        await foreach (var jobCode in _apiClient.GetJobCodes<JobCode>(
+                            relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users/" + item.Id + "/job-codes",
+                            cancellationToken: cancellationToken))
+                        {
+                            jobCodes.Add(jobCode);
+                        }
+
                         item.BankAccounts = bankAccounts;
-                        item.UserBenefits = userBenefits;
+                        // item.UserBenefits = userBenefits;
                         item.UserPayRates = userPayRates;
                         item.UserTaxWithHoldings = userTaxWithHoldings;
+                        item.CompCodes = compCodes;
+                        item.JobCodes = jobCodes;
                     }
                     catch (Exception exception)
                     {
                         _logger.LogError(exception, "Exception while processing data object 'EmployeesDataObject'");
                     }
                 }
-                var userLeaveBalance = await _apiClient.GetUserLeaveBalance<UserLeaveBalance>(
-                    relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId + "/users/" + item.Id + "/leave_balance",
-                    cancellationToken: cancellationToken)
-                    .ConfigureAwait(false);
-                if (userLeaveBalance != null) {
-                    item.UserLeaveBalance = userLeaveBalance;
-                }
+                
+                // TODO: Uncomment this when the API is implemented
+                // var userLeaveBalance = await _apiClient.GetUserLeaveBalance<UserLeaveBalance>(
+                //     relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId + "/users/" + item.Id + "/leave_balance_summary",
+                //     cancellationToken: cancellationToken)
+                //     .ConfigureAwait(false);
+                // if (userLeaveBalance != null) {
+                //     item.UserLeaveBalance = userLeaveBalance;
+                // }
 
                 yield return item;
 

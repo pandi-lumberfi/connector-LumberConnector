@@ -12,12 +12,12 @@ public class Department
     [Required]
     public string Id { get; set; } = string.Empty;
 
-    [JsonPropertyName("name")]
+    [JsonPropertyName("department_name")]
     [Description("Name of the department")]
     [Nullable(true)]
     public string? Name { get; set; } = string.Empty;
 
-    [JsonPropertyName("code")]
+    [JsonPropertyName("department_code")]
     [Description("Code of the department")]
     [Nullable(true)]
     public string? Code { get; set; } = string.Empty;

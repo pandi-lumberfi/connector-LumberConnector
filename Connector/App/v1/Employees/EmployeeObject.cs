@@ -31,10 +31,10 @@ public class EmployeeObject
     [Description("User details")]
     public User? User { get; init; } = new User();
 
-    [JsonPropertyName("employee_id")]
-    [Description("Employee ID")]
+    [JsonPropertyName("employee_code")]
+    [Description("Employee Code")]
     [Nullable(true)]
-    public string? EmployeeId { get; init; }
+    public string? EmployeeCode { get; init; }
 
     [JsonPropertyName("company_user_type")]
     [Description("Company user type")]
@@ -178,7 +178,6 @@ public class User
     [JsonPropertyName("first_name")]
     [Description("First name of the Employee")]
     [Required]
-    [WriteOnly]
     public string? FirstName { get; init; }
 
     [JsonPropertyName("middle_name")]
@@ -189,7 +188,6 @@ public class User
     [JsonPropertyName("last_name")]
     [Description("Last name of the Employee")]
     [Required]
-    [WriteOnly]
     public string? LastName { get; init; }
 
     [JsonPropertyName("gender")]

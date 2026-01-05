@@ -18,282 +18,290 @@ using Xchange.Connector.SDK.CacheWriter;
 public class TimesheetDataObject
 {
     [JsonPropertyName("id")]
-    [Description("Unique identifier for the timesheet record")]
-    [Required]
-    public required Guid Id { get; init; }
+    [Description("Unique identifier for the timesheet entry")]
+    public required Guid Id { get; set; }
 
-    [JsonPropertyName("user_id")]
-    [Description("Unique identifier for the user")]
-    [Nullable(true)]
-    public string? UserId { get; set; }
+    [JsonPropertyName("company_id")]
+    [Description("Identifier for the company")]
+    public string? CompanyId { get; set; }
 
-    [JsonPropertyName("username")]
-    [Description("Username/email of the user")]
-    [Nullable(true)]
-    public string? Username { get; set; }
+    [JsonPropertyName("employee_id")]
+    [Description("Identifier for the employee")]
+    public string? EmployeeId { get; set; }
 
-    [JsonPropertyName("first_name")] 
-    [Description("User's first name")]
-    [Nullable(true)]
-    public string? FirstName { get; set; }
+    [JsonPropertyName("employee_code")]
+    [Description("Code for the employee")]
+    public string? EmployeeCode { get; set; }
 
-    [JsonPropertyName("middle_name")]
-    [Description("User's middle name")]
-    [Nullable(true)]
-    public string? MiddleName { get; set; }
+    [JsonPropertyName("department_id")]
+    [Description("Identifier for the department")]
+    public string? DepartmentId { get; set; }
 
-    [JsonPropertyName("last_name")]
-    [Description("User's last name")]
-    [Nullable(true)]
-    public string? LastName { get; set; }
+    [JsonPropertyName("department_code")]
+    [Description("Code for the department")]
+    public string? DepartmentCode { get; set; }
 
-    [JsonPropertyName("user_active")]
-    [Description("Whether the user is active")]
-    [Nullable(true)]
-    public bool? UserActive { get; set; }
+    [JsonPropertyName("project_group_id")]
+    [Description("Identifier for the project group")]
+    public string? ProjectGroupId { get; set; }
 
-    [JsonPropertyName("phone")]
-    [Description("User's phone number")]
-    [Nullable(true)]
-    public string? Phone { get; set; }
+    [JsonPropertyName("project_group_code")]
+    [Description("Code for the project group")]
+    public string? ProjectGroupCode { get; set; }
 
-    [JsonPropertyName("email")]
-    [Description("User's email address")]
-    [Nullable(true)]
-    public string? Email { get; set; }
+    [JsonPropertyName("project_id")]
+    [Description("Identifier for the project")]
+    public string? ProjectId { get; set; }
 
-    [JsonPropertyName("employment_type")]
-    [Description("Type of employment (e.g. EMPLOYEE)")]
-    [Nullable(true)]
-    public string? EmploymentType { get; set; }
+    [JsonPropertyName("project_code")]
+    [Description("Code for the project")]
+    public string? ProjectCode { get; set; }
 
-    [JsonPropertyName("company_user_start_date")]
-    [Description("Date when user started with company")]
-    [Nullable(true)]
-    public string? CompanyUserStartDate { get; set; }
+    [JsonPropertyName("project_type")]
+    [Description("Type of project")]
+    public string? ProjectType { get; set; }
 
-    [JsonPropertyName("company_user_end_date")]
-    [Description("Date when user ended with company")]
-    [Nullable(true)]
-    public string? CompanyUserEndDate { get; set; }
+    [JsonPropertyName("sub_project_id")]
+    [Description("Identifier for the sub-project")]
+    public string? SubProjectId { get; set; }
 
-    [JsonPropertyName("base_pay_rate")]
-    [Description("Base pay rate for the user")]
-    [Nullable(true)]
-    public double? BasePayRate { get; set; }
+    [JsonPropertyName("sub_project_name")]
+    [Description("Name of the sub-project")]
+    public string? SubProjectName { get; set; }
+
+    [JsonPropertyName("task_id")]
+    [Description("Identifier for the task")]
+    public string? TaskId { get; set; }
+
+    [JsonPropertyName("task_code")]
+    [Description("Code for the task")]
+    public string? TaskCode { get; set; }
+
+    [JsonPropertyName("cost_code_id")]
+    [Description("Identifier for the cost code")]
+    public string? CostCodeId { get; set; }
+
+    [JsonPropertyName("cost_code_code")]
+    [Description("Code for the cost code")]
+    public string? CostCodeCode { get; set; }
+
+    [JsonPropertyName("cost_type_id")]
+    [Description("Identifier for the cost type")]
+    public string? CostTypeId { get; set; }
+
+    [JsonPropertyName("cost_type_name")]
+    [Description("Name of the cost type")]
+    public string? CostTypeName { get; set; }
+
+    [JsonPropertyName("service_order_type_id")]
+    [Description("Identifier for the service order type")]
+    public string? ServiceOrderTypeId { get; set; }
+
+    [JsonPropertyName("service_order_type_code")]
+    [Description("Code for the service order type")]
+    public string? ServiceOrderTypeCode { get; set; }
+
+    [JsonPropertyName("service_order_id")]
+    [Description("Identifier for the service order")]
+    public string? ServiceOrderId { get; set; }
+
+    [JsonPropertyName("service_order_code")]
+    [Description("Code for the service order")]
+    public string? ServiceOrderCode { get; set; }
+
+    [JsonPropertyName("appointment_id")]
+    [Description("Identifier for the appointment")]
+    public string? AppointmentId { get; set; }
+
+    [JsonPropertyName("appointment_code")]
+    [Description("Code for the appointment")]
+    public string? AppointmentCode { get; set; }
+
+    [JsonPropertyName("equipment_id")]
+    [Description("Identifier for the equipment")]
+    public string? EquipmentId { get; set; }
+
+    [JsonPropertyName("equipment_code")]
+    [Description("Code for the equipment")]
+    public string? EquipmentCode { get; set; }
+
+    [JsonPropertyName("inventory_item_id")]
+    [Description("Identifier for the inventory item")]
+    public string? InventoryItemId { get; set; }
+
+    [JsonPropertyName("inventory_item_code")]
+    [Description("Code for the inventory item")]
+    public string? InventoryItemCode { get; set; }
+
+    [JsonPropertyName("worker_comp_code_id")]
+    [Description("Identifier for the worker compensation code")]
+    public string? WorkerCompCodeId { get; set; }
+
+    [JsonPropertyName("worker_comp_code_code")]
+    [Description("Code for the worker compensation code")]
+    public string? WorkerCompCodeCode { get; set; }
+
+    [JsonPropertyName("job_code_id")]
+    [Description("Identifier for the job code")]
+    public string? JobCodeId { get; set; }
+
+    [JsonPropertyName("job_code_code")]
+    [Description("Code for the job code")]
+    public string? JobCodeCode { get; set; }
+
+    [JsonPropertyName("job_level_id")]
+    [Description("Identifier for the job level")]
+    public string? JobLevelId { get; set; }
+
+    [JsonPropertyName("job_level_name")]
+    [Description("Name of the job level")]
+    public string? JobLevelName { get; set; }
+
+    [JsonPropertyName("classification_id")]
+    [Description("Identifier for the classification")]
+    public string? ClassificationId { get; set; }
+
+    [JsonPropertyName("classification_name")]
+    [Description("Name of the classification")]
+    public string? ClassificationName { get; set; }
+
+    [JsonPropertyName("shift_id")]
+    [Description("Identifier for the shift")]
+    public string? ShiftId { get; set; }
+
+    [JsonPropertyName("shift_name")]
+    [Description("Name of the shift")]
+    public string? ShiftName { get; set; }
 
     [JsonPropertyName("date_worked")]
-    [Description("Date the work was performed")]
-    [Nullable(true)]
-    public string? DateWorked { get; set; }
+    [Description("Date when work was performed")]
+    public DateTime? DateWorked { get; set; }
 
-    [JsonPropertyName("clockin_time")]
-    [Description("Time user clocked in")]
-    [Nullable(true)]
-    public string? ClockInTime { get; set; }
+    [JsonPropertyName("scheduled_start_time")]
+    [Description("Scheduled start time for the work")]
+    public DateTimeOffset? ScheduledStartTime { get; set; }
 
-    [JsonPropertyName("clockout_time")]
-    [Description("Time user clocked out")]
-    [Nullable(true)]
-    public string? ClockOutTime { get; set; }
+    [JsonPropertyName("scheduled_end_time")]
+    [Description("Scheduled end time for the work")]
+    public DateTimeOffset? ScheduledEndTime { get; set; }
 
-    [JsonPropertyName("travelled")]
-    [Description("Whether travel was involved")]
-    [Nullable(true)]
-    public bool? Travelled { get; set; }
+    [JsonPropertyName("actual_start_time")]
+    [Description("Actual start time for the work")]
+    public DateTimeOffset? ActualStartTime { get; set; }
 
-    [JsonPropertyName("travel_duration")]
-    [Description("Duration of travel in seconds")]
-    [Nullable(true)]
-    public double? TravelDuration { get; set; }
+    [JsonPropertyName("actual_end_time")]
+    [Description("Actual end time for the work")]
+    public DateTimeOffset? ActualEndTime { get; set; }
 
-    [JsonPropertyName("work_duration")]
-    [Description("Total duration of work in seconds")]
-    [Nullable(true)]
-    public double? WorkDuration { get; set; }
+    [JsonPropertyName("total_work_duration")]
+    [Description("Total duration of work")]
+    public decimal? TotalWorkDuration { get; set; }
 
     [JsonPropertyName("regular_work_duration")]
-    [Description("Duration of regular work hours in seconds")]
-    [Nullable(true)]
-    public double? RegularWorkDuration { get; set; }
+    [Description("Duration of regular work")]
+    public decimal? RegularWorkDuration { get; set; }
 
     [JsonPropertyName("overtime_duration")]
-    [Description("Duration of overtime in seconds")]
-    [Nullable(true)]
-    public double? OvertimeDuration { get; set; }
+    [Description("Duration of overtime work")]
+    public decimal? OvertimeDuration { get; set; }
 
     [JsonPropertyName("double_overtime_duration")]
-    [Description("Duration of double overtime in seconds")]
-    [Nullable(true)]
-    public double? DoubleOvertimeDuration { get; set; }
+    [Description("Duration of double overtime work")]
+    public decimal? DoubleOvertimeDuration { get; set; }
 
     [JsonPropertyName("meal_break_duration")]
-    [Description("Duration of meal breaks in seconds")]
-    [Nullable(true)]
-    public double? MealBreakDuration { get; set; }
+    [Description("Duration of meal break")]
+    public decimal? MealBreakDuration { get; set; }
 
     [JsonPropertyName("break_duration")]
-    [Description("Total duration of breaks in seconds")]
-    [Nullable(true)]
-    public double? BreakDuration { get; set; }
+    [Description("Total duration of breaks")]
+    public decimal? BreakDuration { get; set; }
 
     [JsonPropertyName("paid_break_duration")]
-    [Description("Duration of paid breaks in seconds")]
-    [Nullable(true)]
-    public double? PaidBreakDuration { get; set; }
+    [Description("Duration of paid breaks")]
+    public decimal? PaidBreakDuration { get; set; }
 
     [JsonPropertyName("unpaid_break_duration")]
-    [Description("Duration of unpaid breaks in seconds")]
-    [Nullable(true)]
-    public double? UnpaidBreakDuration { get; set; }
+    [Description("Duration of unpaid breaks")]
+    public decimal? UnpaidBreakDuration { get; set; }
+
+    [JsonPropertyName("travelled")]
+    [Description("Indicates if travel occurred")]
+    public bool? Travelled { get; set; }
 
     [JsonPropertyName("miles_travelled")]
-    [Description("Miles travelled for work")]
-    [Nullable(true)]
-    public double? MilesTravelled { get; set; }
+    [Description("Number of miles travelled")]
+    public decimal? MilesTravelled { get; set; }
 
-    [JsonPropertyName("injury")]
-    [Description("Whether an injury occurred")]
-    [Nullable(true)]
-    public bool? Injury { get; set; }
+    [JsonPropertyName("travel_duration")]
+    [Description("Duration of travel time")]
+    public decimal? TravelDuration { get; set; }
+
+    [JsonPropertyName("clockin_geofencing_distance")]
+    [Description("Distance from geofence when clocking in")]
+    public decimal? ClockinGeofencingDistance { get; set; }
+
+    [JsonPropertyName("clockout_geofencing_distance")]
+    [Description("Distance from geofence when clocking out")]
+    public decimal? ClockoutGeofencingDistance { get; set; }
+
+    [JsonPropertyName("project_geofencing_distance")]
+    [Description("Distance from project geofence")]
+    public decimal? ProjectGeofencingDistance { get; set; }
 
     [JsonPropertyName("status")]
-    [Description("Current status (e.g. CLOCKED_OUT)")]
-    [Nullable(true)]
+    [Description("Status of the timesheet entry")]
     public string? Status { get; set; }
 
     [JsonPropertyName("type")]
-    [Description("Type of timesheet (e.g. REGULAR)")]
-    [Nullable(true)]
+    [Description("Type of timesheet entry")]
     public string? Type { get; set; }
 
-    [JsonPropertyName("processed")]
-    [Description("Whether timesheet has been processed")]
-    [Nullable(true)]
-    public bool? Processed { get; set; }
-
-    [JsonPropertyName("project_id")]
-    [Description("Unique identifier for the project")]
-    [Nullable(true)]
-    public string? ProjectId { get; set; }
-
-    [JsonPropertyName("project_name")]
-    [Description("Name of the project")]
-    [Nullable(true)]
-    public string? ProjectName { get; set; }
-
-    [JsonPropertyName("budget")]
-    [Description("Project budget")]
-    [Nullable(true)]
-    public double? Budget { get; set; }
-
-    [JsonPropertyName("project_start_date")]
-    [Description("Project start date")]
-    [Nullable(true)]
-    public string? ProjectStartDate { get; set; }
-
-    [JsonPropertyName("project_end_date")]
-    [Description("Project end date")]
-    [Nullable(true)]
-    public string? ProjectEndDate { get; set; }
-
-    [JsonPropertyName("project_description")]
-    [Description("Description of the project")]
-    [Nullable(true)]
-    public string? ProjectDescription { get; set; }
-
-    [JsonPropertyName("project_active")]
-    [Description("Whether project is active")]
-    [Nullable(true)]
-    public bool? ProjectActive { get; set; }
-
-    [JsonPropertyName("project_code")]
-    [Description("Project code identifier")]
-    [Nullable(true)]
-    public string? ProjectCode { get; set; }
-
-    [JsonPropertyName("company_id")]
-    [Description("Unique identifier for the company")]
-    [Nullable(true)]
-    public string? CompanyId { get; set; }
-
-    [JsonPropertyName("company_legal_name")]
-    [Description("Legal name of the company")]
-    [Nullable(true)]
-    public string? CompanyLegalName { get; set; }
-
-    [JsonPropertyName("company_trade_name")]
-    [Description("Trade name of the company")]
-    [Nullable(true)]
-    public string? CompanyTradeName { get; set; }
-
-    [JsonPropertyName("company_company_name")]
-    [Description("Company name")]
-    [Nullable(true)]
-    public string? CompanyCompanyName { get; set; }
-
-    [JsonPropertyName("has_notes")]
-    [Description("Whether timesheet has notes")]
-    [Nullable(true)]
-    public bool? HasNotes { get; set; }
-
-    [JsonPropertyName("note_files_count")]
-    [Description("Number of note files")]
-    [Nullable(true)]
-    public int? NoteFilesCount { get; set; }
-
-    [JsonPropertyName("create_change_request")]
-    [Description("Whether to create change request")]
-    [Nullable(true)]
-    public bool? CreateChangeRequest { get; set; }
-
-    [JsonPropertyName("created_by_user_id")]
-    [Description("ID of user who created the record")]
-    [Nullable(true)]
-    public string? CreatedByUserId { get; set; }
-
-    [JsonPropertyName("created_by_username")]
-    [Description("Username of user who created the record")]
-    [Nullable(true)]
-    public string? CreatedByUsername { get; set; }
-
-    [JsonPropertyName("modified_by_user_id")]
-    [Description("ID of user who last modified the record")]
-    [Nullable(true)]
-    public string? ModifiedByUserId { get; set; }
-
-    [JsonPropertyName("modified_by_username")]
-    [Description("Username of user who last modified the record")]
-    [Nullable(true)]
-    public string? ModifiedByUsername { get; set; }
-
-    [JsonPropertyName("modified_by_first_name")]
-    [Description("First name of user who last modified the record")]
-    [Nullable(true)]
-    public string? ModifiedByFirstName { get; set; }
-
     [JsonPropertyName("per_diem")]
-    [Description("Whether per diem applies")]
-    [Nullable(true)]
+    [Description("Indicates if per diem applies")]
     public bool? PerDiem { get; set; }
 
     [JsonPropertyName("lodging")]
-    [Description("Whether lodging is included")]
-    [Nullable(true)]
+    [Description("Indicates if lodging applies")]
     public bool? Lodging { get; set; }
 
-    [JsonPropertyName("employee_id")]
-    [Description("Employee identifier")]
-    [Nullable(true)]
-    public string? EmployeeId { get; set; }
+    [JsonPropertyName("injury")]
+    [Description("Indicates if injury occurred")]
+    public bool? Injury { get; set; }
 
-    [JsonPropertyName("manual_time_card")]
-    [Description("Whether timecard was entered manually")]
-    [Nullable(true)]
-    public bool? ManualTimeCard { get; set; }
+    [JsonPropertyName("has_signature")]
+    [Description("Indicates if signature is present")]
+    public bool? HasSignature { get; set; }
 
-    [JsonPropertyName("allocation_done")]
-    [Description("Whether allocation is complete")]
-    [Nullable(true)]
-    public bool? AllocationDone { get; set; }
+    [JsonPropertyName("has_face_id")]
+    [Description("Indicates if face ID is present")]
+    public bool? HasFaceId { get; set; }
+
+    [JsonPropertyName("has_flagged_face_id")]
+    [Description("Indicates if flagged face ID is present")]
+    public bool? HasFlaggedFaceId { get; set; }
+
+    [JsonPropertyName("processed")]
+    [Description("Indicates if the entry has been processed")]
+    public bool? Processed { get; set; }
+
+    [JsonPropertyName("has_notes")]
+    [Description("Indicates if notes are present")]
+    public bool? HasNotes { get; set; }
+
+    [JsonPropertyName("note_files_count")]
+    [Description("Count of note files")]
+    public int? NoteFilesCount { get; set; }
+
+    [JsonPropertyName("created_mode")]
+    [Description("Mode in which the entry was created")]
+    public string? CreatedMode { get; set; }
+
+    [JsonPropertyName("created_on")]
+    [Description("Timestamp when the timesheet entry was created")]
+    public DateTimeOffset? CreatedOn { get; set; }
+
+    [JsonPropertyName("modified_on")]
+    [Description("Timestamp when the timesheet entry was last modified")]
+    public DateTimeOffset? ModifiedOn { get; set; }
 }

@@ -35,6 +35,7 @@ public class BankAccount
     [JsonPropertyName("account_type")]
     [Description("Type of the bank account")]
     [WriteOnly]
+    [Nullable(true)]
     public string? AccountType { get; set; }   
 
     [JsonPropertyName("account_subtype")]

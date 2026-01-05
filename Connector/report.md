@@ -6,12 +6,169 @@ Findings from the metadata extraction process.
 
 These changes to the Connector's metadata break how integrations could be leveraging the Connector. These changes are not safe to be applied to Xchange.
 
-No breaking changes found.
+- `app/1` (Data Object): `timesheet` `/properties/date_worked/#/None` Schema was simplified from allowing multiple schema types (Null,String to only allowing a single type (String).
+- `app/1` (Data Object): `timesheet` `/properties/travelled/#/None` Schema was simplified from allowing multiple schema types (Boolean,Null to only allowing a single type (Boolean).
+- `app/1` (Data Object): `timesheet` `/properties/travel_duration/#/None` Schema was simplified from allowing multiple schema types (Null,Number to only allowing a single type (Number).
+- `app/1` (Data Object): `timesheet` `/properties/regular_work_duration/#/None` Schema was simplified from allowing multiple schema types (Null,Number to only allowing a single type (Number).
+- `app/1` (Data Object): `timesheet` `/properties/overtime_duration/#/None` Schema was simplified from allowing multiple schema types (Null,Number to only allowing a single type (Number).
+- `app/1` (Data Object): `timesheet` `/properties/double_overtime_duration/#/None` Schema was simplified from allowing multiple schema types (Null,Number to only allowing a single type (Number).
+- `app/1` (Data Object): `timesheet` `/properties/meal_break_duration/#/None` Schema was simplified from allowing multiple schema types (Null,Number to only allowing a single type (Number).
+- `app/1` (Data Object): `timesheet` `/properties/break_duration/#/None` Schema was simplified from allowing multiple schema types (Null,Number to only allowing a single type (Number).
+- `app/1` (Data Object): `timesheet` `/properties/paid_break_duration/#/None` Schema was simplified from allowing multiple schema types (Null,Number to only allowing a single type (Number).
+- `app/1` (Data Object): `timesheet` `/properties/unpaid_break_duration/#/None` Schema was simplified from allowing multiple schema types (Null,Number to only allowing a single type (Number).
+- `app/1` (Data Object): `timesheet` `/properties/miles_travelled/#/None` Schema was simplified from allowing multiple schema types (Null,Number to only allowing a single type (Number).
+- `app/1` (Data Object): `timesheet` `/properties/injury/#/None` Schema was simplified from allowing multiple schema types (Boolean,Null to only allowing a single type (Boolean).
+- `app/1` (Data Object): `timesheet` `/properties/status/#/None` Schema was simplified from allowing multiple schema types (Null,String to only allowing a single type (String).
+- `app/1` (Data Object): `timesheet` `/properties/type/#/None` Schema was simplified from allowing multiple schema types (Null,String to only allowing a single type (String).
+- `app/1` (Data Object): `timesheet` `/properties/processed/#/None` Schema was simplified from allowing multiple schema types (Boolean,Null to only allowing a single type (Boolean).
+- `app/1` (Data Object): `timesheet` `/properties/project_id/#/None` Schema was simplified from allowing multiple schema types (Null,String to only allowing a single type (String).
+- `app/1` (Data Object): `timesheet` `/properties/project_code/#/None` Schema was simplified from allowing multiple schema types (Null,String to only allowing a single type (String).
+- `app/1` (Data Object): `timesheet` `/properties/company_id/#/None` Schema was simplified from allowing multiple schema types (Null,String to only allowing a single type (String).
+- `app/1` (Data Object): `timesheet` `/properties/has_notes/#/None` Schema was simplified from allowing multiple schema types (Boolean,Null to only allowing a single type (Boolean).
+- `app/1` (Data Object): `timesheet` `/properties/note_files_count/#/None` Schema was simplified from allowing multiple schema types (Integer,Null to only allowing a single type (Integer).
+- `app/1` (Data Object): `timesheet` `/properties/per_diem/#/None` Schema was simplified from allowing multiple schema types (Boolean,Null to only allowing a single type (Boolean).
+- `app/1` (Data Object): `timesheet` `/properties/lodging/#/None` Schema was simplified from allowing multiple schema types (Boolean,Null to only allowing a single type (Boolean).
+- `app/1` (Data Object): `timesheet` `/properties/employee_id/#/None` Schema was simplified from allowing multiple schema types (Null,String to only allowing a single type (String).
 
 ## Non-Breaking Changes
 
 These changes expand or maintain the Connector's metadata and are safe to be applied to Xchange.
 
-- `app/1` (Service): `lumber-bdf65/app/1 Cache Writer` `/properties/DeductionConfig` Property added to the schema without being required.
-- `app/1` (Data Object): `deduction`  Data object is being added
-- `app/1` (Data Object Key): `deduction/id`  Data object key is being added
+- `app/1` (Data Object): `employees` `/properties/employee_id` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `employees` `/properties/employee_code` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/comp_codes` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/job_codes` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/employee_id` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/create` `/properties/employee_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/code` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/cost_code_name` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/cost_code_description` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/comp_code_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/comp_code_class_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/name` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/code` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/description` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/company_user_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/job_code_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/job_code_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/employee_id` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/create` `/properties/employee_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/code` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/cost_code_name` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/cost_code_description` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/comp_code_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/comp_code_class_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/name` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/code` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/description` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/company_user_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/job_code_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/create` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/job_code_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/employee_id` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/update` `/properties/employee_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/code` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/cost_code_name` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/cost_code_description` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/comp_code_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/comp_code_class_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/name` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/code` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/description` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/company_user_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/job_code_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/job_code_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/employee_id` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/update` `/properties/employee_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/code` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/cost_code_name` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/cost_code_description` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/comp_code_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/comp_codes/#/type/Array/#/type/Object/#/properties/comp_code_class_code` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/name` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/code` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/description` Property was removed, but schema allows additional properties.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/company_user_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/job_code_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/update` `/properties/job_codes/#/type/Array/#/type/Object/#/properties/job_code_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/user_id` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/username` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/first_name` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/middle_name` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/last_name` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/user_active` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/phone` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/email` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/employment_type` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/company_user_start_date` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/company_user_end_date` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/base_pay_rate` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/clockin_time` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/clockout_time` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/work_duration` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/project_name` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/budget` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/project_start_date` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/project_end_date` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/project_description` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/project_active` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/company_legal_name` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/company_trade_name` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/company_company_name` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/create_change_request` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/created_by_user_id` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/created_by_username` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/modified_by_user_id` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/modified_by_username` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/modified_by_first_name` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/manual_time_card` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/allocation_done` Property was removed, but schema allows additional properties.
+- `app/1` (Data Object): `timesheet` `/properties/employee_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/department_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/department_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/project_group_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/project_group_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/project_type` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/sub_project_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/sub_project_name` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/task_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/task_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/cost_code_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/cost_code_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/cost_type_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/cost_type_name` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/service_order_type_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/service_order_type_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/service_order_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/service_order_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/appointment_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/appointment_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/equipment_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/equipment_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/inventory_item_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/inventory_item_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/worker_comp_code_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/worker_comp_code_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/job_code_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/job_code_code` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/job_level_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/job_level_name` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/classification_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/classification_name` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/shift_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/shift_name` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/scheduled_start_time` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/scheduled_end_time` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/actual_start_time` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/actual_end_time` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/total_work_duration` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/clockin_geofencing_distance` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/clockout_geofencing_distance` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/project_geofencing_distance` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/has_signature` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/has_face_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/has_flagged_face_id` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/created_mode` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/created_on` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/modified_on` Property added to the schema without being required.
+- `app/1` (Data Object): `timesheet` `/properties/id/#/description` Value for attribute was changed
+- `app/1` (Data Object): `timesheet` `/required/id` Required property was removed from the new schema.

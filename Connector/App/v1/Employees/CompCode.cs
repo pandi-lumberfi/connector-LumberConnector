@@ -47,6 +47,30 @@ public class CompCode
     [Nullable(true)]
     public int? WorkYear { get; set; } = 2025;
 
+    [JsonPropertyName("code")]
+    [Description("Code of the comp code")]
+    [Nullable(true)]
+    public string? Code { get; set; } = string.Empty;
+
+    [JsonPropertyName("cost_code_name")]
+    [Description("Cost code name of the comp code")]
+    [Nullable(true)]
+    public string? CostCodeName { get; set; } = string.Empty;
+    [JsonPropertyName("cost_code_description")]
+    [Description("Cost code description of the comp code")]
+    [Nullable(true)]
+    public string? CostCodeDescription { get; set; } = string.Empty;
+
+    [JsonPropertyName("comp_code_id")]
+    [Description("Comp code ID of the comp code")]
+    [Nullable(true)]
+    public string? CompCodeId { get; set; } = string.Empty;
+
+    [JsonPropertyName("comp_code_class_code")]
+    [Description("Comp code class code of the comp code")]
+    [Nullable(true)]
+    public string? CompCodeClassCode { get; set; } = string.Empty;
+
     [JsonPropertyName("active")]
     [Description("Is the comp code active?")]
     [Nullable(true)]
