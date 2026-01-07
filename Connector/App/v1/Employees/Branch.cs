@@ -19,7 +19,7 @@ public class Branch
     [JsonPropertyName("legal_address")]
     [Description("Legal address of the branch")]
     [Nullable(true)]
-    public Address? LegalAddress { get; set; } = new Address();
+    public AddressData? LegalAddress { get; set; } = new AddressData();
 
     [JsonPropertyName("branch_code")]
     [Description("Code of the branch")]

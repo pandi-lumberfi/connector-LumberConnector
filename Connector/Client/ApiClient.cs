@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
@@ -96,10 +97,26 @@ public class ApiClient
 
     internal async Task<ApiResponse<CreateEmployeesActionOutput>> PostEmployeesDataObject(string relativeUrl, CreateEmployeesActionInput? input, CancellationToken cancellationToken)
     {
-        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);    
+        var jsonOptions = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = null, // Use JsonPropertyName attributes instead
+            WriteIndented = false,
+            Converters = { new DateOnlyJsonConverter(), new DateTimeJsonConverter() }
+        };
+
+        var jsonContent = JsonSerializer.Serialize(input, jsonOptions);
+        var content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+        
+        var response = await _httpClient.PostAsync(relativeUrl, content, cancellationToken);
+        
         if (!response.IsSuccessStatusCode)
         {
-            throw new HttpRequestException($"Failed to post employee data. Status Code: {response.StatusCode}");
+            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken);
+            throw new HttpRequestException($"Failed to post employee data. Status Code: {response.StatusCode}. Response: {errorContent}")
+            {
+                Data = { ["StatusCode"] = response.StatusCode, ["ResponseBody"] = errorContent }
+            };
         }
 
         return new ApiResponse<CreateEmployeesActionOutput>
@@ -108,17 +125,67 @@ public class ApiClient
             StatusCode = (int)response.StatusCode,
             Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<CreateEmployeesActionOutput>(
                 new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                WriteIndented = true },cancellationToken) : default,
+                PropertyNamingPolicy = null, WriteIndented = true },cancellationToken) : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
+    }
+
+    private class DateTimeJsonConverter : JsonConverter<DateTime>
+    {
+        public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            return DateTime.Parse(reader.GetString() ?? string.Empty);
+        }
+
+        public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToString("yyyy-MM-dd"));
+        }
+    }
+
+    private class DateOnlyJsonConverter : JsonConverter<DateTime?>
+    {
+        public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            var value = reader.GetString();
+            return string.IsNullOrEmpty(value) ? null : DateTime.Parse(value);
+        }
+
+        public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
+        {
+            if (value.HasValue)
+            {
+                writer.WriteStringValue(value.Value.ToString("yyyy-MM-dd"));
+            }
+            else
+            {
+                writer.WriteNullValue();
+            }
+        }
     }
     
     internal async Task<ApiResponse<UpdateEmployeesActionOutput>> UpdateEmployeesDataObject(string relativeUrl, UpdateEmployeesActionInput input, CancellationToken cancellationToken)
     {
-        var response = await _httpClient.PatchAsJsonAsync(relativeUrl, input, cancellationToken);    
+        var jsonOptions = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = null, // Use JsonPropertyName attributes instead
+            WriteIndented = false,
+            Converters = { new DateOnlyJsonConverter(), new DateTimeJsonConverter() }
+        };
+
+        var jsonContent = JsonSerializer.Serialize(input, jsonOptions);
+        var content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
+        
+        var response = await _httpClient.PatchAsync(relativeUrl, content, cancellationToken);
+        
         if (!response.IsSuccessStatusCode)
         {
-            throw new HttpRequestException($"Failed to update employee data. Status Code: {response.StatusCode}");
+            var errorContent = await response.Content.ReadAsStringAsync(cancellationToken);
+            throw new HttpRequestException($"Failed to update employee data. Status Code: {response.StatusCode}. Response: {errorContent}")
+            {
+                Data = { ["StatusCode"] = response.StatusCode, ["ResponseBody"] = errorContent }
+            };
         }
 
         return new ApiResponse<UpdateEmployeesActionOutput>
@@ -127,7 +194,7 @@ public class ApiClient
             StatusCode = (int)response.StatusCode,
             Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<UpdateEmployeesActionOutput>(
                 new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                WriteIndented = true },cancellationToken) : default,
+                PropertyNamingPolicy = null, WriteIndented = true },cancellationToken) : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
     }

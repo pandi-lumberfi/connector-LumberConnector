@@ -68,18 +68,31 @@ public class CreateEmployeesHandler : IActionHandler<CreateEmployeesAction>
             // Common to create extension methods to map to Standard Action Failure
 
             var errorSource = new List<string> { "CreateEmployeesHandler" };
-            if (string.IsNullOrEmpty(exception.Source)) errorSource.Add(exception.Source!);
-            _logger.LogError(exception.Message);
+            if (!string.IsNullOrEmpty(exception.Source)) errorSource.Add(exception.Source);
+            
+            // Extract response body from exception data if available
+            var errorMessage = exception.Message;
+            if (exception.Data.Contains("ResponseBody"))
+            {
+                var responseBody = exception.Data["ResponseBody"]?.ToString();
+                _logger.LogError("Failed to post employee data. Status Code: {StatusCode}. Response Body: {ResponseBody}", 
+                    exception.Data["StatusCode"], responseBody);
+                errorMessage = $"{exception.Message}. Response Body: {responseBody}";
+            }
+            else
+            {
+                _logger.LogError(exception, "Failed to post employee data: {Message}", exception.Message);
+            }
 
             return ActionHandlerOutcome.Failed(new StandardActionFailure
             {
-                Code = exception.StatusCode?.ToString() ?? "500",
+                Code = exception.Data.Contains("StatusCode") ? exception.Data["StatusCode"]?.ToString() ?? "500" : "500",
                 Errors = new []
                 {
                     new Xchange.Connector.SDK.Action.Error
                     {
                         Source = errorSource.ToArray(),
-                        Text = exception.Message
+                        Text = errorMessage
                     }
                 }
             });

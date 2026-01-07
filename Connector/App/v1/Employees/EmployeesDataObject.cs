@@ -227,7 +227,6 @@ public class UserData
     [JsonPropertyName("first_name")]
     [Description("First name of the Employee")]
     [Required]
-    [WriteOnly]
     public required string FirstName { get; init; }
 
     [JsonPropertyName("middle_name")]
@@ -239,7 +238,6 @@ public class UserData
     [JsonPropertyName("last_name")]
     [Description("Last name of the Employee")]
     [Required]
-    [WriteOnly]
     public required string LastName { get; init; }
 
     [JsonPropertyName("gender")]
