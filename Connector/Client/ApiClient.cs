@@ -25,6 +25,8 @@ using Connector.App.v1.Task.Create;
 using Connector.App.v1.Task.Update;
 using Connector.App.v1.Employees.CreatePaystub;
 using Connector.App.v1.Employees.AddBankAccount;
+using Connector.App.v1.Employees.UpdatePaySplit;
+using Connector.App.v1.Employees.UpdateTaxWithHolding;
 namespace Connector.Client;
 
 /// <summary>
@@ -921,6 +923,74 @@ public class ApiClient
             IsSuccessful = response.IsSuccessStatusCode,
             StatusCode = (int)response.StatusCode,
             Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<PaginatedResponse<DeductionDataObject>>(cancellationToken: cancellationToken) : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+    public async Task<List<UserDemographicsDataObject>> GetUserDemographics<UserDemographicsDataObject>(
+        string relativeUrl,
+        CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        var userDemographicsDataObjects = new List<UserDemographicsDataObject>();
+        
+        var jsonOptions = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+        
+        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<UserDemographicsDataObject>(stream, jsonOptions, cancellationToken))
+        {
+            if (record == null)
+            {
+                continue;
+            }
+            
+            userDemographicsDataObjects.Add(record);
+        }
+        
+        return userDemographicsDataObjects;
+    }
+
+    internal async Task<ApiResponse<UpdatePaySplitEmployeesActionOutput>> UpdatePaySplitConfig(string relativeUrl, UpdatePaySplitEmployeesActionInput? input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to update pay split config. Status Code: {response.StatusCode}");
+        }
+
+        return new ApiResponse<UpdatePaySplitEmployeesActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<UpdatePaySplitEmployeesActionOutput>(
+                new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true },cancellationToken) : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<UpdateTaxWithHoldingEmployeesActionOutput>> UpdateTaxWithHoldingConfig(string relativeUrl, UpdateTaxWithHoldingEmployeesActionInput? input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to post tax with holding employee data. Status Code: {response.StatusCode}");
+        }
+
+        return new ApiResponse<UpdateTaxWithHoldingEmployeesActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<UpdateTaxWithHoldingEmployeesActionOutput>(
+                new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true },cancellationToken) : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
     }

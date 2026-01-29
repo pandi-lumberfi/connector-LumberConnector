@@ -12,91 +12,17 @@ No breaking changes found.
 
 These changes expand or maintain the Connector's metadata and are safe to be applied to Xchange.
 
-- `app/1` (Action): `employees/create` `/properties/source_system` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/company_user_type` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/department` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/job_classification` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/job_level` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/union` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/employee_class` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/comp_codes` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/job_codes` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/workplaces` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/employee_type` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/department_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/department_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/branch_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/branch_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/employee_class_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/employee_class_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/job_classification_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/job_classification_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/company_id/#/AnyOf` Updated schema was changed to allow the types: Null,String
-- `app/1` (Action): `employees/create` `/properties/user/#/AnyOf` Updated schema was changed to allow the types: Null,Object
-- `app/1` (Action): `employees/create` `/required/company_id` Required property was removed from the new schema.
-- `app/1` (Action): `employees/create` `/properties/source_system` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/company_user_type` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/department` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/job_classification` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/job_level` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/union` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/employee_class` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/comp_codes` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/job_codes` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/workplaces` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/create` `/properties/employee_type` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/department_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/department_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/branch_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/branch_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/employee_class_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/employee_class_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/job_classification_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/job_classification_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/create` `/properties/company_id/#/AnyOf` Updated schema was changed to allow the types: Null,String
-- `app/1` (Action): `employees/create` `/properties/user/#/AnyOf` Updated schema was changed to allow the types: Null,Object
-- `app/1` (Action): `employees/create` `/required/company_id` Required property was removed from the new schema.
-- `app/1` (Action): `employees/update` `/properties/source_system` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/company_user_type` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/department` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/job_classification` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/job_level` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/union` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/employee_class` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/comp_codes` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/job_codes` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/workplaces` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/employee_type` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/department_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/department_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/branch_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/branch_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/employee_class_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/employee_class_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/job_classification_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/job_classification_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/company_id/#/AnyOf` Updated schema was changed to allow the types: Null,String
-- `app/1` (Action): `employees/update` `/properties/user/#/AnyOf` Updated schema was changed to allow the types: Null,Object
-- `app/1` (Action): `employees/update` `/required/company_id` Required property was removed from the new schema.
-- `app/1` (Action): `employees/update` `/properties/source_system` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/company_user_type` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/department` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/job_classification` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/job_level` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/union` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/employee_class` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/comp_codes` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/job_codes` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/workplaces` Property was removed, but schema allows additional properties.
-- `app/1` (Action): `employees/update` `/properties/employee_type` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/department_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/department_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/branch_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/branch_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/employee_class_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/employee_class_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/job_classification_id` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/job_classification_code` Property added to the schema without being required.
-- `app/1` (Action): `employees/update` `/properties/company_id/#/AnyOf` Updated schema was changed to allow the types: Null,String
-- `app/1` (Action): `employees/update` `/properties/user/#/AnyOf` Updated schema was changed to allow the types: Null,Object
-- `app/1` (Action): `employees/update` `/required/company_id` Required property was removed from the new schema.
+- `app/1` (Service): `lumber-bdf65/app/1 Action Processor` `/properties/UpdatePaySplitEmployeesConfig` Property added to the schema without being required.
+- `app/1` (Service): `lumber-bdf65/app/1 Action Processor` `/properties/UpdateTaxWithHoldingEmployeesConfig` Property added to the schema without being required.
+- `app/1` (Service): `lumber-bdf65/app/1 Cache Writer` `/properties/UserDemographicsConfig` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/bank_accounts/#/type/Array/#/type/Object/#/properties/source_system` Property added to the schema without being required.
+- `app/1` (Data Object): `employees` `/properties/bank_accounts/#/type/Array/#/type/Object/#/properties/source_system_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/add-bank-account` `/properties/source_system` Property added to the schema without being required.
+- `app/1` (Action): `employees/add-bank-account` `/properties/source_system_id` Property added to the schema without being required.
+- `app/1` (Action): `employees/add-bank-account` `/properties/id/#/AnyOf` Updated schema was changed to allow the types: Null,String
+- `app/1` (Action): `employees/update-pay-split`  Action is being added
+- `app/1` (Real Time Action Processing): `employees/update-pay-split`  Real time action processing is being added
+- `app/1` (Action): `employees/update-tax-with-holding`  Action is being added
+- `app/1` (Real Time Action Processing): `employees/update-tax-with-holding`  Real time action processing is being added
+- `app/1` (Data Object): `user-demographics`  Data object is being added
+- `app/1` (Data Object Key): `user-demographics/id`  Data object key is being added

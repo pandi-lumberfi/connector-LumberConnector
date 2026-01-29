@@ -12,6 +12,8 @@ using Connector.App.v1.Employees.AddBankAccount;
 using Connector.App.v1.Employees.Create;
 using Connector.App.v1.Employees.CreatePaystub;
 using Connector.App.v1.Employees.Update;
+using Connector.App.v1.Employees.UpdatePaySplit;
+using Connector.App.v1.Employees.UpdateTaxWithHolding;
 using Connector.App.v1.Project.Create;
 using Connector.App.v1.Project.Update;
 using Connector.App.v1.Task.Create;
@@ -47,4 +49,6 @@ public class AppV1ActionProcessorConfig
     public DefaultActionHandlerConfig UpdateTaskConfig { get; set; } = new();
     public DefaultActionHandlerConfig CreatePaystubEmployeesConfig { get; set; } = new();
     public DefaultActionHandlerConfig AddBankAccountEmployeesConfig { get; set; } = new();
+    public DefaultActionHandlerConfig UpdatePaySplitEmployeesConfig { get; set; } = new();
+    public DefaultActionHandlerConfig UpdateTaxWithHoldingEmployeesConfig { get; set; } = new();
 }

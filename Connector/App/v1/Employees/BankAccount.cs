@@ -51,10 +51,32 @@ public class BankAccount
     [JsonPropertyName("amount")]
     [Description("Amount of the bank account")]
     [Nullable(true)]
+    [WriteOnly]
     public string? Amount { get; set; }
 
     [JsonPropertyName("percentage")]
     [Description("Percentage of the bank account")]
     [Nullable(true)]
+    [WriteOnly]
     public string? Percentage { get; set; }
+
+    [JsonPropertyName("pay_split_type")]
+    [Description("Pay split type of the bank account")]
+    [Nullable(true)]
+    public string? PaySplitType { get; set; }
+
+    [JsonPropertyName("active")]
+    [Description("Active status of the bank account")]
+    [Nullable(true)]
+    public bool? Active { get; set; }
+
+    [JsonPropertyName("source_system")]
+    [Description("Source system of the bank account")]
+    [Nullable(true)]
+    public string? SourceSystem { get; set; }
+
+    [JsonPropertyName("source_system_id")]
+    [Description("Source system ID of the bank account")]
+    [Nullable(true)]
+    public string? SourceSystemId { get; set; }
 }

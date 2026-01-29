@@ -229,6 +229,22 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "UpdatePaySplitEmployeesConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "UpdateTaxWithHoldingEmployeesConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Action Processor Configuration",
@@ -320,6 +336,14 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "UserDemographicsConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Cache Writer Configuration",
@@ -392,7 +416,6 @@
                       "string",
                       "null"
                     ],
-                    "format": "date-time",
                     "description": "Date of Birth of the Employee",
                     "writeOnly": true
                   },
@@ -870,6 +893,34 @@
                         "null"
                       ],
                       "description": "Percentage of the bank account"
+                    },
+                    "pay_split_type": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Pay split type of the bank account"
+                    },
+                    "active": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ],
+                      "description": "Active status of the bank account"
+                    },
+                    "source_system": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Source system of the bank account"
+                    },
+                    "source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Source system ID of the bank account"
                     }
                   },
                   "description": "List of bank accounts"
@@ -1456,7 +1507,6 @@
                           "string",
                           "null"
                         ],
-                        "format": "date-time",
                         "description": "Date of Birth of the Employee",
                         "writeOnly": true
                       },
@@ -1928,7 +1978,6 @@
                           "string",
                           "null"
                         ],
-                        "format": "date-time",
                         "description": "Date of Birth of the Employee",
                         "writeOnly": true
                       },
@@ -2459,7 +2508,6 @@
                           "string",
                           "null"
                         ],
-                        "format": "date-time",
                         "description": "Date of Birth of the Employee",
                         "writeOnly": true
                       },
@@ -2931,7 +2979,6 @@
                           "string",
                           "null"
                         ],
-                        "format": "date-time",
                         "description": "Date of Birth of the Employee",
                         "writeOnly": true
                       },
@@ -4079,6 +4126,34 @@
                       "null"
                     ],
                     "description": "Percentage of the bank account"
+                  },
+                  "pay_split_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay split type of the bank account"
+                  },
+                  "active": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Active status of the bank account"
+                  },
+                  "source_system": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Source system of the bank account"
+                  },
+                  "source_system_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Source system ID of the bank account"
                   }
                 }
               },
@@ -4086,10 +4161,565 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "ID of the bank account"
                   }
                 }
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Pay Split",
+              "urlPart": "update-pay-split",
+              "key": "update-pay-split",
+              "description": "UpdatePaySplitEmployeesAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdatePaySplitEmployeesConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "pay_split_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Pay split type"
+                  },
+                  "accounts": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "ID of the bank account"
+                        },
+                        "status": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Status of the bank account"
+                        },
+                        "institution_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name of the financial institution"
+                        },
+                        "account_number": {
+                          "type": "string",
+                          "description": "Account number",
+                          "writeOnly": true
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number of the bank account",
+                          "writeOnly": true
+                        },
+                        "account_type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Type of the bank account",
+                          "writeOnly": true
+                        },
+                        "account_subtype": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Subtype of the bank account"
+                        },
+                        "priority": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "description": "Priority of the bank account"
+                        },
+                        "amount": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Amount of the bank account"
+                        },
+                        "percentage": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Percentage of the bank account"
+                        },
+                        "pay_split_type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Pay split type of the bank account"
+                        },
+                        "active": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Active status of the bank account"
+                        },
+                        "source_system": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Source system of the bank account"
+                        },
+                        "source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Source system ID of the bank account"
+                        }
+                      },
+                      "description": "Accounts"
+                    },
+                    "description": "Accounts"
+                  },
+                  "active": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Active"
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "Id"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "outputSchema": {
+                "type": "object"
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Tax With Holding",
+              "urlPart": "update-tax-with-holding",
+              "key": "update-tax-with-holding",
+              "description": "UpdateTaxWithHoldingEmployeesAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateTaxWithHoldingEmployeesConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "uuid",
+                    "description": "User ID"
+                  },
+                  "employee_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employee code"
+                  },
+                  "jurisdiction": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Jurisdiction"
+                  },
+                  "label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Label"
+                  },
+                  "tax_parameters": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "label": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Label"
+                        },
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description"
+                        },
+                        "name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Name"
+                        },
+                        "type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Tax parameter type"
+                        },
+                        "editable": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Whether the parameter is editable"
+                        },
+                        "setting": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "description": "ID of the tax parameter setting"
+                            },
+                            "applied_for": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "description": "Applied for"
+                            },
+                            "value": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "description": "Value"
+                            },
+                            "effective_date": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "description": "Effective date"
+                            }
+                          },
+                          "description": "Tax parameter setting"
+                        },
+                        "definitions": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "object",
+                              "null"
+                            ],
+                            "properties": {
+                              "applied_for": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Applied for"
+                              },
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Value"
+                              },
+                              "effective_start": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Effective start date"
+                              }
+                            },
+                            "description": "Tax parameter definitions"
+                          },
+                          "description": "Tax parameter definitions"
+                        },
+                        "default_value": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Default value"
+                        },
+                        "submitter": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Tax submitter type"
+                        }
+                      },
+                      "description": "Tax parameters"
+                    },
+                    "description": "Tax parameters"
+                  },
+                  "tax_elections": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "description": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Description"
+                        },
+                        "payer": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Payer"
+                        },
+                        "jurisdiction_abbreviation": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Jurisdiction abbreviation"
+                        },
+                        "exemptible": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ],
+                          "description": "Whether the election is exemptible"
+                        },
+                        "setting": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "exempt": {
+                              "type": [
+                                "boolean",
+                                "null"
+                              ],
+                              "description": "Whether the tax is exempt"
+                            },
+                            "effective_start": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "description": "Effective start date"
+                            },
+                            "effective_end": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "description": "Effective end date"
+                            }
+                          },
+                          "description": "Tax election setting"
+                        },
+                        "setting_timeline": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "object",
+                              "null"
+                            ],
+                            "properties": {
+                              "exempt": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ],
+                                "description": "Whether the tax is exempt"
+                              },
+                              "effective_start": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Effective start date"
+                              },
+                              "effective_end": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Effective end date"
+                              }
+                            },
+                            "description": "Tax election setting timeline"
+                          },
+                          "description": "Tax election setting timeline"
+                        }
+                      },
+                      "description": "Tax elections"
+                    },
+                    "description": "Tax elections"
+                  },
+                  "exemption_amount": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Exemption amount"
+                  }
+                }
+              },
+              "outputSchema": {
+                "type": "object"
               },
               "failureSchema": {
                 "type": "object",
@@ -9317,6 +9947,517 @@
               "deduction_type"
             ],
             "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": []
+        },
+        {
+          "name": "User Demographics",
+          "urlPart": "user-demographics",
+          "key": "user-demographics",
+          "description": "User demographics data object representing employee information.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uuid",
+                "description": "Primary key of the object"
+              },
+              "first_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "First name of the employee"
+              },
+              "middle_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Middle name of the employee"
+              },
+              "last_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Last name of the employee"
+              },
+              "gender": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Gender of the employee"
+              },
+              "job_title": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Job title of the employee"
+              },
+              "user_status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Current status of the user"
+              },
+              "hiring_status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Hiring status of the employee"
+              },
+              "ethnicity": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Ethnicity of the employee"
+              },
+              "race": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Race of the employee"
+              },
+              "eeoc_job_classification_type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "EEOC job classification type"
+              },
+              "veteran_status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Veteran status of the employee"
+              },
+              "disability_status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Disability status of the employee"
+              },
+              "active": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether the employee is active"
+              },
+              "payroll_enabled": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether payroll is enabled for the employee"
+              },
+              "date_of_birth": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Date of birth of the employee",
+                "writeOnly": true
+              },
+              "hire_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Hire date of the employee"
+              },
+              "start_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Start date of the employee"
+              },
+              "rehire_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Rehire date of the employee"
+              },
+              "termination_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Termination date of the employee"
+              },
+              "employee_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Employee code"
+              },
+              "lumber_role": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Lumber role/company user type"
+              },
+              "marital_status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Marital status of the employee"
+              },
+              "employment_type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Employment type"
+              },
+              "employment_category": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Employment category"
+              },
+              "email": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Email address of the employee"
+              },
+              "phone_number": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Phone number of the employee",
+                "writeOnly": true
+              },
+              "address": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Address of the employee"
+              },
+              "workplaces": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Workplaces of the employee"
+              },
+              "emergency_contact_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Emergency contact name"
+              },
+              "emergency_contact_phone_number": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Emergency contact phone number",
+                "writeOnly": true
+              },
+              "emergency_contact_relation": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Emergency contact relation"
+              },
+              "primary_workplace": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Primary workplace"
+              },
+              "department": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Department of the employee"
+              },
+              "branch": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Branch of the employee"
+              },
+              "employee_class": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Employee class"
+              },
+              "short_ssn": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Short SSN",
+                "writeOnly": true
+              },
+              "compensation_type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Compensation type"
+              },
+              "pay_frequency": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Pay frequency"
+              },
+              "is_non_overtime_employee": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether the employee is non-overtime"
+              },
+              "is_auto_assign_workplace_by_state": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Whether to auto-assign workplace by state"
+              },
+              "base_pay_rate": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Base pay rate"
+              },
+              "overtime_pay_rate": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Overtime pay rate"
+              },
+              "double_overtime_pay_rate": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Double overtime pay rate"
+              },
+              "additional_compensation_rate": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Additional compensation rate"
+              },
+              "union_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Union name"
+              },
+              "trades": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Trades"
+              },
+              "job_level": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Job level"
+              },
+              "job_classification": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Job classification"
+              },
+              "bank_accounts": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "ID of the bank account"
+                    },
+                    "status": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Status of the bank account"
+                    },
+                    "institution_name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Name of the financial institution"
+                    },
+                    "account_number": {
+                      "type": "string",
+                      "description": "Account number",
+                      "writeOnly": true
+                    },
+                    "routing_number": {
+                      "type": "string",
+                      "description": "Routing number of the bank account",
+                      "writeOnly": true
+                    },
+                    "account_type": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Type of the bank account",
+                      "writeOnly": true
+                    },
+                    "account_subtype": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Subtype of the bank account"
+                    },
+                    "priority": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "description": "Priority of the bank account"
+                    },
+                    "amount": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Amount of the bank account"
+                    },
+                    "percentage": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Percentage of the bank account"
+                    },
+                    "pay_split_type": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Pay split type of the bank account"
+                    },
+                    "active": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ],
+                      "description": "Active status of the bank account"
+                    },
+                    "source_system": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Source system of the bank account"
+                    },
+                    "source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Source system ID of the bank account"
+                    }
+                  },
+                  "description": "Bank accounts of the employee",
+                  "writeOnly": true
+                },
+                "description": "Bank accounts of the employee",
+                "writeOnly": true
+              },
+              "tax_with_holdings": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Tax withholdings"
+              },
+              "account": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Account",
+                "writeOnly": true
+              },
+              "sub_account": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Sub account",
+                "writeOnly": true
+              }
+            },
+            "description": "User demographics data object representing employee information."
           },
           "keys": [
             {

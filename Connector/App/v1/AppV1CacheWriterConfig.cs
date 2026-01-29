@@ -9,6 +9,7 @@ using Connector.App.v1.Employees;
 using Connector.App.v1.Project;
 using Connector.App.v1.Task;
 using Connector.App.v1.Timesheet;
+using Connector.App.v1.UserDemographics;
 using ESR.Hosting.CacheWriter;
 using Json.Schema.Generation;
 
@@ -33,4 +34,5 @@ public class AppV1CacheWriterConfig
     public CacheWriterObjectConfig BranchConfig { get; set; } = new();
     public CacheWriterObjectConfig TaskConfig { get; set; } = new();
     public CacheWriterObjectConfig DeductionConfig { get; set; } = new();
+    public CacheWriterObjectConfig UserDemographicsConfig { get; set; } = new();
 }

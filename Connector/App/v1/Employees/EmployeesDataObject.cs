@@ -250,7 +250,7 @@ public class UserData
     [Description("Date of Birth of the Employee")]
     [Nullable(true)]
     [WriteOnly]
-    public DateTime? DateOfBirth { get; init; }
+    public string? DateOfBirth { get; init; }
 
     [JsonPropertyName("phone")]
     [Description("Phone number of the Employee")]

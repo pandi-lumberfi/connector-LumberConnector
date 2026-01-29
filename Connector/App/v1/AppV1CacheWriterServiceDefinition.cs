@@ -9,6 +9,7 @@ using Connector.App.v1.Employees;
 using Connector.App.v1.Project;
 using Connector.App.v1.Task;
 using Connector.App.v1.Timesheet;
+using Connector.App.v1.UserDemographics;
 using ESR.Hosting.CacheWriter;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -40,6 +41,7 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         serviceCollection.AddSingleton<BranchDataReader>();
         serviceCollection.AddSingleton<TaskDataReader>();
         serviceCollection.AddSingleton<DeductionDataReader>();
+        serviceCollection.AddSingleton<UserDemographicsDataReader>();
     }
 
     public override IDataObjectChangeDetectorProvider ConfigureChangeDetectorProvider(IChangeDetectorFactory factory, ConnectorDefinition connectorDefinition)
@@ -56,6 +58,7 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         this.RegisterKeysForObject<BranchDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<TaskDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<DeductionDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<UserDemographicsDataObject>(options, connectorDefinition);
         return factory.CreateProvider(options);
     }
 
@@ -77,5 +80,6 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         service.RegisterDataReader<BranchDataReader, BranchDataObject>(ModuleId, config.BranchConfig, dataReaderSettings);
         service.RegisterDataReader<TaskDataReader, TaskDataObject>(ModuleId, config.TaskConfig, dataReaderSettings);
         service.RegisterDataReader<DeductionDataReader, DeductionDataObject>(ModuleId, config.DeductionConfig, dataReaderSettings);
+        service.RegisterDataReader<UserDemographicsDataReader, UserDemographicsDataObject>(ModuleId, config.UserDemographicsConfig, dataReaderSettings);
     }
 }

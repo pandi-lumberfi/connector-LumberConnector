@@ -61,7 +61,7 @@ public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
             // Return the data objects to Cache.
             foreach (var item in response.Data.Items)
             {
-                if (item.PayrollEnabled) {
+                if (item.PayrollEnabled == true && item.Active == true) {
                 try
                     {
                         var bankAccounts = new List<BankAccount>();

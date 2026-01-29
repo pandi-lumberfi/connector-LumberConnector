@@ -1,4 +1,4 @@
-namespace Connector.App.v1.Employees.AddBankAccount;
+namespace Connector.App.v1.Employees.UpdatePaySplit;
 
 using Json.Schema.Generation;
 using System;
@@ -14,26 +14,26 @@ using Xchange.Connector.SDK.Action;
 /// are properly formed. The schema also helps provide integrators more information for what the values 
 /// are intended to be.
 /// </summary>
-[Description("AddBankAccountEmployeesAction Action description goes here")]
+[Description("UpdatePaySplitEmployeesAction Action description goes here")]
 [EnableRealTimeActionProcessing]
-public class AddBankAccountEmployeesAction : IStandardAction<AddBankAccountEmployeesActionInput, AddBankAccountEmployeesActionOutput>
+public class UpdatePaySplitEmployeesAction : IStandardAction<UpdatePaySplitEmployeesActionInput, UpdatePaySplitEmployeesActionOutput>
 {
-    public AddBankAccountEmployeesActionInput ActionInput { get; set; } = new();
-    public AddBankAccountEmployeesActionOutput ActionOutput { get; set; } = new();
+    public UpdatePaySplitEmployeesActionInput ActionInput { get; set; } = new();
+    public UpdatePaySplitEmployeesActionOutput ActionOutput { get; set; } = new();
     public StandardActionFailure ActionFailure { get; set; } = new();
 
     public bool CreateRtap => true;
 }
 
-public class AddBankAccountEmployeesActionInput: BankAccount
-{
-
-}
-
-public class AddBankAccountEmployeesActionOutput
+public class UpdatePaySplitEmployeesActionInput: PaySplitConfig
 {
     [JsonPropertyName("id")]
-    [Description("ID of the bank account")]
-    [Nullable(true)]
+    [Description("Id")]
+    [Required]
     public string? Id { get; set; }
+}
+
+public class UpdatePaySplitEmployeesActionOutput
+{
+    
 }
