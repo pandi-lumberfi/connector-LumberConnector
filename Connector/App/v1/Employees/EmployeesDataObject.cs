@@ -169,7 +169,7 @@ public class EmployeesDataObject
     [JsonPropertyName("user_tax_with_holdings")]
     [Description("List of user tax with holdings")]
     [Nullable(true)]
-    public List<UserTaxWithHolding>? UserTaxWithHoldings { get; set; } = new List<UserTaxWithHolding>();
+    public List<TaxWithHolding>? UserTaxWithHoldings { get; set; } = new List<TaxWithHolding>();
 
     [JsonPropertyName("user_leave_balance")]
     [Description("User leave balance")]

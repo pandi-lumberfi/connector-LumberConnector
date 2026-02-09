@@ -1,5 +1,7 @@
 namespace Connector.App.v1;
 using Connector.App.v1.Branch.Create;
+using Connector.App.v1.ChartOfAccount.Create;
+using Connector.App.v1.ChartOfAccount.Update;
 using Connector.App.v1.CompCode.Create;
 using Connector.App.v1.CompCode.Update;
 using Connector.App.v1.CostCode.Create;
@@ -51,4 +53,6 @@ public class AppV1ActionProcessorConfig
     public DefaultActionHandlerConfig AddBankAccountEmployeesConfig { get; set; } = new();
     public DefaultActionHandlerConfig UpdatePaySplitEmployeesConfig { get; set; } = new();
     public DefaultActionHandlerConfig UpdateTaxWithHoldingEmployeesConfig { get; set; } = new();
+    public DefaultActionHandlerConfig CreateChartOfAccountConfig { get; set; } = new();
+    public DefaultActionHandlerConfig UpdateChartOfAccountConfig { get; set; } = new();
 }

@@ -1,6 +1,9 @@
 namespace Connector.App.v1;
 using Connector.App.v1.Branch;
 using Connector.App.v1.Branch.Create;
+using Connector.App.v1.ChartOfAccount;
+using Connector.App.v1.ChartOfAccount.Create;
+using Connector.App.v1.ChartOfAccount.Update;
 using Connector.App.v1.CompCode;
 using Connector.App.v1.CompCode.Create;
 using Connector.App.v1.CompCode.Update;
@@ -71,6 +74,8 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         serviceCollection.AddScoped<AddBankAccountEmployeesHandler>();
         serviceCollection.AddScoped<UpdatePaySplitEmployeesHandler>();
         serviceCollection.AddScoped<UpdateTaxWithHoldingEmployeesHandler>();
+        serviceCollection.AddScoped<CreateChartOfAccountHandler>();
+        serviceCollection.AddScoped<UpdateChartOfAccountHandler>();
     }
 
     public override void ConfigureService(IActionHandlerService service, AppV1ActionProcessorConfig config)
@@ -95,5 +100,7 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         service.RegisterHandlerForDataObjectAction<AddBankAccountEmployeesHandler, EmployeesDataObject>(ModuleId, "employees", "add-bank-account", config.AddBankAccountEmployeesConfig);
         service.RegisterHandlerForDataObjectAction<UpdatePaySplitEmployeesHandler, EmployeesDataObject>(ModuleId, "employees", "update-pay-split", config.UpdatePaySplitEmployeesConfig);
         service.RegisterHandlerForDataObjectAction<UpdateTaxWithHoldingEmployeesHandler, EmployeesDataObject>(ModuleId, "employees", "update-tax-with-holding", config.UpdateTaxWithHoldingEmployeesConfig);
+        service.RegisterHandlerForDataObjectAction<CreateChartOfAccountHandler, ChartOfAccountDataObject>(ModuleId, "chart-of-account", "create", config.CreateChartOfAccountConfig);
+        service.RegisterHandlerForDataObjectAction<UpdateChartOfAccountHandler, ChartOfAccountDataObject>(ModuleId, "chart-of-account", "update", config.UpdateChartOfAccountConfig);
     }
 }

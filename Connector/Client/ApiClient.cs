@@ -27,6 +27,8 @@ using Connector.App.v1.Employees.CreatePaystub;
 using Connector.App.v1.Employees.AddBankAccount;
 using Connector.App.v1.Employees.UpdatePaySplit;
 using Connector.App.v1.Employees.UpdateTaxWithHolding;
+using Connector.App.v1.ChartOfAccount.Create;
+using Connector.App.v1.ChartOfAccount.Update;
 namespace Connector.Client;
 
 /// <summary>
@@ -302,7 +304,7 @@ public class ApiClient
         }
     }
 
-    public async IAsyncEnumerable<UserTaxWithHolding> GetUserTaxWithHoldings<UserTaxWithHolding>(
+    public async IAsyncEnumerable<TaxWithHolding> GetUserTaxWithHoldings<TaxWithHolding>(
         string relativeUrl,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
@@ -313,7 +315,7 @@ public class ApiClient
         response.EnsureSuccessStatusCode();
 
         var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
-        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<UserTaxWithHolding>(stream))     
+        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<TaxWithHolding>(stream))     
         {
             if (record == null)
             {
@@ -993,5 +995,135 @@ public class ApiClient
                 WriteIndented = true },cancellationToken) : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
+    }
+
+    internal async Task<ApiResponse<PaginatedResponse<ChartOfAccountDataObject>>> GetChartOfAccounts<ChartOfAccountDataObject>(
+        string relativeUrl,
+        int page,
+        int size,
+        CancellationToken cancellationToken = default)
+    {   
+        var response = await _httpClient.GetAsync(
+            $"{relativeUrl}?page_no={page}&page_size={size}",
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        return new ApiResponse<PaginatedResponse<ChartOfAccountDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<PaginatedResponse<ChartOfAccountDataObject>>(
+                    new JsonSerializerOptions
+                    {
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true
+                    },
+                    cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<CreateChartOfAccountActionOutput>> CreateChartOfAccount(string relativeUrl, CreateChartOfAccountActionInput input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to create chart of account data. Status Code: {response.StatusCode}");  
+        }
+
+        return new ApiResponse<CreateChartOfAccountActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,  
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<CreateChartOfAccountActionOutput>(cancellationToken: cancellationToken) : default, 
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<UpdateChartOfAccountActionOutput>> UpdateChartOfAccount(string relativeUrl, UpdateChartOfAccountActionInput input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PatchAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to update chart of account data. Status Code: {response.StatusCode}");
+        }   
+
+        return new ApiResponse<UpdateChartOfAccountActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<UpdateChartOfAccountActionOutput>(cancellationToken: cancellationToken) : default, 
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)  
+        };
+    }
+
+
+    public async Task<ApiResponse<List<JournalDataObject>>> GetJournalRecords<JournalDataObject>(
+        string relativeUrl,
+        CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync(
+            relativeUrl,
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to get journal records. Status Code: {response.StatusCode}");
+        }
+
+        return new ApiResponse<List<JournalDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<List<JournalDataObject>>(
+                    cancellationToken: cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    public async IAsyncEnumerable<JournalDataObject> GetJournals<JournalDataObject>(
+        string relativeUrl,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+            
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        await foreach (var record in JsonSerializer.DeserializeAsyncEnumerable<JournalDataObject>(stream))
+        {
+            if (record == null)
+            {
+                continue;
+            }
+            
+            yield return record;
+        }
+    }
+
+    public async Task<JournalDataObject> GetJournal<JournalDataObject>(string relativeUrl, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient
+            .GetAsync(relativeUrl, cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+            
+        response.EnsureSuccessStatusCode();
+
+        var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+        var result = await JsonSerializer.DeserializeAsync<JournalDataObject>(stream, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = true }, cancellationToken: cancellationToken);
+        
+        if (result == null)
+        {
+            throw new HttpRequestException($"Failed to deserialize journal data from {relativeUrl}");
+        }
+        
+        return result;
     }
 }

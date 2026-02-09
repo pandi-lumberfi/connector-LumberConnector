@@ -245,6 +245,22 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "CreateChartOfAccountConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "UpdateChartOfAccountConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Action Processor Configuration",
@@ -338,6 +354,22 @@
                 }
               },
               "UserDemographicsConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "ChartOfAccountConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "JournalConfig": {
                 "type": "object",
                 "properties": {
                   "UploadObject": {
@@ -885,14 +917,16 @@
                         "string",
                         "null"
                       ],
-                      "description": "Amount of the bank account"
+                      "description": "Amount of the bank account",
+                      "writeOnly": true
                     },
                     "percentage": {
                       "type": [
                         "string",
                         "null"
                       ],
-                      "description": "Percentage of the bank account"
+                      "description": "Percentage of the bank account",
+                      "writeOnly": true
                     },
                     "pay_split_type": {
                       "type": [
@@ -1205,19 +1239,20 @@
                     "null"
                   ],
                   "properties": {
-                    "company_user_id": {
+                    "user_id": {
                       "type": [
                         "string",
                         "null"
                       ],
-                      "description": "Company user id"
+                      "format": "uuid",
+                      "description": "User ID"
                     },
-                    "employee_id": {
+                    "employee_code": {
                       "type": [
                         "string",
                         "null"
                       ],
-                      "description": "Employee id"
+                      "description": "Employee code"
                     },
                     "jurisdiction": {
                       "type": [
@@ -1226,47 +1261,270 @@
                       ],
                       "description": "Jurisdiction"
                     },
-                    "medicare_tax_exempt": {
-                      "type": [
-                        "boolean",
-                        "null"
-                      ],
-                      "description": "Medicare tax exempt"
-                    },
-                    "income_tax_exempt": {
-                      "type": [
-                        "boolean",
-                        "null"
-                      ],
-                      "description": "Income tax exempt"
-                    },
-                    "un_employment_tax_exempt": {
-                      "type": [
-                        "boolean",
-                        "null"
-                      ],
-                      "description": "Unemployment tax exempt"
-                    },
-                    "filing_status": {
+                    "label": {
                       "type": [
                         "string",
                         "null"
                       ],
-                      "description": "Filing status"
+                      "description": "Label"
                     },
-                    "tax_override": {
+                    "tax_parameters": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Label"
+                          },
+                          "description": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Description"
+                          },
+                          "name": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Name"
+                          },
+                          "type": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Tax parameter type"
+                          },
+                          "editable": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ],
+                            "description": "Whether the parameter is editable"
+                          },
+                          "setting": {
+                            "type": [
+                              "object",
+                              "null"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "ID of the tax parameter setting"
+                              },
+                              "applied_for": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Applied for"
+                              },
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Value"
+                              },
+                              "effective_date": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Effective date"
+                              }
+                            },
+                            "description": "Tax parameter setting"
+                          },
+                          "definitions": {
+                            "type": [
+                              "array",
+                              "null"
+                            ],
+                            "items": {
+                              "type": [
+                                "object",
+                                "null"
+                              ],
+                              "properties": {
+                                "applied_for": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "description": "Applied for"
+                                },
+                                "value": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "description": "Value"
+                                },
+                                "effective_start": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "description": "Effective start date"
+                                }
+                              },
+                              "description": "Tax parameter definitions"
+                            },
+                            "description": "Tax parameter definitions"
+                          },
+                          "default_value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Default value"
+                          },
+                          "submitter": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Tax submitter type"
+                          }
+                        },
+                        "description": "Tax parameters"
+                      },
+                      "description": "Tax parameters"
+                    },
+                    "tax_elections": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "description": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Description"
+                          },
+                          "payer": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Payer"
+                          },
+                          "jurisdiction_abbreviation": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "Jurisdiction abbreviation"
+                          },
+                          "exemptible": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ],
+                            "description": "Whether the election is exemptible"
+                          },
+                          "setting": {
+                            "type": [
+                              "object",
+                              "null"
+                            ],
+                            "properties": {
+                              "exempt": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ],
+                                "description": "Whether the tax is exempt"
+                              },
+                              "effective_start": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Effective start date"
+                              },
+                              "effective_end": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "Effective end date"
+                              }
+                            },
+                            "description": "Tax election setting"
+                          },
+                          "setting_timeline": {
+                            "type": [
+                              "array",
+                              "null"
+                            ],
+                            "items": {
+                              "type": [
+                                "object",
+                                "null"
+                              ],
+                              "properties": {
+                                "exempt": {
+                                  "type": [
+                                    "boolean",
+                                    "null"
+                                  ],
+                                  "description": "Whether the tax is exempt"
+                                },
+                                "effective_start": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "description": "Effective start date"
+                                },
+                                "effective_end": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ],
+                                  "description": "Effective end date"
+                                }
+                              },
+                              "description": "Tax election setting timeline"
+                            },
+                            "description": "Tax election setting timeline"
+                          }
+                        },
+                        "description": "Tax elections"
+                      },
+                      "description": "Tax elections"
+                    },
+                    "exemption_amount": {
                       "type": [
                         "number",
                         "null"
                       ],
-                      "description": "Tax override"
-                    },
-                    "tax_override_type": {
-                      "type": [
-                        "string",
-                        "null"
-                      ],
-                      "description": "Tax override type"
+                      "description": "Exemption amount",
+                      "writeOnly": true
                     }
                   },
                   "description": "List of user tax with holdings"
@@ -4118,14 +4376,16 @@
                       "string",
                       "null"
                     ],
-                    "description": "Amount of the bank account"
+                    "description": "Amount of the bank account",
+                    "writeOnly": true
                   },
                   "percentage": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Percentage of the bank account"
+                    "description": "Percentage of the bank account",
+                    "writeOnly": true
                   },
                   "pay_split_type": {
                     "type": [
@@ -4307,14 +4567,16 @@
                             "string",
                             "null"
                           ],
-                          "description": "Amount of the bank account"
+                          "description": "Amount of the bank account",
+                          "writeOnly": true
                         },
                         "percentage": {
                           "type": [
                             "string",
                             "null"
                           ],
-                          "description": "Percentage of the bank account"
+                          "description": "Percentage of the bank account",
+                          "writeOnly": true
                         },
                         "pay_split_type": {
                           "type": [
@@ -4345,9 +4607,11 @@
                           "description": "Source system ID of the bank account"
                         }
                       },
-                      "description": "Accounts"
+                      "description": "Accounts",
+                      "writeOnly": true
                     },
-                    "description": "Accounts"
+                    "description": "Accounts",
+                    "writeOnly": true
                   },
                   "active": {
                     "type": [
@@ -4714,7 +4978,8 @@
                       "number",
                       "null"
                     ],
-                    "description": "Exemption amount"
+                    "description": "Exemption amount",
+                    "writeOnly": true
                   }
                 }
               },
@@ -6888,293 +7153,506 @@
                 "description": "Unique identifier for the timesheet entry"
               },
               "company_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the company"
               },
               "employee_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the employee"
               },
               "employee_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the employee"
               },
               "department_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the department"
               },
               "department_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the department"
               },
               "project_group_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the project group"
               },
               "project_group_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the project group"
               },
               "project_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the project"
               },
               "project_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the project"
               },
               "project_type": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Type of project"
               },
               "sub_project_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the sub-project"
               },
               "sub_project_name": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Name of the sub-project"
               },
               "task_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the task"
               },
               "task_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the task"
               },
               "cost_code_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the cost code"
               },
               "cost_code_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the cost code"
               },
               "cost_type_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the cost type"
               },
               "cost_type_name": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Name of the cost type"
               },
               "service_order_type_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the service order type"
               },
               "service_order_type_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the service order type"
               },
               "service_order_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the service order"
               },
               "service_order_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the service order"
               },
               "appointment_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the appointment"
               },
               "appointment_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the appointment"
               },
               "equipment_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the equipment"
               },
               "equipment_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the equipment"
               },
               "inventory_item_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the inventory item"
               },
               "inventory_item_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the inventory item"
               },
               "worker_comp_code_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the worker compensation code"
               },
               "worker_comp_code_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the worker compensation code"
               },
               "job_code_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the job code"
               },
               "job_code_code": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Code for the job code"
               },
               "job_level_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the job level"
               },
               "job_level_name": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Name of the job level"
               },
               "classification_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the classification"
               },
               "classification_name": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Name of the classification"
               },
               "shift_id": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Identifier for the shift"
               },
               "shift_name": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Name of the shift"
               },
               "date_worked": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "format": "date-time",
                 "description": "Date when work was performed"
               },
               "scheduled_start_time": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "format": "date-time",
                 "description": "Scheduled start time for the work"
               },
               "scheduled_end_time": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "format": "date-time",
                 "description": "Scheduled end time for the work"
               },
               "actual_start_time": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "format": "date-time",
                 "description": "Actual start time for the work"
               },
               "actual_end_time": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "format": "date-time",
                 "description": "Actual end time for the work"
               },
               "total_work_duration": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Total duration of work"
               },
               "regular_work_duration": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Duration of regular work"
               },
               "overtime_duration": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Duration of overtime work"
               },
               "double_overtime_duration": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Duration of double overtime work"
               },
               "meal_break_duration": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Duration of meal break"
               },
               "break_duration": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Total duration of breaks"
               },
               "paid_break_duration": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Duration of paid breaks"
               },
               "unpaid_break_duration": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Duration of unpaid breaks"
               },
               "travelled": {
-                "type": "boolean",
+                "type": [
+                  "boolean",
+                  "null"
+                ],
                 "description": "Indicates if travel occurred"
               },
               "miles_travelled": {
-                "type": "number",
+                "type": [
+                  "number",
+                  "null"
+                ],
                 "description": "Number of miles travelled"
               },
               "travel_duration": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Duration of travel time"
               },
               "clockin_geofencing_distance": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Distance from geofence when clocking in"
               },
               "clockout_geofencing_distance": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Distance from geofence when clocking out"
               },
               "project_geofencing_distance": {
-                "type": "number",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Distance from project geofence"
               },
               "status": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Status of the timesheet entry"
               },
               "type": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Type of timesheet entry"
               },
               "per_diem": {
-                "type": "boolean",
+                "type": [
+                  "boolean",
+                  "null"
+                ],
                 "description": "Indicates if per diem applies"
               },
               "lodging": {
-                "type": "boolean",
+                "type": [
+                  "boolean",
+                  "null"
+                ],
                 "description": "Indicates if lodging applies"
               },
               "injury": {
-                "type": "boolean",
+                "type": [
+                  "boolean",
+                  "null"
+                ],
                 "description": "Indicates if injury occurred"
               },
               "has_signature": {
-                "type": "boolean",
+                "type": [
+                  "boolean",
+                  "null"
+                ],
                 "description": "Indicates if signature is present"
               },
               "has_face_id": {
-                "type": "boolean",
+                "type": [
+                  "boolean",
+                  "null"
+                ],
                 "description": "Indicates if face ID is present"
               },
               "has_flagged_face_id": {
-                "type": "boolean",
+                "type": [
+                  "boolean",
+                  "null"
+                ],
                 "description": "Indicates if flagged face ID is present"
               },
               "processed": {
-                "type": "boolean",
+                "type": [
+                  "boolean",
+                  "null"
+                ],
                 "description": "Indicates if the entry has been processed"
               },
               "has_notes": {
-                "type": "boolean",
+                "type": [
+                  "boolean",
+                  "null"
+                ],
                 "description": "Indicates if notes are present"
               },
               "note_files_count": {
-                "type": "integer",
+                "type": [
+                  "integer",
+                  "null"
+                ],
                 "description": "Count of note files"
               },
               "created_mode": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "description": "Mode in which the entry was created"
               },
               "created_on": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "format": "date-time",
                 "description": "Timestamp when the timesheet entry was created"
               },
               "modified_on": {
-                "type": "string",
+                "type": [
+                  "string",
+                  "null"
+                ],
                 "format": "date-time",
                 "description": "Timestamp when the timesheet entry was last modified"
               }
@@ -9982,35 +10460,40 @@
                   "string",
                   "null"
                 ],
-                "description": "First name of the employee"
+                "description": "First name of the employee",
+                "writeOnly": true
               },
               "middle_name": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Middle name of the employee"
+                "description": "Middle name of the employee",
+                "writeOnly": true
               },
               "last_name": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Last name of the employee"
+                "description": "Last name of the employee",
+                "writeOnly": true
               },
               "gender": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Gender of the employee"
+                "description": "Gender of the employee",
+                "writeOnly": true
               },
               "job_title": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Job title of the employee"
+                "description": "Job title of the employee",
+                "writeOnly": true
               },
               "user_status": {
                 "type": [
@@ -10031,35 +10514,40 @@
                   "string",
                   "null"
                 ],
-                "description": "Ethnicity of the employee"
+                "description": "Ethnicity of the employee",
+                "writeOnly": true
               },
               "race": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Race of the employee"
+                "description": "Race of the employee",
+                "writeOnly": true
               },
               "eeoc_job_classification_type": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "EEOC job classification type"
+                "description": "EEOC job classification type",
+                "writeOnly": true
               },
               "veteran_status": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Veteran status of the employee"
+                "description": "Veteran status of the employee",
+                "writeOnly": true
               },
               "disability_status": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Disability status of the employee"
+                "description": "Disability status of the employee",
+                "writeOnly": true
               },
               "active": {
                 "type": [
@@ -10088,7 +10576,8 @@
                   "string",
                   "null"
                 ],
-                "description": "Hire date of the employee"
+                "description": "Hire date of the employee",
+                "writeOnly": true
               },
               "start_date": {
                 "type": [
@@ -10137,7 +10626,8 @@
                   "string",
                   "null"
                 ],
-                "description": "Employment type"
+                "description": "Employment type",
+                "writeOnly": true
               },
               "employment_category": {
                 "type": [
@@ -10151,7 +10641,8 @@
                   "string",
                   "null"
                 ],
-                "description": "Email address of the employee"
+                "description": "Email address of the employee",
+                "writeOnly": true
               },
               "phone_number": {
                 "type": [
@@ -10195,14 +10686,16 @@
                   "string",
                   "null"
                 ],
-                "description": "Emergency contact relation"
+                "description": "Emergency contact relation",
+                "writeOnly": true
               },
               "primary_workplace": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Primary workplace"
+                "description": "Primary workplace",
+                "writeOnly": true
               },
               "department": {
                 "type": [
@@ -10273,21 +10766,24 @@
                   "number",
                   "null"
                 ],
-                "description": "Overtime pay rate"
+                "description": "Overtime pay rate",
+                "writeOnly": true
               },
               "double_overtime_pay_rate": {
                 "type": [
                   "number",
                   "null"
                 ],
-                "description": "Double overtime pay rate"
+                "description": "Double overtime pay rate",
+                "writeOnly": true
               },
               "additional_compensation_rate": {
                 "type": [
                   "number",
                   "null"
                 ],
-                "description": "Additional compensation rate"
+                "description": "Additional compensation rate",
+                "writeOnly": true
               },
               "union_name": {
                 "type": [
@@ -10386,14 +10882,16 @@
                         "string",
                         "null"
                       ],
-                      "description": "Amount of the bank account"
+                      "description": "Amount of the bank account",
+                      "writeOnly": true
                     },
                     "percentage": {
                       "type": [
                         "string",
                         "null"
                       ],
-                      "description": "Percentage of the bank account"
+                      "description": "Percentage of the bank account",
+                      "writeOnly": true
                     },
                     "pay_split_type": {
                       "type": [
@@ -10458,6 +10956,786 @@
               }
             },
             "description": "User demographics data object representing employee information."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": []
+        },
+        {
+          "name": "Chart Of Account",
+          "urlPart": "chart-of-account",
+          "key": "chart-of-account",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "companyId": {
+                "type": "string",
+                "description": "Id of the company to which the chart of account belongs"
+              },
+              "accountClass": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Account Class"
+              },
+              "accountGroup": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Account Group"
+              },
+              "accountType": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Account Type"
+              },
+              "accountId": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Account ID",
+                "writeOnly": true
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Account Description"
+              },
+              "controlAccountModule": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Control Account Module"
+              },
+              "allowManualEntry": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Allow Manual Entry"
+              },
+              "postOption": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Journal Post Option"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "List of source system links"
+                },
+                "description": "List of source system links"
+              }
+            },
+            "required": [
+              "id",
+              "companyId"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateChartOfAccountAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateChartOfAccountConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "companyId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the company to which the chart of account belongs"
+                  },
+                  "accountClass": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Class"
+                  },
+                  "accountGroup": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Group"
+                  },
+                  "accountType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Type"
+                  },
+                  "accountId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account ID"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Description",
+                    "writeOnly": true
+                  },
+                  "controlAccountModule": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Control Account Module"
+                  },
+                  "allowManualEntry": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Allow Manual Entry"
+                  },
+                  "postOption": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Journal Post Option"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
+                  }
+                }
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "companyId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the company to which the chart of account belongs"
+                  },
+                  "accountClass": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Class"
+                  },
+                  "accountGroup": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Group"
+                  },
+                  "accountType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Type"
+                  },
+                  "accountId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account ID"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Description",
+                    "writeOnly": true
+                  },
+                  "controlAccountModule": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Control Account Module"
+                  },
+                  "allowManualEntry": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Allow Manual Entry"
+                  },
+                  "postOption": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Journal Post Option"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
+                  }
+                }
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update",
+              "urlPart": "update",
+              "key": "update",
+              "description": "UpdateChartOfAccountAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateChartOfAccountConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "companyId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the company to which the chart of account belongs"
+                  },
+                  "accountClass": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Class"
+                  },
+                  "accountGroup": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Group"
+                  },
+                  "accountType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Type"
+                  },
+                  "accountId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account ID"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Description",
+                    "writeOnly": true
+                  },
+                  "controlAccountModule": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Control Account Module"
+                  },
+                  "allowManualEntry": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Allow Manual Entry"
+                  },
+                  "postOption": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Journal Post Option"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
+                  }
+                }
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "companyId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the company to which the chart of account belongs"
+                  },
+                  "accountClass": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Class"
+                  },
+                  "accountGroup": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Group"
+                  },
+                  "accountType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Type"
+                  },
+                  "accountId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account ID"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Account Description",
+                    "writeOnly": true
+                  },
+                  "controlAccountModule": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Control Account Module"
+                  },
+                  "allowManualEntry": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Allow Manual Entry"
+                  },
+                  "postOption": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Journal Post Option"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "List of source system links"
+                    },
+                    "description": "List of source system links"
+                  }
+                }
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Journal",
+          "urlPart": "journal",
+          "key": "journal",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "periodStart": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Example period start of the object"
+              },
+              "periodEnd": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Example period end of the object"
+              },
+              "payday": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Example payday of the object"
+              },
+              "payrollType": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Example payroll type of the object"
+              },
+              "paymentMethod": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Example payment method of the object"
+              },
+              "paymentStatus": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Example payment status of the object"
+              },
+              "managed": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Example managed of the object"
+              },
+              "voided": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Example voided of the object"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "description": "Example description of the object."
           },
           "keys": [
             {

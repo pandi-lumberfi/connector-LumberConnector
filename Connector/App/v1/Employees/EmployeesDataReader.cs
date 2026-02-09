@@ -89,8 +89,8 @@ public class EmployeesDataReader : TypedAsyncDataReaderBase<EmployeesDataObject>
                             userPayRates.Add(userPayRate);
                         }
 
-                        var userTaxWithHoldings = new List<UserTaxWithHolding>();   
-                        await foreach (var userTaxWithHolding in _apiClient.GetUserTaxWithHoldings<UserTaxWithHolding>(
+                        var userTaxWithHoldings = new List<TaxWithHolding>();   
+                        await foreach (var userTaxWithHolding in _apiClient.GetUserTaxWithHoldings<TaxWithHolding>(
                             relativeUrl: "api/v1/companies/" + _connectorRegistrationConfig.CompanyId +"/users/" + item.Id + "/tax-with-holdings",
                             cancellationToken: cancellationToken))
                         {

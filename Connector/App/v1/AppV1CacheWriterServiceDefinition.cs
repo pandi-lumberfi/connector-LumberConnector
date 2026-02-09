@@ -1,11 +1,13 @@
 namespace Connector.App.v1;
 using Connector.App.v1.Branch;
+using Connector.App.v1.ChartOfAccount;
 using Connector.App.v1.CompCode;
 using Connector.App.v1.CostCode;
 using Connector.App.v1.CostType;
 using Connector.App.v1.Deduction;
 using Connector.App.v1.Department;
 using Connector.App.v1.Employees;
+using Connector.App.v1.Journal;
 using Connector.App.v1.Project;
 using Connector.App.v1.Task;
 using Connector.App.v1.Timesheet;
@@ -42,6 +44,8 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         serviceCollection.AddSingleton<TaskDataReader>();
         serviceCollection.AddSingleton<DeductionDataReader>();
         serviceCollection.AddSingleton<UserDemographicsDataReader>();
+        serviceCollection.AddSingleton<ChartOfAccountDataReader>();
+        serviceCollection.AddSingleton<JournalDataReader>();
     }
 
     public override IDataObjectChangeDetectorProvider ConfigureChangeDetectorProvider(IChangeDetectorFactory factory, ConnectorDefinition connectorDefinition)
@@ -59,6 +63,8 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         this.RegisterKeysForObject<TaskDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<DeductionDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<UserDemographicsDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<ChartOfAccountDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<JournalDataObject>(options, connectorDefinition);
         return factory.CreateProvider(options);
     }
 
@@ -81,5 +87,7 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         service.RegisterDataReader<TaskDataReader, TaskDataObject>(ModuleId, config.TaskConfig, dataReaderSettings);
         service.RegisterDataReader<DeductionDataReader, DeductionDataObject>(ModuleId, config.DeductionConfig, dataReaderSettings);
         service.RegisterDataReader<UserDemographicsDataReader, UserDemographicsDataObject>(ModuleId, config.UserDemographicsConfig, dataReaderSettings);
+        service.RegisterDataReader<ChartOfAccountDataReader, ChartOfAccountDataObject>(ModuleId, config.ChartOfAccountConfig, dataReaderSettings);
+        service.RegisterDataReader<JournalDataReader, JournalDataObject>(ModuleId, config.JournalConfig, dataReaderSettings);
     }
 }

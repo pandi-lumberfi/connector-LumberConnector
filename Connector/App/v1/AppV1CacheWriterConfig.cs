@@ -1,11 +1,13 @@
 namespace Connector.App.v1;
 using Connector.App.v1.Branch;
+using Connector.App.v1.ChartOfAccount;
 using Connector.App.v1.CompCode;
 using Connector.App.v1.CostCode;
 using Connector.App.v1.CostType;
 using Connector.App.v1.Deduction;
 using Connector.App.v1.Department;
 using Connector.App.v1.Employees;
+using Connector.App.v1.Journal;
 using Connector.App.v1.Project;
 using Connector.App.v1.Task;
 using Connector.App.v1.Timesheet;
@@ -35,4 +37,6 @@ public class AppV1CacheWriterConfig
     public CacheWriterObjectConfig TaskConfig { get; set; } = new();
     public CacheWriterObjectConfig DeductionConfig { get; set; } = new();
     public CacheWriterObjectConfig UserDemographicsConfig { get; set; } = new();
+    public CacheWriterObjectConfig ChartOfAccountConfig { get; set; } = new();
+    public CacheWriterObjectConfig JournalConfig { get; set; } = new();
 }
