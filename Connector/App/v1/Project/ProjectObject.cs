@@ -42,11 +42,6 @@ public class ProjectObject
     [Nullable(true)]
     public string? Description { get; set; }
 
-    [JsonPropertyName("budget")]
-    [Description("Budget of the project")]
-    [Nullable(true)]
-    public double? Budget { get; set; }
-
     [JsonPropertyName("start_date")]
     [Description("Start date of the project")]
     [Nullable(true)]
@@ -57,13 +52,9 @@ public class ProjectObject
     [Nullable(true)]
     public string? EndDate { get; set; }
 
-    [JsonPropertyName("status")]
-    [Description("Status of the project")]
-    [Nullable(true)]
-    public string? Status { get; set; }
-
     [JsonPropertyName("prevailing_wage_project")]
     [Description("Is prevailing wage project?")]
+    [Nullable(true)]
     public bool? PrevailingWageProject { get; set; } = false;
 
     [JsonPropertyName("contract_type")]
@@ -73,12 +64,12 @@ public class ProjectObject
 
     [JsonPropertyName("active")]
     [Description("Is project active?")]
-    [Required]
+    [Nullable(true)]
     public bool Active { get; set; } = true;
 
     [JsonPropertyName("allow_only_assigned_crews")]
     [Description("Is allow only assigned crew to clock in")]
-    [Required]
+    [Nullable(true)]
     public bool AllowOnlyAssignedCrews { get; set; } = false;
 
     [JsonPropertyName("source_system_links")]

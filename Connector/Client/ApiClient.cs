@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System;
@@ -416,30 +417,44 @@ public class ApiClient
         CreateProjectActionInput input,
         CancellationToken cancellationToken)
     {
-        var response = await _httpClient.PostAsJsonAsync(
-            relativeUrl,
-            input,
-            cancellationToken);
+
+        HttpResponseMessage response;
+        try
+        {
+            response = await _httpClient.PostAsJsonAsync(
+                relativeUrl,
+                input,
+                cancellationToken)
+                .ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message, ex);
+        }
+
+        var responseBody = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 
         if (!response.IsSuccessStatusCode)
         {
-            throw new HttpRequestException($"Failed to post project data. Status Code: {response.StatusCode}");
+            throw new HttpRequestException(
+                $"Failed to post project data. Status Code: {response.StatusCode}. Response: {responseBody}");
         }
+
+        var jsonOptions = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            WriteIndented = true
+        };
+        var data = string.IsNullOrEmpty(responseBody)
+            ? default
+            : JsonSerializer.Deserialize<CreateProjectActionOutput>(responseBody, jsonOptions);
 
         return new ApiResponse<CreateProjectActionOutput>
         {
-            IsSuccessful = response.IsSuccessStatusCode,
+            IsSuccessful = true,
             StatusCode = (int)response.StatusCode,
-            Data = response.IsSuccessStatusCode 
-                ? await response.Content.ReadFromJsonAsync<CreateProjectActionOutput>(
-                    new JsonSerializerOptions
-                    {
-                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                        WriteIndented = true
-                    },
-                    cancellationToken)
-                : default,
-            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+            Data = data,
+            RawResult = new MemoryStream(Encoding.UTF8.GetBytes(responseBody))
         };
     }
 

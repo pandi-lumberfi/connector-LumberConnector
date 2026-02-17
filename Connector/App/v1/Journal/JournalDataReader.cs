@@ -63,7 +63,7 @@ public class JournalDataReader : TypedAsyncDataReaderBase<JournalDataObject>
             try
             {
                 journal = await _apiClient.GetJournal<JournalDataObject>(
-                    relativeUrl: $"api/v1/companies/{_connectorRegistrationConfig.CompanyId}/journals/{item.Id}",
+                    relativeUrl: $"api/v1/companies/{_connectorRegistrationConfig.CompanyId}/journals/{item.Id}?productType=VISTA",
                     cancellationToken: cancellationToken);
             }
             catch (Exception exception)

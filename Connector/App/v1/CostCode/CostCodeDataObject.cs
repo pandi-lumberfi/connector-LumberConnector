@@ -28,7 +28,7 @@ public class CostCodeDataObject
     [Required]
     public required string CompanyId { get; init; }
 
-    [JsonPropertyName("code")]
+    [JsonPropertyName("cost_code")]
     [Description("Code of the cost code")]
     [Required]
     public string Code { get; init; } = string.Empty;

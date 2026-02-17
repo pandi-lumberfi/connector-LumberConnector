@@ -11,30 +11,27 @@ public class ChartOfAccountObject
     [Nullable(true)]
     public String? Id { get; init; }
 
-    [JsonPropertyName("companyId")]
+    [JsonPropertyName("company_id")]
     [Description("Id of the company to which the chart of account belongs")]
     [Nullable(true)]
-
     public String? CompanyId { get; init; }
 
-    [JsonPropertyName("accountClass")]
+    [JsonPropertyName("account_class")]
     [Description("Account Class")]
     [Nullable(true)]
     public String? AccountClass { get; init; }
 
-
-    [JsonPropertyName("accountGroup")]
+    [JsonPropertyName("account_group")]
     [Description("Account Group")]
     [Nullable(true)]
-
     public String? AccountGroup { get; init; }
 
-    [JsonPropertyName("accountType")]
+    [JsonPropertyName("account_type")]
     [Description("Account Type")]
     [Nullable(true)]
     public String? AccountType { get; init; }
 
-    [JsonPropertyName("accountId")]
+    [JsonPropertyName("account_id")]
     [Description("Account ID")]
     [Nullable(true)]
     public String? AccountId { get; init; }
@@ -45,17 +42,17 @@ public class ChartOfAccountObject
     [WriteOnly]
     public String? Description { get; init; }
 
-    [JsonPropertyName("controlAccountModule")]
+    [JsonPropertyName("control_account_module")]
     [Description("Control Account Module")]
     [Nullable(true)]
     public String? ControlAccountModule { get; init; }
 
-    [JsonPropertyName("allowManualEntry")]
+    [JsonPropertyName("allow_manual_entry")]
     [Description("Allow Manual Entry")]
     [Nullable(true)]
     public Boolean? AllowManualEntry { get; init; }
 
-    [JsonPropertyName("postOption")]
+    [JsonPropertyName("post_option")]
     [Description("Journal Post Option")]
     [Nullable(true)]
     public String? PostOption { get; init; }

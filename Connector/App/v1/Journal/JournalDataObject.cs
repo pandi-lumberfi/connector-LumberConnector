@@ -2,6 +2,7 @@ namespace Connector.App.v1.Journal;
 
 using Json.Schema.Generation;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Xchange.Connector.SDK.CacheWriter;
 
@@ -62,6 +63,11 @@ public class JournalDataObject
     [Description("Example voided of the object")]
     [Nullable(true)]
     public Boolean? Voided { get; init; }
+
+    [JsonPropertyName("entries")]
+    [Description("Example entries of the object")]
+    [Nullable(true)]
+    public List<JournalEntry>? Entries { get; init; }
 
 }
 
