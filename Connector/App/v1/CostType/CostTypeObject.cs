@@ -17,15 +17,15 @@ public class CostTypeObject
     [Required]
     public string? CompanyId { get; init; }
 
-    [JsonPropertyName("cost_type_name")]
+    [JsonPropertyName("name")]
     [Description("Name of the cost type")]
     [Required]
-    public string? CostTypeName { get; init; }
+    public string? Name { get; init; }
 
-    [JsonPropertyName("cost_type_description")]
+    [JsonPropertyName("description")]
     [Description("Description of the cost type")]
     [Nullable(true)]
-    public string? CostTypeDescription { get; init; }
+    public string? Description { get; init; }
 
     [JsonPropertyName("active")]
     [Description("Flag indicating if the cost type is active")]

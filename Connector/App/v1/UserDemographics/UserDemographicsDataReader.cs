@@ -26,7 +26,7 @@ public class UserDemographicsDataReader : TypedAsyncDataReaderBase<UserDemograph
         _logger = logger;
     }
 
-    public override async IAsyncEnumerable<UserDemographicsDataObject> GetTypedDataAsync(DataObjectCacheWriteArguments ? dataObjectRunArguments, [EnumeratorCancellation] CancellationToken cancellationToken)
+    public override async IAsyncEnumerable<UserDemographicsDataObject> GetTypedDataAsync(DataObjectCacheWriteArguments? dataObjectRunArguments, [EnumeratorCancellation] CancellationToken cancellationToken)
     {
         List<UserDemographicsDataObject> userDemographicsDataObjects;
         

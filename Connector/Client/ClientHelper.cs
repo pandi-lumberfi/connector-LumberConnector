@@ -29,7 +29,12 @@ namespace Connector.Client
                     serviceCollection.AddSingleton<CustomAuth>(configCustomAuth!);
                     serviceCollection.AddTransient<RetryPolicyHandler>();
                     serviceCollection.AddTransient<CustomAuthHandler>();
-                    serviceCollection.AddHttpClient<ApiClient, ApiClient>(client => new ApiClient(client, configCustomAuth!.BaseUrl)).AddHttpMessageHandler<CustomAuthHandler>().AddHttpMessageHandler<RetryPolicyHandler>();
+                    serviceCollection.AddHttpClient<ApiClient, ApiClient>(client =>
+                    {
+                        // Employee report (user demographics) can be large; default 100s is insufficient.
+                        client.Timeout = TimeSpan.FromMinutes(10);
+                        return new ApiClient(client, configCustomAuth!.BaseUrl);
+                    }).AddHttpMessageHandler<CustomAuthHandler>().AddHttpMessageHandler<RetryPolicyHandler>();
                     break;
                 default:
                     throw new Exception($"Unable to find services for definition key {activeConnection.DefinitionKey}");

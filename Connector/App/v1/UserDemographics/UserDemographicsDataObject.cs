@@ -242,6 +242,16 @@ public class UserDemographicsDataObject
     [Nullable(true)]
     public bool? IsAutoAssignWorkplaceByState { get; init; }
 
+    [JsonPropertyName("pay_rate_effective_from")]
+    [Description("Pay rate effective from")]
+    [Nullable(true)]
+    public string? PayRateEffectiveFrom { get; init; }
+
+    [JsonPropertyName("pay_rate_effective_end")]
+    [Description("Pay rate effective end")]
+    [Nullable(true)]
+    public string? PayRateEffectiveEnd { get; init; }
+
     [JsonPropertyName("base_pay_rate")]
     [Description("Base pay rate")]
     [Nullable(true)]
