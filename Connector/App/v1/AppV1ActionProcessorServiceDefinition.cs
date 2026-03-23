@@ -21,8 +21,11 @@ using Connector.App.v1.Employees.AddBankAccount;
 using Connector.App.v1.Employees.Create;
 using Connector.App.v1.Employees.CreatePaystub;
 using Connector.App.v1.Employees.Update;
+using Connector.App.v1.Employees.UpdateLeaveBalance;
 using Connector.App.v1.Employees.UpdatePaySplit;
 using Connector.App.v1.Employees.UpdateTaxWithHolding;
+using Connector.App.v1.Equipment;
+using Connector.App.v1.Equipment.Create;
 using Connector.App.v1.Project;
 using Connector.App.v1.Project.Create;
 using Connector.App.v1.Project.Update;
@@ -76,6 +79,8 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         serviceCollection.AddScoped<UpdateTaxWithHoldingEmployeesHandler>();
         serviceCollection.AddScoped<CreateChartOfAccountHandler>();
         serviceCollection.AddScoped<UpdateChartOfAccountHandler>();
+        serviceCollection.AddScoped<UpdateLeaveBalanceEmployeesHandler>();
+        serviceCollection.AddScoped<CreateEquipmentHandler>();
     }
 
     public override void ConfigureService(IActionHandlerService service, AppV1ActionProcessorConfig config)
@@ -102,5 +107,7 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         service.RegisterHandlerForDataObjectAction<UpdateTaxWithHoldingEmployeesHandler, EmployeesDataObject>(ModuleId, "employees", "update-tax-with-holding", config.UpdateTaxWithHoldingEmployeesConfig);
         service.RegisterHandlerForDataObjectAction<CreateChartOfAccountHandler, ChartOfAccountDataObject>(ModuleId, "chart-of-account", "create", config.CreateChartOfAccountConfig);
         service.RegisterHandlerForDataObjectAction<UpdateChartOfAccountHandler, ChartOfAccountDataObject>(ModuleId, "chart-of-account", "update", config.UpdateChartOfAccountConfig);
+        service.RegisterHandlerForDataObjectAction<UpdateLeaveBalanceEmployeesHandler, EmployeesDataObject>(ModuleId, "employees", "update-leave-balance", config.UpdateLeaveBalanceEmployeesConfig);
+        service.RegisterHandlerForDataObjectAction<CreateEquipmentHandler, EquipmentDataObject>(ModuleId, "equipment", "create", config.CreateEquipmentConfig);
     }
 }

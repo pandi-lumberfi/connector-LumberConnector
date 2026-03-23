@@ -24,11 +24,13 @@ public class BankAccount
 
     [JsonPropertyName("account_number")]
     [Description("Account number")]
+    [Nullable(true)]
     [WriteOnly]
     public string? AccountNumber { get; set; }
 
     [JsonPropertyName("routing_number")]
     [Description("Routing number of the bank account")]
+    [Nullable(true)]
     [WriteOnly]
     public string? RoutingNumber { get; set; }
 
@@ -40,6 +42,7 @@ public class BankAccount
 
     [JsonPropertyName("account_subtype")]
     [Description("Subtype of the bank account")]
+    [Nullable(true)]
     [Nullable(true)]
     public string? AccountSubtype { get; set; }
 

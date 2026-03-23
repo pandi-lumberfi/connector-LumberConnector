@@ -7,6 +7,8 @@ using Connector.App.v1.CostType;
 using Connector.App.v1.Deduction;
 using Connector.App.v1.Department;
 using Connector.App.v1.Employees;
+using Connector.App.v1.Equipment;
+using Connector.App.v1.EquipmentTimeEntry;
 using Connector.App.v1.Journal;
 using Connector.App.v1.Project;
 using Connector.App.v1.Task;
@@ -46,6 +48,8 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         serviceCollection.AddSingleton<UserDemographicsDataReader>();
         serviceCollection.AddSingleton<ChartOfAccountDataReader>();
         serviceCollection.AddSingleton<JournalDataReader>();
+        serviceCollection.AddSingleton<EquipmentDataReader>();
+        serviceCollection.AddSingleton<EquipmentTimeEntryDataReader>();
     }
 
     public override IDataObjectChangeDetectorProvider ConfigureChangeDetectorProvider(IChangeDetectorFactory factory, ConnectorDefinition connectorDefinition)
@@ -65,6 +69,8 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         this.RegisterKeysForObject<UserDemographicsDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<ChartOfAccountDataObject>(options, connectorDefinition);
         this.RegisterKeysForObject<JournalDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<EquipmentDataObject>(options, connectorDefinition);
+        this.RegisterKeysForObject<EquipmentTimeEntryDataObject>(options, connectorDefinition);
         return factory.CreateProvider(options);
     }
 
@@ -89,5 +95,7 @@ public class AppV1CacheWriterServiceDefinition : BaseCacheWriterServiceDefinitio
         service.RegisterDataReader<UserDemographicsDataReader, UserDemographicsDataObject>(ModuleId, config.UserDemographicsConfig, dataReaderSettings);
         service.RegisterDataReader<ChartOfAccountDataReader, ChartOfAccountDataObject>(ModuleId, config.ChartOfAccountConfig, dataReaderSettings);
         service.RegisterDataReader<JournalDataReader, JournalDataObject>(ModuleId, config.JournalConfig, dataReaderSettings);
+        service.RegisterDataReader<EquipmentDataReader, EquipmentDataObject>(ModuleId, config.EquipmentConfig, dataReaderSettings);
+        service.RegisterDataReader<EquipmentTimeEntryDataReader, EquipmentTimeEntryDataObject>(ModuleId, config.EquipmentTimeEntryConfig, dataReaderSettings);
     }
 }

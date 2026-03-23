@@ -7,6 +7,8 @@ using Connector.App.v1.CostType;
 using Connector.App.v1.Deduction;
 using Connector.App.v1.Department;
 using Connector.App.v1.Employees;
+using Connector.App.v1.Equipment;
+using Connector.App.v1.EquipmentTimeEntry;
 using Connector.App.v1.Journal;
 using Connector.App.v1.Project;
 using Connector.App.v1.Task;
@@ -39,4 +41,6 @@ public class AppV1CacheWriterConfig
     public CacheWriterObjectConfig UserDemographicsConfig { get; set; } = new();
     public CacheWriterObjectConfig ChartOfAccountConfig { get; set; } = new();
     public CacheWriterObjectConfig JournalConfig { get; set; } = new();
+    public CacheWriterObjectConfig EquipmentConfig { get; set; } = new();
+    public CacheWriterObjectConfig EquipmentTimeEntryConfig { get; set; } = new();
 }

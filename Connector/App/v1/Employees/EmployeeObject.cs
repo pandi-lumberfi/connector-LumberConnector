@@ -97,10 +97,30 @@ public class EmployeeObject
     [Nullable(true)]
     public string? JobClassificationId { get; set; }
 
-    [JsonPropertyName("job_classification_code")]
-    [Description("Job Classification Code")]
+    [JsonPropertyName("job_classification_name")]
+    [Description("Job Classification Name")]
     [Nullable(true)]
-    public string? JobClassificationCode { get; set; }
+    public string? JobClassificationName { get; set; }
+
+    [JsonPropertyName("union_id")]
+    [Description("Union ID")]
+    [Nullable(true)]
+    public string? UnionId { get; set; }
+
+    [JsonPropertyName("union_code")]
+    [Description("Union Code")]
+    [Nullable(true)]
+    public string? UnionCode { get; set; }
+
+    [JsonPropertyName("job_level_id")]
+    [Description("Job Level ID")]
+    [Nullable(true)]
+    public string? JobLevelId { get; set; }
+
+    [JsonPropertyName("job_level_name")]
+    [Description("Job Level Name")]
+    [Nullable(true)]
+    public string? JobLevelName { get; set; }
 
     [JsonPropertyName("compensation_type")]
     [Description("Compensation Type")]

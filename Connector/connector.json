@@ -261,6 +261,22 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "UpdateLeaveBalanceEmployeesConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "CreateEquipmentConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Action Processor Configuration",
@@ -376,6 +392,22 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "EquipmentConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "EquipmentTimeEntryConfig": {
+                "type": "object",
+                "properties": {
+                  "UploadObject": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Cache Writer Configuration",
@@ -452,7 +484,10 @@
                     "writeOnly": true
                   },
                   "phone": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Phone number of the Employee",
                     "writeOnly": true
                   },
@@ -640,8 +675,7 @@
                 },
                 "required": [
                   "first_name",
-                  "last_name",
-                  "phone"
+                  "last_name"
                 ],
                 "description": "User details"
               },
@@ -743,12 +777,40 @@
                 ],
                 "description": "Job Classification ID"
               },
-              "job_classification_code": {
+              "job_classification_name": {
                 "type": [
                   "string",
                   "null"
                 ],
-                "description": "Job Classification Code"
+                "description": "Job Classification Name"
+              },
+              "union_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Union ID"
+              },
+              "union_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Union Code"
+              },
+              "job_level_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Job Level ID"
+              },
+              "job_level_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Job Level Name"
               },
               "compensation_type": {
                 "type": [
@@ -881,12 +943,18 @@
                       "description": "Name of the financial institution"
                     },
                     "account_number": {
-                      "type": "string",
+                      "type": [
+                        "string",
+                        "null"
+                      ],
                       "description": "Account number",
                       "writeOnly": true
                     },
                     "routing_number": {
-                      "type": "string",
+                      "type": [
+                        "string",
+                        "null"
+                      ],
                       "description": "Routing number of the bank account",
                       "writeOnly": true
                     },
@@ -1769,7 +1837,10 @@
                         "writeOnly": true
                       },
                       "phone": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Phone number of the Employee",
                         "writeOnly": true
                       },
@@ -1957,8 +2028,7 @@
                     },
                     "required": [
                       "first_name",
-                      "last_name",
-                      "phone"
+                      "last_name"
                     ],
                     "description": "User details"
                   },
@@ -2064,12 +2134,40 @@
                     ],
                     "description": "Job Classification ID"
                   },
-                  "job_classification_code": {
+                  "job_classification_name": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Job Classification Code"
+                    "description": "Job Classification Name"
+                  },
+                  "union_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Union ID"
+                  },
+                  "union_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Union Code"
+                  },
+                  "job_level_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job Level ID"
+                  },
+                  "job_level_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job Level Name"
                   },
                   "compensation_type": {
                     "type": [
@@ -2240,7 +2338,10 @@
                         "writeOnly": true
                       },
                       "phone": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Phone number of the Employee",
                         "writeOnly": true
                       },
@@ -2428,8 +2529,7 @@
                     },
                     "required": [
                       "first_name",
-                      "last_name",
-                      "phone"
+                      "last_name"
                     ],
                     "description": "User details"
                   },
@@ -2535,12 +2635,40 @@
                     ],
                     "description": "Job Classification ID"
                   },
-                  "job_classification_code": {
+                  "job_classification_name": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Job Classification Code"
+                    "description": "Job Classification Name"
+                  },
+                  "union_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Union ID"
+                  },
+                  "union_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Union Code"
+                  },
+                  "job_level_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job Level ID"
+                  },
+                  "job_level_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job Level Name"
                   },
                   "compensation_type": {
                     "type": [
@@ -2770,7 +2898,10 @@
                         "writeOnly": true
                       },
                       "phone": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Phone number of the Employee",
                         "writeOnly": true
                       },
@@ -2958,8 +3089,7 @@
                     },
                     "required": [
                       "first_name",
-                      "last_name",
-                      "phone"
+                      "last_name"
                     ],
                     "description": "User details"
                   },
@@ -3065,12 +3195,40 @@
                     ],
                     "description": "Job Classification ID"
                   },
-                  "job_classification_code": {
+                  "job_classification_name": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Job Classification Code"
+                    "description": "Job Classification Name"
+                  },
+                  "union_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Union ID"
+                  },
+                  "union_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Union Code"
+                  },
+                  "job_level_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job Level ID"
+                  },
+                  "job_level_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job Level Name"
                   },
                   "compensation_type": {
                     "type": [
@@ -3241,7 +3399,10 @@
                         "writeOnly": true
                       },
                       "phone": {
-                        "type": "string",
+                        "type": [
+                          "string",
+                          "null"
+                        ],
                         "description": "Phone number of the Employee",
                         "writeOnly": true
                       },
@@ -3429,8 +3590,7 @@
                     },
                     "required": [
                       "first_name",
-                      "last_name",
-                      "phone"
+                      "last_name"
                     ],
                     "description": "User details"
                   },
@@ -3536,12 +3696,40 @@
                     ],
                     "description": "Job Classification ID"
                   },
-                  "job_classification_code": {
+                  "job_classification_name": {
                     "type": [
                       "string",
                       "null"
                     ],
-                    "description": "Job Classification Code"
+                    "description": "Job Classification Name"
+                  },
+                  "union_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Union ID"
+                  },
+                  "union_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Union Code"
+                  },
+                  "job_level_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job Level ID"
+                  },
+                  "job_level_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Job Level Name"
                   },
                   "compensation_type": {
                     "type": [
@@ -4340,12 +4528,18 @@
                     "description": "Name of the financial institution"
                   },
                   "account_number": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Account number",
                     "writeOnly": true
                   },
                   "routing_number": {
-                    "type": "string",
+                    "type": [
+                      "string",
+                      "null"
+                    ],
                     "description": "Routing number of the bank account",
                     "writeOnly": true
                   },
@@ -4531,12 +4725,18 @@
                           "description": "Name of the financial institution"
                         },
                         "account_number": {
-                          "type": "string",
+                          "type": [
+                            "string",
+                            "null"
+                          ],
                           "description": "Account number",
                           "writeOnly": true
                         },
                         "routing_number": {
-                          "type": "string",
+                          "type": [
+                            "string",
+                            "null"
+                          ],
                           "description": "Routing number of the bank account",
                           "writeOnly": true
                         },
@@ -5024,6 +5224,233 @@
                   }
                 }
               }
+            },
+            {
+              "name": "Update Leave Balance",
+              "urlPart": "update-leave-balance",
+              "key": "update-leave-balance",
+              "description": "UpdateLeaveBalanceEmployeesAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "UpdateLeaveBalanceEmployeesConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "company_user_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Company user id"
+                  },
+                  "employee_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employee code"
+                  },
+                  "leave_request_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Leave request id"
+                  },
+                  "leave_config_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Leave configuration id"
+                  },
+                  "accounted_leaves": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Accounted leaves"
+                  },
+                  "period_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Period start date"
+                  },
+                  "period_end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Period end date"
+                  },
+                  "leave_accounted_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Leave accounted type"
+                  },
+                  "leave_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Leave type"
+                  },
+                  "comments": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Comments"
+                  },
+                  "carry_over_expiration_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Carry over expiration date"
+                  }
+                }
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "company_user_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Company user id"
+                  },
+                  "employee_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Employee code"
+                  },
+                  "leave_request_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Leave request id"
+                  },
+                  "leave_config_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Leave configuration id"
+                  },
+                  "accounted_leaves": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Accounted leaves"
+                  },
+                  "period_start_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Period start date"
+                  },
+                  "period_end_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Period end date"
+                  },
+                  "leave_accounted_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Leave accounted type"
+                  },
+                  "leave_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Leave type"
+                  },
+                  "comments": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Comments"
+                  },
+                  "carry_over_expiration_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Carry over expiration date"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
             }
           ]
         },
@@ -5365,13 +5792,6 @@
                     ],
                     "description": "Description of the project"
                   },
-                  "budget": {
-                    "type": [
-                      "number",
-                      "null"
-                    ],
-                    "description": "Budget of the project"
-                  },
                   "start_date": {
                     "type": [
                       "string",
@@ -5386,15 +5806,11 @@
                     ],
                     "description": "End date of the project"
                   },
-                  "status": {
+                  "prevailing_wage_project": {
                     "type": [
-                      "string",
+                      "boolean",
                       "null"
                     ],
-                    "description": "Status of the project"
-                  },
-                  "prevailing_wage_project": {
-                    "type": "boolean",
                     "description": "Is prevailing wage project?"
                   },
                   "contract_type": {
@@ -5405,11 +5821,17 @@
                     "description": "Type of project contract"
                   },
                   "active": {
-                    "type": "boolean",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
                     "description": "Is project active?"
                   },
                   "allow_only_assigned_crews": {
-                    "type": "boolean",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
                     "description": "Is allow only assigned crew to clock in"
                   },
                   "source_system_links": {
@@ -5450,9 +5872,7 @@
                 },
                 "required": [
                   "company_id",
-                  "project_name",
-                  "active",
-                  "allow_only_assigned_crews"
+                  "project_name"
                 ]
               },
               "outputSchema": {
@@ -5559,13 +5979,6 @@
                     ],
                     "description": "Description of the project"
                   },
-                  "budget": {
-                    "type": [
-                      "number",
-                      "null"
-                    ],
-                    "description": "Budget of the project"
-                  },
                   "start_date": {
                     "type": [
                       "string",
@@ -5580,15 +5993,11 @@
                     ],
                     "description": "End date of the project"
                   },
-                  "status": {
+                  "prevailing_wage_project": {
                     "type": [
-                      "string",
+                      "boolean",
                       "null"
                     ],
-                    "description": "Status of the project"
-                  },
-                  "prevailing_wage_project": {
-                    "type": "boolean",
                     "description": "Is prevailing wage project?"
                   },
                   "contract_type": {
@@ -5599,11 +6008,17 @@
                     "description": "Type of project contract"
                   },
                   "active": {
-                    "type": "boolean",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
                     "description": "Is project active?"
                   },
                   "allow_only_assigned_crews": {
-                    "type": "boolean",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
                     "description": "Is allow only assigned crew to clock in"
                   },
                   "source_system_links": {
@@ -5644,9 +6059,7 @@
                 },
                 "required": [
                   "company_id",
-                  "project_name",
-                  "active",
-                  "allow_only_assigned_crews"
+                  "project_name"
                 ]
               },
               "failureSchema": {
@@ -5812,13 +6225,6 @@
                     ],
                     "description": "Description of the project"
                   },
-                  "budget": {
-                    "type": [
-                      "number",
-                      "null"
-                    ],
-                    "description": "Budget of the project"
-                  },
                   "start_date": {
                     "type": [
                       "string",
@@ -5833,15 +6239,11 @@
                     ],
                     "description": "End date of the project"
                   },
-                  "status": {
+                  "prevailing_wage_project": {
                     "type": [
-                      "string",
+                      "boolean",
                       "null"
                     ],
-                    "description": "Status of the project"
-                  },
-                  "prevailing_wage_project": {
-                    "type": "boolean",
                     "description": "Is prevailing wage project?"
                   },
                   "contract_type": {
@@ -5852,11 +6254,17 @@
                     "description": "Type of project contract"
                   },
                   "active": {
-                    "type": "boolean",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
                     "description": "Is project active?"
                   },
                   "allow_only_assigned_crews": {
-                    "type": "boolean",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
                     "description": "Is allow only assigned crew to clock in"
                   },
                   "source_system_links": {
@@ -5897,9 +6305,7 @@
                 },
                 "required": [
                   "company_id",
-                  "project_name",
-                  "active",
-                  "allow_only_assigned_crews"
+                  "project_name"
                 ]
               },
               "outputSchema": {
@@ -6006,13 +6412,6 @@
                     ],
                     "description": "Description of the project"
                   },
-                  "budget": {
-                    "type": [
-                      "number",
-                      "null"
-                    ],
-                    "description": "Budget of the project"
-                  },
                   "start_date": {
                     "type": [
                       "string",
@@ -6027,15 +6426,11 @@
                     ],
                     "description": "End date of the project"
                   },
-                  "status": {
+                  "prevailing_wage_project": {
                     "type": [
-                      "string",
+                      "boolean",
                       "null"
                     ],
-                    "description": "Status of the project"
-                  },
-                  "prevailing_wage_project": {
-                    "type": "boolean",
                     "description": "Is prevailing wage project?"
                   },
                   "contract_type": {
@@ -6046,11 +6441,17 @@
                     "description": "Type of project contract"
                   },
                   "active": {
-                    "type": "boolean",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
                     "description": "Is project active?"
                   },
                   "allow_only_assigned_crews": {
-                    "type": "boolean",
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
                     "description": "Is allow only assigned crew to clock in"
                   },
                   "source_system_links": {
@@ -6091,9 +6492,7 @@
                 },
                 "required": [
                   "company_id",
-                  "project_name",
-                  "active",
-                  "allow_only_assigned_crews"
+                  "project_name"
                 ]
               },
               "failureSchema": {
@@ -6155,7 +6554,7 @@
                 "type": "string",
                 "description": "ID of the company associated with the cost code"
               },
-              "code": {
+              "cost_code": {
                 "type": "string",
                 "description": "Code of the cost code"
               },
@@ -6213,7 +6612,7 @@
             "required": [
               "id",
               "company_id",
-              "code",
+              "cost_code",
               "cost_code_name",
               "active"
             ],
@@ -6264,7 +6663,7 @@
                     "type": "string",
                     "description": "ID of the company associated with the cost code"
                   },
-                  "code": {
+                  "cost_code": {
                     "type": "string",
                     "description": "Code of the cost code"
                   },
@@ -6321,7 +6720,7 @@
                 },
                 "required": [
                   "company_id",
-                  "code",
+                  "cost_code",
                   "cost_code_name"
                 ]
               },
@@ -6339,7 +6738,7 @@
                     "type": "string",
                     "description": "ID of the company associated with the cost code"
                   },
-                  "code": {
+                  "cost_code": {
                     "type": "string",
                     "description": "Code of the cost code"
                   },
@@ -6396,7 +6795,7 @@
                 },
                 "required": [
                   "company_id",
-                  "code",
+                  "cost_code",
                   "cost_code_name"
                 ]
               },
@@ -6473,7 +6872,7 @@
                     "type": "string",
                     "description": "ID of the company associated with the cost code"
                   },
-                  "code": {
+                  "cost_code": {
                     "type": "string",
                     "description": "Code of the cost code"
                   },
@@ -6530,7 +6929,7 @@
                 },
                 "required": [
                   "company_id",
-                  "code",
+                  "cost_code",
                   "cost_code_name"
                 ]
               },
@@ -6548,7 +6947,7 @@
                     "type": "string",
                     "description": "ID of the company associated with the cost code"
                   },
-                  "code": {
+                  "cost_code": {
                     "type": "string",
                     "description": "Code of the cost code"
                   },
@@ -6605,7 +7004,7 @@
                 },
                 "required": [
                   "company_id",
-                  "code",
+                  "cost_code",
                   "cost_code_name"
                 ]
               },
@@ -6668,11 +7067,11 @@
                 "type": "string",
                 "description": "ID of the company to which the cost type belongs"
               },
-              "cost_type_name": {
+              "name": {
                 "type": "string",
                 "description": "Name of the cost type"
               },
-              "cost_type_description": {
+              "description": {
                 "type": [
                   "string",
                   "null"
@@ -6722,7 +7121,7 @@
             "required": [
               "id",
               "company_id",
-              "cost_type_name",
+              "name",
               "active"
             ],
             "description": "Example description of the object."
@@ -6772,11 +7171,11 @@
                     "type": "string",
                     "description": "ID of the company associated with the cost code"
                   },
-                  "cost_type_name": {
+                  "name": {
                     "type": "string",
                     "description": "Name of the cost type"
                   },
-                  "cost_type_description": {
+                  "description": {
                     "type": [
                       "string",
                       "null"
@@ -6825,7 +7224,7 @@
                 },
                 "required": [
                   "company_id",
-                  "cost_type_name"
+                  "name"
                 ]
               },
               "outputSchema": {
@@ -6842,11 +7241,11 @@
                     "type": "string",
                     "description": "ID of the company associated with the cost code"
                   },
-                  "cost_type_name": {
+                  "name": {
                     "type": "string",
                     "description": "Name of the cost type"
                   },
-                  "cost_type_description": {
+                  "description": {
                     "type": [
                       "string",
                       "null"
@@ -6895,7 +7294,7 @@
                 },
                 "required": [
                   "company_id",
-                  "cost_type_name"
+                  "name"
                 ]
               },
               "failureSchema": {
@@ -6971,11 +7370,11 @@
                     "type": "string",
                     "description": "ID of the company associated with the cost code"
                   },
-                  "cost_type_name": {
+                  "name": {
                     "type": "string",
                     "description": "Name of the cost type"
                   },
-                  "cost_type_description": {
+                  "description": {
                     "type": [
                       "string",
                       "null"
@@ -7024,7 +7423,7 @@
                 },
                 "required": [
                   "company_id",
-                  "cost_type_name"
+                  "name"
                 ]
               },
               "outputSchema": {
@@ -7041,11 +7440,11 @@
                     "type": "string",
                     "description": "ID of the company associated with the cost code"
                   },
-                  "cost_type_name": {
+                  "name": {
                     "type": "string",
                     "description": "Name of the cost type"
                   },
-                  "cost_type_description": {
+                  "description": {
                     "type": [
                       "string",
                       "null"
@@ -7094,7 +7493,7 @@
                 },
                 "required": [
                   "company_id",
-                  "cost_type_name"
+                  "name"
                 ]
               },
               "failureSchema": {
@@ -10754,6 +11153,20 @@
                 ],
                 "description": "Whether to auto-assign workplace by state"
               },
+              "pay_rate_effective_from": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Pay rate effective from"
+              },
+              "pay_rate_effective_end": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Pay rate effective end"
+              },
               "base_pay_rate": {
                 "type": [
                   "number",
@@ -10846,12 +11259,18 @@
                       "description": "Name of the financial institution"
                     },
                     "account_number": {
-                      "type": "string",
+                      "type": [
+                        "string",
+                        "null"
+                      ],
                       "description": "Account number",
                       "writeOnly": true
                     },
                     "routing_number": {
-                      "type": "string",
+                      "type": [
+                        "string",
+                        "null"
+                      ],
                       "description": "Routing number of the bank account",
                       "writeOnly": true
                     },
@@ -10983,32 +11402,32 @@
                 "format": "uuid",
                 "description": "Example primary key of the object"
               },
-              "companyId": {
+              "company_id": {
                 "type": "string",
                 "description": "Id of the company to which the chart of account belongs"
               },
-              "accountClass": {
+              "account_class": {
                 "type": [
                   "string",
                   "null"
                 ],
                 "description": "Account Class"
               },
-              "accountGroup": {
+              "account_group": {
                 "type": [
                   "string",
                   "null"
                 ],
                 "description": "Account Group"
               },
-              "accountType": {
+              "account_type": {
                 "type": [
                   "string",
                   "null"
                 ],
                 "description": "Account Type"
               },
-              "accountId": {
+              "account_id": {
                 "type": [
                   "string",
                   "null"
@@ -11023,21 +11442,21 @@
                 ],
                 "description": "Account Description"
               },
-              "controlAccountModule": {
+              "control_account_module": {
                 "type": [
                   "string",
                   "null"
                 ],
                 "description": "Control Account Module"
               },
-              "allowManualEntry": {
+              "allow_manual_entry": {
                 "type": [
                   "boolean",
                   "null"
                 ],
                 "description": "Allow Manual Entry"
               },
-              "postOption": {
+              "post_option": {
                 "type": [
                   "string",
                   "null"
@@ -11082,7 +11501,7 @@
             },
             "required": [
               "id",
-              "companyId"
+              "company_id"
             ],
             "description": "Example description of the object."
           },
@@ -11127,35 +11546,35 @@
                     ],
                     "description": "Example primary key of the object"
                   },
-                  "companyId": {
+                  "company_id": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Id of the company to which the chart of account belongs"
                   },
-                  "accountClass": {
+                  "account_class": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Class"
                   },
-                  "accountGroup": {
+                  "account_group": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Group"
                   },
-                  "accountType": {
+                  "account_type": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Type"
                   },
-                  "accountId": {
+                  "account_id": {
                     "type": [
                       "string",
                       "null"
@@ -11170,21 +11589,21 @@
                     "description": "Account Description",
                     "writeOnly": true
                   },
-                  "controlAccountModule": {
+                  "control_account_module": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Control Account Module"
                   },
-                  "allowManualEntry": {
+                  "allow_manual_entry": {
                     "type": [
                       "boolean",
                       "null"
                     ],
                     "description": "Allow Manual Entry"
                   },
-                  "postOption": {
+                  "post_option": {
                     "type": [
                       "string",
                       "null"
@@ -11238,35 +11657,35 @@
                     ],
                     "description": "Example primary key of the object"
                   },
-                  "companyId": {
+                  "company_id": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Id of the company to which the chart of account belongs"
                   },
-                  "accountClass": {
+                  "account_class": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Class"
                   },
-                  "accountGroup": {
+                  "account_group": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Group"
                   },
-                  "accountType": {
+                  "account_type": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Type"
                   },
-                  "accountId": {
+                  "account_id": {
                     "type": [
                       "string",
                       "null"
@@ -11281,21 +11700,21 @@
                     "description": "Account Description",
                     "writeOnly": true
                   },
-                  "controlAccountModule": {
+                  "control_account_module": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Control Account Module"
                   },
-                  "allowManualEntry": {
+                  "allow_manual_entry": {
                     "type": [
                       "boolean",
                       "null"
                     ],
                     "description": "Allow Manual Entry"
                   },
-                  "postOption": {
+                  "post_option": {
                     "type": [
                       "string",
                       "null"
@@ -11408,35 +11827,35 @@
                     ],
                     "description": "Example primary key of the object"
                   },
-                  "companyId": {
+                  "company_id": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Id of the company to which the chart of account belongs"
                   },
-                  "accountClass": {
+                  "account_class": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Class"
                   },
-                  "accountGroup": {
+                  "account_group": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Group"
                   },
-                  "accountType": {
+                  "account_type": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Type"
                   },
-                  "accountId": {
+                  "account_id": {
                     "type": [
                       "string",
                       "null"
@@ -11451,21 +11870,21 @@
                     "description": "Account Description",
                     "writeOnly": true
                   },
-                  "controlAccountModule": {
+                  "control_account_module": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Control Account Module"
                   },
-                  "allowManualEntry": {
+                  "allow_manual_entry": {
                     "type": [
                       "boolean",
                       "null"
                     ],
                     "description": "Allow Manual Entry"
                   },
-                  "postOption": {
+                  "post_option": {
                     "type": [
                       "string",
                       "null"
@@ -11519,35 +11938,35 @@
                     ],
                     "description": "Example primary key of the object"
                   },
-                  "companyId": {
+                  "company_id": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Id of the company to which the chart of account belongs"
                   },
-                  "accountClass": {
+                  "account_class": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Class"
                   },
-                  "accountGroup": {
+                  "account_group": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Group"
                   },
-                  "accountType": {
+                  "account_type": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Account Type"
                   },
-                  "accountId": {
+                  "account_id": {
                     "type": [
                       "string",
                       "null"
@@ -11562,21 +11981,21 @@
                     "description": "Account Description",
                     "writeOnly": true
                   },
-                  "controlAccountModule": {
+                  "control_account_module": {
                     "type": [
                       "string",
                       "null"
                     ],
                     "description": "Control Account Module"
                   },
-                  "allowManualEntry": {
+                  "allow_manual_entry": {
                     "type": [
                       "boolean",
                       "null"
                     ],
                     "description": "Allow Manual Entry"
                   },
-                  "postOption": {
+                  "post_option": {
                     "type": [
                       "string",
                       "null"
@@ -11730,6 +12149,1073 @@
                   "null"
                 ],
                 "description": "Example voided of the object"
+              },
+              "entries": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "branchId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Branch ID"
+                    },
+                    "branchName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Branch name"
+                    },
+                    "branchCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Branch code"
+                    },
+                    "departmentId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Department ID"
+                    },
+                    "departmentName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Department name"
+                    },
+                    "departmentCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Department code"
+                    },
+                    "workerId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Worker ID"
+                    },
+                    "workerName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Worker name"
+                    },
+                    "workerCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Worker code"
+                    },
+                    "projectId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Project ID"
+                    },
+                    "projectName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Project name"
+                    },
+                    "projectCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Project code"
+                    },
+                    "subprojectId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Subproject ID"
+                    },
+                    "subprojectName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Subproject name"
+                    },
+                    "subprojectCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Subproject code"
+                    },
+                    "taskId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Task ID"
+                    },
+                    "taskName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Task name"
+                    },
+                    "taskCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Task code"
+                    },
+                    "costCodeId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Cost code ID"
+                    },
+                    "costCodeName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Cost code name"
+                    },
+                    "costCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Cost code"
+                    },
+                    "costTypeId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Cost type ID"
+                    },
+                    "costTypeName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Cost type name"
+                    },
+                    "costTypeCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Cost type code"
+                    },
+                    "equipmentId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Equipment ID"
+                    },
+                    "equipmentName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Equipment name"
+                    },
+                    "equipmentCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Equipment code"
+                    },
+                    "inventoryItemId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Inventory item ID"
+                    },
+                    "inventoryItemName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Inventory item name"
+                    },
+                    "inventoryItemCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Inventory item code"
+                    },
+                    "serviceOrderAppointmentId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Service order appointment ID"
+                    },
+                    "serviceOrderAppointmentName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Service order appointment name"
+                    },
+                    "serviceOrderAppointmentCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Service order appointment code"
+                    },
+                    "jobCodeId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Job code ID"
+                    },
+                    "jobCodeName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Job code name"
+                    },
+                    "jobCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Job code"
+                    },
+                    "jobClassificationId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Job classification ID"
+                    },
+                    "jobClassificationName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Job classification name"
+                    },
+                    "jobClassificationCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Job classification code"
+                    },
+                    "jobLevelId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Job level ID"
+                    },
+                    "jobLevelName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Job level name"
+                    },
+                    "jobLevelCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Job level code"
+                    },
+                    "dateWorked": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Date worked"
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Description"
+                    },
+                    "transactionDescription": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Transaction description"
+                    },
+                    "chartOfAccount": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Chart of account"
+                    },
+                    "subaccount": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Subaccount"
+                    },
+                    "quantity": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Quantity"
+                    },
+                    "uom": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Unit of measure"
+                    },
+                    "debitAmount": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Debit amount"
+                    },
+                    "creditAmount": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "description": "Credit amount"
+                    }
+                  },
+                  "description": "Example entries of the object"
+                },
+                "description": "Example entries of the object"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": []
+        },
+        {
+          "name": "Equipment",
+          "urlPart": "equipment",
+          "key": "equipment",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "company_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier for the company"
+              },
+              "company_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the company"
+              },
+              "equipment_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Code for the equipment"
+              },
+              "equipment_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the equipment"
+              },
+              "model": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Model of the equipment"
+              },
+              "make": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Make of the equipment"
+              },
+              "make_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier for the make"
+              },
+              "class_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Code for the class"
+              },
+              "equipment_class_code_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier for the equipment class code"
+              },
+              "status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Status of the equipment"
+              },
+              "category": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Category of the equipment"
+              },
+              "category_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier for the category"
+              },
+              "hour_meter": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "description": "Hour meter of the equipment"
+              },
+              "unit_of_usage": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Unit of usage of the equipment"
+              },
+              "last_service_date": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Last service date of the equipment"
+              },
+              "source_system_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "source_system": {
+                      "type": "string",
+                      "description": "Source system"
+                    },
+                    "source_system_id": {
+                      "type": "string",
+                      "description": "Source system ID"
+                    },
+                    "secondary_source_system_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Secondary source system ID"
+                    }
+                  },
+                  "required": [
+                    "source_system",
+                    "source_system_id"
+                  ],
+                  "description": "Source system links of the equipment"
+                },
+                "description": "Source system links of the equipment"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "description": "Example description of the object."
+          },
+          "keys": [
+            {
+              "key": "id",
+              "urlPart": "id",
+              "isPrimary": true,
+              "propertyNames": [
+                "id"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateEquipmentAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateEquipmentConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the company to which the equipment belongs"
+                  },
+                  "equipment_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code of the equipment"
+                  },
+                  "equipment_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the equipment"
+                  },
+                  "model": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Model of the equipment"
+                  },
+                  "make": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Make of the equipment"
+                  },
+                  "make_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the make of the equipment"
+                  },
+                  "class_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code of the class of the equipment"
+                  },
+                  "equipment_class_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the equipment class code"
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Status of the equipment"
+                  },
+                  "category": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Category of the equipment"
+                  },
+                  "category_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the category of the equipment"
+                  },
+                  "hour_meter": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Hour meter of the equipment"
+                  },
+                  "unit_of_usage": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Unit of usage of the equipment"
+                  },
+                  "last_service_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Last service date of the equipment"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "Source system links of the equipment"
+                    },
+                    "description": "Source system links of the equipment"
+                  }
+                }
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the company to which the equipment belongs"
+                  },
+                  "equipment_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code of the equipment"
+                  },
+                  "equipment_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the equipment"
+                  },
+                  "model": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Model of the equipment"
+                  },
+                  "make": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Make of the equipment"
+                  },
+                  "make_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the make of the equipment"
+                  },
+                  "class_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code of the class of the equipment"
+                  },
+                  "equipment_class_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the equipment class code"
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Status of the equipment"
+                  },
+                  "category": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Category of the equipment"
+                  },
+                  "category_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the category of the equipment"
+                  },
+                  "hour_meter": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Hour meter of the equipment"
+                  },
+                  "unit_of_usage": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Unit of usage of the equipment"
+                  },
+                  "last_service_date": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Last service date of the equipment"
+                  },
+                  "source_system_links": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "source_system": {
+                          "type": "string",
+                          "description": "Source system"
+                        },
+                        "source_system_id": {
+                          "type": "string",
+                          "description": "Source system ID"
+                        },
+                        "secondary_source_system_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Secondary source system ID"
+                        }
+                      },
+                      "required": [
+                        "source_system",
+                        "source_system_id"
+                      ],
+                      "description": "Source system links of the equipment"
+                    },
+                    "description": "Source system links of the equipment"
+                  }
+                }
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Equipment Time Entry",
+          "urlPart": "equipment-time-entry",
+          "key": "equipment-time-entry",
+          "description": "Example description of the object.",
+          "createEndpoint": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Example primary key of the object"
+              },
+              "company_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier for the company"
+              },
+              "company_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the company"
+              },
+              "equipment_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier for the equipment"
+              },
+              "equipment_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Code for the equipment"
+              },
+              "equipment_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the equipment"
+              },
+              "project_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier for the project"
+              },
+              "project_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Code for the project"
+              },
+              "project_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the project"
+              },
+              "project_type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Type of the project"
+              },
+              "project_status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Status of the project"
+              },
+              "task_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier for the task"
+              },
+              "task_code": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Code for the task"
+              },
+              "task_name": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Name of the task"
+              },
+              "date_worked": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Date worked"
+              },
+              "start_time": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Start time"
+              },
+              "end_time": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "End time"
+              },
+              "work_duration": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Work duration"
+              },
+              "work_duration_in_secs": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Work duration in seconds"
+              },
+              "status": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Status"
+              },
+              "processed": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "description": "Processed"
               }
             },
             "required": [

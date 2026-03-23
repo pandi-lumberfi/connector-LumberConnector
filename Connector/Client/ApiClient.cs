@@ -30,6 +30,8 @@ using Connector.App.v1.Employees.UpdatePaySplit;
 using Connector.App.v1.Employees.UpdateTaxWithHolding;
 using Connector.App.v1.ChartOfAccount.Create;
 using Connector.App.v1.ChartOfAccount.Update;
+using Connector.App.v1.Employees.UpdateLeaveBalance;
+using Connector.App.v1.Equipment.Create;
 namespace Connector.Client;
 
 /// <summary>
@@ -1012,6 +1014,51 @@ public class ApiClient
         };
     }
 
+    internal async Task<ApiResponse<UpdateLeaveBalanceEmployeesActionOutput>> UpdateEmployeeLeaveBalance(
+        string relativeUrl, 
+        UpdateLeaveBalanceEmployeesActionInput input, 
+        CancellationToken cancellationToken)
+    {
+        HttpResponseMessage response;
+        try
+        {
+            response = await _httpClient.PostAsJsonAsync(
+                relativeUrl,
+                input,
+                cancellationToken)
+                .ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message, ex);
+        }
+
+        var responseBody = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException(
+                $"Failed to update employee leave balance. Status Code: {response.StatusCode}. Response: {responseBody}");
+        }
+
+        var jsonOptions = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            WriteIndented = true
+        };
+        var data = string.IsNullOrEmpty(responseBody)
+            ? default
+            : JsonSerializer.Deserialize<UpdateLeaveBalanceEmployeesActionOutput>(responseBody, jsonOptions);
+
+        return new ApiResponse<UpdateLeaveBalanceEmployeesActionOutput>
+        {
+            IsSuccessful = true,
+            StatusCode = (int)response.StatusCode,
+            Data = data,
+            RawResult = new MemoryStream(Encoding.UTF8.GetBytes(responseBody))
+        };
+    }
+    
     internal async Task<ApiResponse<PaginatedResponse<ChartOfAccountDataObject>>> GetChartOfAccounts<ChartOfAccountDataObject>(
         string relativeUrl,
         int page,
@@ -1036,6 +1083,79 @@ public class ApiClient
                     },
                     cancellationToken)
                 : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<PaginatedResponse<EquipmentTimeEntryDataObject>>> GetEquipmentTimeEntry<EquipmentTimeEntryDataObject>(
+        string relativeUrl,
+        int page,
+        int size,
+        CancellationToken cancellationToken = default)
+    {   
+        var response = await _httpClient.GetAsync(
+            $"{relativeUrl}?page_no={page}&page_size={size}",
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        return new ApiResponse<PaginatedResponse<EquipmentTimeEntryDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<PaginatedResponse<EquipmentTimeEntryDataObject>>(
+                    new JsonSerializerOptions
+                    {
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true
+                    },
+                    cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<PaginatedResponse<EquipmentDataObject>>> GetEquipments<EquipmentDataObject>(
+        string relativeUrl,
+        int page,
+        int size,
+        CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync(
+            $"{relativeUrl}?page_no={page}&page_size={size}",
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        return new ApiResponse<PaginatedResponse<EquipmentDataObject>>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<PaginatedResponse<EquipmentDataObject>>(
+                    new JsonSerializerOptions
+                    {
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true
+                    },
+                    cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<CreateEquipmentActionOutput>> CreateEquipment(string relativeUrl, CreateEquipmentActionInput input, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to create equipment data. Status Code: {response.StatusCode}");  
+        }
+
+        return new ApiResponse<CreateEquipmentActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode ? await response.Content.ReadFromJsonAsync<CreateEquipmentActionOutput>(cancellationToken: cancellationToken) : default,
             RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
         };
     }
