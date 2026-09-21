@@ -32,6 +32,7 @@ using Connector.App.v1.ChartOfAccount.Create;
 using Connector.App.v1.ChartOfAccount.Update;
 using Connector.App.v1.Employees.UpdateLeaveBalance;
 using Connector.App.v1.Equipment.Create;
+using Connector.App.v1.Timesheet.Create;
 namespace Connector.Client;
 
 /// <summary>
@@ -673,6 +674,34 @@ public class ApiClient
             StatusCode = (int)response.StatusCode,
             Data = response.IsSuccessStatusCode 
                 ? await response.Content.ReadFromJsonAsync<PaginatedResponse<TimesheetDataObject>>(
+                    new JsonSerializerOptions
+                    {
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                        WriteIndented = true
+                    },
+                    cancellationToken)
+                : default,
+            RawResult = await response.Content.ReadAsStreamAsync(cancellationToken: cancellationToken)
+        };
+    }
+
+    internal async Task<ApiResponse<CreateTimesheetActionOutput>> CreateTimesheet(
+        string relativeUrl,
+        CreateTimesheetActionInput input,
+        CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.PostAsJsonAsync(relativeUrl, input, cancellationToken);    
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException($"Failed to create timesheet data. Status Code: {response.StatusCode}");
+        }
+        
+        return new ApiResponse<CreateTimesheetActionOutput>
+        {
+            IsSuccessful = response.IsSuccessStatusCode,
+            StatusCode = (int)response.StatusCode,
+            Data = response.IsSuccessStatusCode 
+                ? await response.Content.ReadFromJsonAsync<CreateTimesheetActionOutput>(
                     new JsonSerializerOptions
                     {
                         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,

@@ -22,6 +22,7 @@ using Connector.App.v1.Project.Create;
 using Connector.App.v1.Project.Update;
 using Connector.App.v1.Task.Create;
 using Connector.App.v1.Task.Update;
+using Connector.App.v1.Timesheet.Create;
 using Json.Schema.Generation;
 using Xchange.Connector.SDK.Action;
 
@@ -59,4 +60,5 @@ public class AppV1ActionProcessorConfig
     public DefaultActionHandlerConfig UpdateChartOfAccountConfig { get; set; } = new();
     public DefaultActionHandlerConfig UpdateLeaveBalanceEmployeesConfig { get; set; } = new();
     public DefaultActionHandlerConfig CreateEquipmentConfig { get; set; } = new();
+    public DefaultActionHandlerConfig CreateTimesheetConfig { get; set; } = new();
 }

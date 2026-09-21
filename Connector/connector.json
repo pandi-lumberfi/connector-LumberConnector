@@ -277,6 +277,14 @@
                     "type": "boolean"
                   }
                 }
+              },
+              "CreateTimesheetConfig": {
+                "type": "object",
+                "properties": {
+                  "ProcessQueuedEvent": {
+                    "type": "boolean"
+                  }
+                }
               }
             },
             "title": "App V1 Action Processor Configuration",
@@ -8068,7 +8076,987 @@
               ]
             }
           ],
-          "actions": []
+          "actions": [
+            {
+              "name": "Create",
+              "urlPart": "create",
+              "key": "create",
+              "description": "CreateTimesheetAction Action description goes here",
+              "createRtap": true,
+              "realTimeActionProcessing": {
+                "configuration": {
+                  "ServiceName": "lumber-bdf65/app/1 Action Processor",
+                  "ServiceConfigTemplate": {
+                    "CreateTimesheetConfig": {
+                      "ProcessQueuedEvent": true
+                    }
+                  },
+                  "Version": 2,
+                  "ParallelLimit": 5,
+                  "DividerLimit": 10
+                },
+                "deregister": false
+              },
+              "inputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the company to which the Project belongs"
+                  },
+                  "employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the employee to which the Timesheet belongs"
+                  },
+                  "employee_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the employee"
+                  },
+                  "department_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the department"
+                  },
+                  "department_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the department"
+                  },
+                  "project_group_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the project group"
+                  },
+                  "project_group_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the project group"
+                  },
+                  "project_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the project"
+                  },
+                  "project_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the project"
+                  },
+                  "project_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Type of project"
+                  },
+                  "sub_project_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the sub-project"
+                  },
+                  "sub_project_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the sub-project"
+                  },
+                  "task_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the task"
+                  },
+                  "task_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the task"
+                  },
+                  "cost_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the cost code"
+                  },
+                  "cost_code_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the cost code"
+                  },
+                  "cost_type_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the cost type"
+                  },
+                  "cost_type_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the cost type"
+                  },
+                  "service_order_type_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the service order type"
+                  },
+                  "service_order_type_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the service order type"
+                  },
+                  "service_order_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the service order"
+                  },
+                  "service_order_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the service order"
+                  },
+                  "appointment_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the appointment"
+                  },
+                  "appointment_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the appointment"
+                  },
+                  "equipment_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the equipment"
+                  },
+                  "equipment_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the equipment"
+                  },
+                  "inventory_item_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the inventory item"
+                  },
+                  "inventory_item_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the inventory item"
+                  },
+                  "worker_comp_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the worker compensation code"
+                  },
+                  "worker_comp_code_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the worker compensation code"
+                  },
+                  "job_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the job code"
+                  },
+                  "job_code_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the job code"
+                  },
+                  "job_level_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the job level"
+                  },
+                  "job_level_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the job level"
+                  },
+                  "classification_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the classification"
+                  },
+                  "classification_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the classification"
+                  },
+                  "shift_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the shift"
+                  },
+                  "shift_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the shift"
+                  },
+                  "date_worked": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Date when work was performed"
+                  },
+                  "scheduled_start_time": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Scheduled start time for the work"
+                  },
+                  "scheduled_end_time": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Scheduled end time for the work"
+                  },
+                  "actual_start_time": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Actual start time for the work"
+                  },
+                  "actual_end_time": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Actual end time for the work"
+                  },
+                  "total_work_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Total duration of work"
+                  },
+                  "regular_work_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of regular work"
+                  },
+                  "overtime_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of overtime work"
+                  },
+                  "total_work_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Total duration of work in seconds"
+                  },
+                  "regular_work_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of regular work in seconds"
+                  },
+                  "overtime_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of overtime work in seconds"
+                  },
+                  "double_overtime_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of double overtime work in seconds"
+                  },
+                  "break_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of break in seconds"
+                  },
+                  "meal_break_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of meal break in seconds"
+                  },
+                  "travel_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of travel time in seconds"
+                  },
+                  "double_overtime_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of double overtime work"
+                  },
+                  "meal_break_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of meal break"
+                  },
+                  "break_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Total duration of breaks"
+                  },
+                  "paid_break_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of paid breaks"
+                  },
+                  "unpaid_break_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of unpaid breaks"
+                  },
+                  "travelled": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Indicates if travel occurred"
+                  },
+                  "miles_travelled": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Number of miles travelled"
+                  },
+                  "travel_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of travel time"
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Status of the timesheet entry"
+                  },
+                  "type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Type of timesheet entry"
+                  },
+                  "per_diem": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Indicates if per diem applies"
+                  }
+                }
+              },
+              "outputSchema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Example primary key of the object"
+                  },
+                  "company_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the company to which the Project belongs"
+                  },
+                  "employee_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Id of the employee to which the Timesheet belongs"
+                  },
+                  "employee_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the employee"
+                  },
+                  "department_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the department"
+                  },
+                  "department_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the department"
+                  },
+                  "project_group_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the project group"
+                  },
+                  "project_group_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the project group"
+                  },
+                  "project_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the project"
+                  },
+                  "project_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the project"
+                  },
+                  "project_type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Type of project"
+                  },
+                  "sub_project_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the sub-project"
+                  },
+                  "sub_project_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the sub-project"
+                  },
+                  "task_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the task"
+                  },
+                  "task_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the task"
+                  },
+                  "cost_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the cost code"
+                  },
+                  "cost_code_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the cost code"
+                  },
+                  "cost_type_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the cost type"
+                  },
+                  "cost_type_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the cost type"
+                  },
+                  "service_order_type_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the service order type"
+                  },
+                  "service_order_type_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the service order type"
+                  },
+                  "service_order_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the service order"
+                  },
+                  "service_order_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the service order"
+                  },
+                  "appointment_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the appointment"
+                  },
+                  "appointment_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the appointment"
+                  },
+                  "equipment_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the equipment"
+                  },
+                  "equipment_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the equipment"
+                  },
+                  "inventory_item_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the inventory item"
+                  },
+                  "inventory_item_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the inventory item"
+                  },
+                  "worker_comp_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the worker compensation code"
+                  },
+                  "worker_comp_code_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the worker compensation code"
+                  },
+                  "job_code_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the job code"
+                  },
+                  "job_code_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Code for the job code"
+                  },
+                  "job_level_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the job level"
+                  },
+                  "job_level_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the job level"
+                  },
+                  "classification_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the classification"
+                  },
+                  "classification_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the classification"
+                  },
+                  "shift_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Identifier for the shift"
+                  },
+                  "shift_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Name of the shift"
+                  },
+                  "date_worked": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Date when work was performed"
+                  },
+                  "scheduled_start_time": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Scheduled start time for the work"
+                  },
+                  "scheduled_end_time": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Scheduled end time for the work"
+                  },
+                  "actual_start_time": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Actual start time for the work"
+                  },
+                  "actual_end_time": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Actual end time for the work"
+                  },
+                  "total_work_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Total duration of work"
+                  },
+                  "regular_work_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of regular work"
+                  },
+                  "overtime_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of overtime work"
+                  },
+                  "total_work_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Total duration of work in seconds"
+                  },
+                  "regular_work_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of regular work in seconds"
+                  },
+                  "overtime_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of overtime work in seconds"
+                  },
+                  "double_overtime_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of double overtime work in seconds"
+                  },
+                  "break_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of break in seconds"
+                  },
+                  "meal_break_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of meal break in seconds"
+                  },
+                  "travel_duration_in_secs": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of travel time in seconds"
+                  },
+                  "double_overtime_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of double overtime work"
+                  },
+                  "meal_break_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of meal break"
+                  },
+                  "break_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Total duration of breaks"
+                  },
+                  "paid_break_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of paid breaks"
+                  },
+                  "unpaid_break_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of unpaid breaks"
+                  },
+                  "travelled": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Indicates if travel occurred"
+                  },
+                  "miles_travelled": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Number of miles travelled"
+                  },
+                  "travel_duration": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "description": "Duration of travel time"
+                  },
+                  "status": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Status of the timesheet entry"
+                  },
+                  "type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Type of timesheet entry"
+                  },
+                  "per_diem": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Indicates if per diem applies"
+                  }
+                }
+              },
+              "failureSchema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "user_defined_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "details": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
         },
         {
           "name": "Comp Code",

@@ -32,6 +32,8 @@ using Connector.App.v1.Project.Update;
 using Connector.App.v1.Task;
 using Connector.App.v1.Task.Create;
 using Connector.App.v1.Task.Update;
+using Connector.App.v1.Timesheet;
+using Connector.App.v1.Timesheet.Create;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Text.Json;
@@ -81,6 +83,7 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         serviceCollection.AddScoped<UpdateChartOfAccountHandler>();
         serviceCollection.AddScoped<UpdateLeaveBalanceEmployeesHandler>();
         serviceCollection.AddScoped<CreateEquipmentHandler>();
+        serviceCollection.AddScoped<CreateTimesheetHandler>();
     }
 
     public override void ConfigureService(IActionHandlerService service, AppV1ActionProcessorConfig config)
@@ -109,5 +112,6 @@ public class AppV1ActionProcessorServiceDefinition : BaseActionHandlerServiceDef
         service.RegisterHandlerForDataObjectAction<UpdateChartOfAccountHandler, ChartOfAccountDataObject>(ModuleId, "chart-of-account", "update", config.UpdateChartOfAccountConfig);
         service.RegisterHandlerForDataObjectAction<UpdateLeaveBalanceEmployeesHandler, EmployeesDataObject>(ModuleId, "employees", "update-leave-balance", config.UpdateLeaveBalanceEmployeesConfig);
         service.RegisterHandlerForDataObjectAction<CreateEquipmentHandler, EquipmentDataObject>(ModuleId, "equipment", "create", config.CreateEquipmentConfig);
+        service.RegisterHandlerForDataObjectAction<CreateTimesheetHandler, TimesheetDataObject>(ModuleId, "timesheet", "create", config.CreateTimesheetConfig);
     }
 }
